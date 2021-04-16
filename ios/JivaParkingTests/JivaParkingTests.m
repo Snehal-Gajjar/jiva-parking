@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface JivaParkingTests : XCTestCase
+@interface jivaParkingTests : XCTestCase
 
 @end
 
-@implementation JivaParkingTests
+@implementation jivaParkingTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {
