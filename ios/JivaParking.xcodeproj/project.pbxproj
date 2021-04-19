@@ -15,6 +15,10 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9C566D2D59A864D2E8C8BA5E /* libPods-jivaParking-jivaParkingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B512527734AD02E99C8A37 /* libPods-jivaParking-jivaParkingTests.a */; };
 		F68F9DBDE19762EE2C09FC2E /* libPods-jivaParking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D771134DAD6F2656E29424 /* libPods-jivaParking.a */; };
+		651F9DA0946249B6B866C03C /* Segoe UI Bold Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 580D23647B6F4256ABCF69E7 /* Segoe UI Bold Italic.woff */; };
+		A1ED2F9258BD48768529F011 /* Segoe UI Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 85C95E8E39C24C9584B7960D /* Segoe UI Bold.woff */; };
+		7DE0F3FFD0B142FD8770EAFE /* Segoe UI Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 2A9232C094534235AE8C5AD9 /* Segoe UI Italic.woff */; };
+		D875D6E900474D2B8EE99B28 /* Segoe UI.woff in Resources */ = {isa = PBXBuildFile; fileRef = 5DDDE8018E324E84BADE20A1 /* Segoe UI.woff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +68,10 @@
 		E8D771134DAD6F2656E29424 /* libPods-jivaParking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jivaParking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90C337BEAE7474391604613 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		580D23647B6F4256ABCF69E7 /* Segoe UI Bold Italic.woff */ = {isa = PBXFileReference; name = "Segoe UI Bold Italic.woff"; path = "../src/assets/fonts/Segoe UI Bold Italic.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		85C95E8E39C24C9584B7960D /* Segoe UI Bold.woff */ = {isa = PBXFileReference; name = "Segoe UI Bold.woff"; path = "../src/assets/fonts/Segoe UI Bold.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2A9232C094534235AE8C5AD9 /* Segoe UI Italic.woff */ = {isa = PBXFileReference; name = "Segoe UI Italic.woff"; path = "../src/assets/fonts/Segoe UI Italic.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5DDDE8018E324E84BADE20A1 /* Segoe UI.woff */ = {isa = PBXFileReference; name = "Segoe UI.woff"; path = "../src/assets/fonts/Segoe UI.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +199,10 @@
 				B4D8D985CDC8449AAEAD80F6 /* Octicons.ttf */,
 				E90C337BEAE7474391604613 /* SimpleLineIcons.ttf */,
 				2AC4B6C7B090437D93C3A77A /* Zocial.ttf */,
+				580D23647B6F4256ABCF69E7 /* Segoe UI Bold Italic.woff */,
+				85C95E8E39C24C9584B7960D /* Segoe UI Bold.woff */,
+				2A9232C094534235AE8C5AD9 /* Segoe UI Italic.woff */,
+				5DDDE8018E324E84BADE20A1 /* Segoe UI.woff */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -291,6 +303,10 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				651F9DA0946249B6B866C03C /* Segoe UI Bold Italic.woff in Resources */,
+				A1ED2F9258BD48768529F011 /* Segoe UI Bold.woff in Resources */,
+				7DE0F3FFD0B142FD8770EAFE /* Segoe UI Italic.woff in Resources */,
+				D875D6E900474D2B8EE99B28 /* Segoe UI.woff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -69,6 +69,10 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>Segoe UI Bold Italic.woff</string>
+		<string>Segoe UI Bold.woff</string>
+		<string>Segoe UI Italic.woff</string>
+		<string>Segoe UI.woff</string>
 	</array>
 </dict>
 </plist>
