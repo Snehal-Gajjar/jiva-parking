@@ -1,10 +1,11 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {RootStackParamList} from '../../../App';
 import {SocialLoginBtn} from '../../component/Login/SocialLoginBtn';
+import {VerifyOtpModal} from '../../component/Login/VerifyOtpModal';
 import {TextInput} from '../../component/TextInput';
 import {LoginStyle} from './style';
 
@@ -13,11 +14,22 @@ type Props = {
 };
 
 export const Login: FC<Props> = ({navigation}) => {
+  const [showOtpModal, setShowOtpModal] = useState<boolean>(false);
+
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
+
+  const handleOtpModal = () => {
+    setShowOtpModal(!showOtpModal);
+  };
+
+  const handleVerifyOtp = () => {
+    handleOtpModal()
+    navigation.navigate('Dashboard');
+  };
 
   return (
     <SafeAreaView
@@ -53,7 +65,11 @@ export const Login: FC<Props> = ({navigation}) => {
           label="Password"
           secureTextEntry
         />
-        <Button title="Log In" buttonStyle={LoginStyle.btnSignUp} />
+        <Button
+          title="Log In"
+          buttonStyle={LoginStyle.btnSignUp}
+          onPress={handleOtpModal}
+        />
         <View style={LoginStyle.socialContainer}>
           <SocialLoginBtn
             iconName="facebook"
@@ -99,6 +115,11 @@ export const Login: FC<Props> = ({navigation}) => {
           </Text>
         </View>
       </View>
+      <VerifyOtpModal
+        {...{handleVerifyOtp}}
+        visible={showOtpModal}
+        handleClose={handleOtpModal}
+      />
     </SafeAreaView>
   );
 };

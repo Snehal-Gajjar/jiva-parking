@@ -1,9 +1,21 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import React from 'react';
-import {ThemeProvider} from 'react-native-elements';
+import {createStackNavigator, StackScreenProps} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import React, {useEffect} from 'react';
+import {ListItem, Text, ThemeProvider} from 'react-native-elements';
 import SCREENS from './src/utils/Routes';
 import {theme} from './src/utils/theme';
+import {
+  Dimensions,
+  ScaledSize,
+  ScrollView,
+  TouchableHighlight,
+} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+
+type RootDrawerParamList = {
+  Examples: undefined;
+};
 
 export type RootStackParamList = {
   Starter: undefined;
@@ -12,19 +24,30 @@ export type RootStackParamList = {
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
+const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 const App = () => {
+  const [dimensions, setDimensions] = React.useState(Dimensions.get('window'));
+
+  useEffect(() => {
+    const onDimensionsChange = ({window}: {window: ScaledSize}) => {
+      setDimensions(window);
+    };
+
+    Dimensions.addEventListener('change', onDimensionsChange);
+
+    return () => Dimensions.removeEventListener('change', onDimensionsChange);
+  }, []);
+
+  
+  const isLargeScreen = dimensions.width >= 1024;
+  console.log(dimensions.width)
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
           <Stack.Navigator>
-            {/* <Stack.Screen
-              key={'Starter'}
-              name="Starter"
-              component={Starter}
-              options={{headerShown: false}}
-            /> */}
             {(Object.keys(SCREENS) as (keyof typeof SCREENS)[]).map((name) => (
               <Stack.Screen
                 key={name}
