@@ -1,16 +1,17 @@
 import React, {FC} from 'react';
 import {View, Text, ImageSourcePropType, StyleSheet} from 'react-native';
-import {Button, Image} from 'react-native-elements';
+import {Button, ButtonProps, Image} from 'react-native-elements';
 
 type Props = {
   image: ImageSourcePropType;
   title: string;
-};
+} & ButtonProps;
 
-export const NavigationButton: FC<Props> = ({image, title}) => {
+export const NavigationButton: FC<Props> = ({image, title, onPress}) => {
   return (
     <View style={ButtonStyle.container}>
       <Button
+        onPress={onPress}
         raised
         type="outline"
         buttonStyle={ButtonStyle.buttonStyle}

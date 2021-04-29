@@ -3,7 +3,7 @@ import React, {FC, useEffect} from 'react';
 import {View, Text, Image} from 'react-native';
 import {Button, Card} from 'react-native-elements';
 import {RootStackParamList} from '../../../App';
-import {HeaderContainer} from '../../component/Dashboard/HeaderContainer';
+import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {ScanningStyle} from './styles';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 type Props = {

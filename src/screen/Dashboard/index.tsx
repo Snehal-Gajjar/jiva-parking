@@ -5,7 +5,7 @@ import {Button, Icon} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {RootStackParamList} from '../../../App';
 import {BottomCarousel} from '../../component/Dashboard/BottomCarousel';
-import {HeaderContainer} from '../../component/Dashboard/HeaderContainer';
+import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {NavigationCard} from '../../component/Dashboard/NavigationCard';
 import {DashboardStyle} from './styles';
 
@@ -20,10 +20,14 @@ export const Dashboard: FC<Props> = ({navigation}) => {
     });
   }, []);
 
+  const handleNavPress = (name: any) => {
+    navigation.navigate(name);
+  };
+
   return (
     <View style={{flex: 1}}>
       <View style={DashboardStyle.headerContainer}>
-      <HeaderContainer />
+        <HeaderContainer />
         <View style={DashboardStyle.logoContainer}>
           <View style={DashboardStyle.logo}>
             <Image
@@ -45,7 +49,7 @@ export const Dashboard: FC<Props> = ({navigation}) => {
           industry. Lorem Ipsum has been the industry's standard dummy text.
         </Text>
       </View>
-      <NavigationCard />
+      <NavigationCard {...{handleNavPress}} />
       <View>
         <Button
           title="Scan Car QR"

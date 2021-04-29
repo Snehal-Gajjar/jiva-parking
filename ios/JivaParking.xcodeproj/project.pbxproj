@@ -18,7 +18,6 @@
 		9C566D2D59A864D2E8C8BA5E /* libPods-jivaParking-jivaParkingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B512527734AD02E99C8A37 /* libPods-jivaParking-jivaParkingTests.a */; };
 		A1ED2F9258BD48768529F011 /* Segoe UI Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 85C95E8E39C24C9584B7960D /* Segoe UI Bold.woff */; };
 		D875D6E900474D2B8EE99B28 /* Segoe UI.woff in Resources */ = {isa = PBXBuildFile; fileRef = 5DDDE8018E324E84BADE20A1 /* Segoe UI.woff */; };
-		F68F9DBDE19762EE2C09FC2E /* libPods-jivaParking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D771134DAD6F2656E29424 /* libPods-jivaParking.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +43,10 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = jivaParking/main.m; sourceTree = "<group>"; };
 		19B88EDC7246488FA41D05A7 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		232FA0C6018D4C2AA99E842A /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
-		2A9232C094534235AE8C5AD9 /* Segoe UI Italic.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Italic.woff"; path = "../src/assets/fonts/Segoe UI Italic.woff"; sourceTree = "<group>"; };
+		2A9232C094534235AE8C5AD9 /* Segoe UI Italic.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Italic.woff"; path = "../src/assets/fonts/Segoe UI Italic.woff"; sourceTree = "<group>"; };
 		2AC4B6C7B090437D93C3A77A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		580D23647B6F4256ABCF69E7 /* Segoe UI Bold Italic.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Bold Italic.woff"; path = "../src/assets/fonts/Segoe UI Bold Italic.woff"; sourceTree = "<group>"; };
-		5DDDE8018E324E84BADE20A1 /* Segoe UI.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI.woff"; path = "../src/assets/fonts/Segoe UI.woff"; sourceTree = "<group>"; };
+		580D23647B6F4256ABCF69E7 /* Segoe UI Bold Italic.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Bold Italic.woff"; path = "../src/assets/fonts/Segoe UI Bold Italic.woff"; sourceTree = "<group>"; };
+		5DDDE8018E324E84BADE20A1 /* Segoe UI.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI.woff"; path = "../src/assets/fonts/Segoe UI.woff"; sourceTree = "<group>"; };
 		5E199C0AFD954A79839A2FC4 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		5F25EA523F544FA5B3AA9210 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		6A2E2E279651422F97FC13A1 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
@@ -57,7 +56,7 @@
 		7824E148AAB44E54A8057072 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = jivaParking/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		842AF01779EE47BE846EA10D /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		85C95E8E39C24C9584B7960D /* Segoe UI Bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Bold.woff"; path = "../src/assets/fonts/Segoe UI Bold.woff"; sourceTree = "<group>"; };
+		85C95E8E39C24C9584B7960D /* Segoe UI Bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Bold.woff"; path = "../src/assets/fonts/Segoe UI Bold.woff"; sourceTree = "<group>"; };
 		8A7EE6381C044B8D82FC6DBE /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		AD5A7501057A48249034E559 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		B4D8D985CDC8449AAEAD80F6 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -87,7 +86,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F68F9DBDE19762EE2C09FC2E /* libPods-jivaParking.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,8 +547,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = jivaParking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -565,8 +567,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jivaParking;
 				PRODUCT_NAME = jivaParking;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "jivaParking-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -580,7 +583,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = jivaParking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -595,8 +601,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jivaParking;
 				PRODUCT_NAME = jivaParking;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "jivaParking-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
