@@ -57,7 +57,7 @@ const style = StyleSheet.create({
     height: 40,
     width: '100%',
     padding: 0,
-    marginTop: 20,
+    marginTop: 30,
     borderBottomWidth: 0,
   },
   torchContainer: {

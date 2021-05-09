@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F1F1F1',
     padding: 10,
     opacity:1,
-    height: '30%',
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     display: 'flex',
@@ -67,11 +66,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnLogIn: {
-    marginTop: 30,
+    marginTop: 15,
     borderRadius: 10,
-    padding: 10,
     borderWidth: 2,
-    height: 55,
+    height: 45,
     fontSize: 15,
   },
   titleModal: {
@@ -79,7 +77,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Segoe UI Bold',
     fontSize: 18,
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 15,
+    marginTop:10,
   },
   otpSection: {
     flexDirection: 'row',
@@ -87,7 +86,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     padding: 15,
-    borderRadius:10
+    borderRadius:10,
+    height:50
   },
   otpInput: {
     flex: 1,

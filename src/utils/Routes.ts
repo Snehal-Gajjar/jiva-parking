@@ -3,6 +3,8 @@ import { Dashboard } from "../screen/Dashboard"
 import { Login } from "../screen/Login"
 import { NearByParking } from "../screen/NearByParking"
 import { DetailPage } from "../screen/NearByParking/DetailPage"
+import { SlotScreen } from "../screen/NearByParking/SlotScreen"
+import { PaymentScreen } from "../screen/NearByParking/PaymentScreen"
 import { Scanning } from "../screen/Scanning"
 import { SignUp } from "../screen/SignUp"
 import { Wallet } from "../screen/Wallet"
@@ -15,7 +17,9 @@ export const SCREENS = {
     NearByParking: { title: 'NearByParking', component: NearByParking },
     Wallet: { title: 'Wallet', component: Wallet },
     CarDetail: { title: 'CarDetail', component: CarDetail },
-    DetailPage: { title: 'Detail', component: DetailPage }
+    DetailPage: { title: 'Detail', component: DetailPage },
+    PaymentScreen: { title: 'Payment', component: PaymentScreen },
+    MapScreen: { title: 'Detail', component: SlotScreen }
 }
 
 export default SCREENS

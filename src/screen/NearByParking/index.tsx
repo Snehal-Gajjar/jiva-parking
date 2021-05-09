@@ -1,11 +1,12 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
-import MapView from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {RootStackParamList} from '../../../App';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {DetailPopUp} from '../../component/NearByParking/DetailPopUp';
+import {FliterPopUp} from '../../component/NearByParking/FliterPopUp';
 import {NearByParkingStyle} from './styles';
 
 type Props = {
@@ -14,13 +15,22 @@ type Props = {
 
 export const NearByParking: FC<Props> = ({navigation}) => {
   const [visible, setVisible] = useState<boolean>(false);
+  const [filterVisible, setFilterVisible] = useState<boolean>(false);
 
-  const handleClose = () => {
-    setVisible(!visible);
+  const handleClose = (type?: string) => {
+    if (type === 'filter') {
+      setFilterVisible(!filterVisible);
+    } else {
+      setVisible(!visible);
+    }
   };
 
   const hanldeBookNow = () => {
     navigation.navigate('DetailPage');
+  };
+
+  const handleFilter = () => {
+    handleClose('filter');
   };
 
   useEffect(() => {
@@ -28,9 +38,10 @@ export const NearByParking: FC<Props> = ({navigation}) => {
       headerShown: false,
     });
   }, []);
+
   return (
     <View style={{flex: 1}}>
-      <HeaderContainer nearByParking />
+      <HeaderContainer nearByParking {...{handleFilter}} />
       <View style={NearByParkingStyle.iconsContainer}>
         <Button
           raised
@@ -56,7 +67,7 @@ export const NearByParking: FC<Props> = ({navigation}) => {
             NearByParkingStyle.iconButtonStyle,
             {backgroundColor: '#afc8ff'},
           ]}
-          onPress={handleClose}
+          onPress={() => handleClose()}
           icon={
             <Icon
               name="two-wheeler"
@@ -69,15 +80,25 @@ export const NearByParking: FC<Props> = ({navigation}) => {
       </View>
       <View style={{flex: 1}}>
         <MapView
+          provider={PROVIDER_GOOGLE}
           initialRegion={{
             latitude: 37.78825,
             longitude: -122.4324,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
-        />
+          style={{
+            ...StyleSheet.absoluteFillObject,
+          }}></MapView>
       </View>
-      <DetailPopUp {...{visible, handleClose, hanldeBookNow}} />
+      <DetailPopUp
+        {...{visible, hanldeBookNow}}
+        handleClose={() => handleClose()}
+      />
+      <FliterPopUp
+        visible={filterVisible}
+        handleClose={() => handleClose('filter')}
+      />
     </View>
   );
 };

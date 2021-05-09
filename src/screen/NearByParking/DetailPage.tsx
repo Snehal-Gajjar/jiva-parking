@@ -5,7 +5,7 @@ import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {RootStackParamList} from '../../../App';
 import {DetailContainer} from '../../component/NearByParking/DetailContainer';
 import {DetailStyle} from './styles';
-import {Button, CheckBox, Divider} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 import Collapsible from 'react-native-collapsible';
 import {CarDropDown} from '../../component/NearByParking/CarDropDown';
 import {ParkingTime} from '../../component/NearByParking/ParkingTime';
@@ -15,7 +15,6 @@ type Props = {
 };
 
 export const DetailPage: FC<Props> = ({navigation}) => {
-  const [vipChecked, setvipChecked] = useState<boolean>(false);
   const [selectedCar, setSelectedCar] = useState<string>('GJ01');
   useEffect(() => {
     navigation.setOptions({
@@ -33,7 +32,7 @@ export const DetailPage: FC<Props> = ({navigation}) => {
           margin: 10,
         }}>
         <DetailContainer />
-        <View>
+        {/* <View>
           <CheckBox
             containerStyle={{
               backgroundColor: 'transparent',
@@ -54,8 +53,9 @@ export const DetailPage: FC<Props> = ({navigation}) => {
             </View>
           </Collapsible>
         </View>
-        <CarDropDown {...{setSelectedCar, selectedCar}} />
-        <View>
+         */}
+
+        {/* <View>
           <Text style={DetailStyle.titleStyle}>Payable Amount</Text>
           <View style={DetailStyle.billContainer}>
             <View style={DetailStyle.billSubContainer}>
@@ -77,19 +77,28 @@ export const DetailPage: FC<Props> = ({navigation}) => {
             </View>
           </View>
         </View>
-        <View>
-          <Text style={DetailStyle.titleStyle}>Info</Text>
-          <Text style={DetailStyle.subDetail}>
-            24/7 parking facility with cctv camera, professional security gaurd,
-            chair for disable,floor parking lift facilities. You will get hassle
-            parkingfacilities with 35% cashback on first parking...
-          </Text>
-        </View>
+       */}
         <View>
           <Text style={DetailStyle.titleStyle}>Parking Time</Text>
           <ParkingTime />
         </View>
-        <Button title="Pick Parking Slot" buttonStyle={DetailStyle.btnPick} />
+        <View>
+          <Text style={DetailStyle.titleStyle}>Info</Text>
+          <View
+            style={{
+              display: 'flex',
+              alignItems: 'baseline',
+            }}>
+            <Text numberOfLines={4} style={DetailStyle.subDetail}>
+              24/7 parking facility with cctv camera, professional security
+              gaurd, chair for disable,floor parking lift facilities. You will
+              get hassle parkingfacilities with 35% cashback on first parking...
+            </Text>
+            <Text>Read More</Text>
+          </View>
+        </View>
+        <CarDropDown {...{setSelectedCar, selectedCar}} />
+        <Button title="Pick Parking Slot" onPress={() => navigation.navigate('MapScreen')} buttonStyle={DetailStyle.btnPick} />
       </View>
     </ScrollView>
   );

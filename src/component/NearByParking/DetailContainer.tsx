@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button, Icon, Image} from 'react-native-elements';
 import {ServiceImageList} from '../../utils/ServiceImageList';
 
-export const DetailContainer = () => {
+type Props = {
+  showService?: boolean;
+};
+
+export const DetailContainer: FC<Props> = ({showService}) => {
   return (
     <View>
       <View style={styles.titleContainer}>
@@ -56,7 +60,7 @@ export const DetailContainer = () => {
           <Text style={[styles.detailText, {color: '#04ad5f'}]}>15 spots</Text>
         </View>
       </View>
-      <View style={styles.serviceImageContainer}>
+      {!showService && <View style={styles.serviceImageContainer}>
         {(Object.keys(
           ServiceImageList,
         ) as (keyof typeof ServiceImageList)[]).map((name) => (
@@ -69,7 +73,7 @@ export const DetailContainer = () => {
             }}
             source={ServiceImageList[name].image}></Image>
         ))}
-      </View>
+      </View>}
     </View>
   );
 };

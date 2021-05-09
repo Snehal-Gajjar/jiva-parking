@@ -11,7 +11,7 @@ export const TextInput: FC<Props> = ({iconName, iconType, ...props}) => {
   return (
     <>
       <View style={style.inputContainer}>
-        <Icon type={iconType} name={iconName} size={25} color="#0E5A93"></Icon>
+        <Icon type={iconType} name={iconName} size={20} color="#0E5A93"></Icon>
         <Input
           labelStyle={style.labelStyle}
           inputContainerStyle={style.inputContainerStyle}
@@ -32,7 +32,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     borderRadius: 10,
-    height: 70,
+    height: 50,
     padding: 10,
     marginTop: 10,
     shadowColor: '#0655911A',
@@ -46,11 +46,11 @@ const style = StyleSheet.create({
   labelStyle:{
     color: '#000',
     fontFamily: 'Segoe UI Bold',
-    marginTop: 25,
+    marginTop: 15,
     textTransform: 'capitalize',
   },
   inputContainerStyle:{
-    height: 30,
+    height: 25,
     width: '90%',
     padding: 0,
     borderBottomWidth: 0,

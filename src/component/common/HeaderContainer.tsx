@@ -8,23 +8,33 @@ type Props = {
   title?: string;
   nearByParking?: boolean;
   isMargin?: boolean;
+  handleFilter?: () => void;
 };
 
-export const HeaderContainer: FC<Props> = ({title, nearByParking, isMargin}) => {
+export const HeaderContainer: FC<Props> = ({
+  title,
+  nearByParking,
+  isMargin,
+  handleFilter,
+}) => {
   return (
     <Header
       centerComponent={
         nearByParking ? (
           <ParkingSearchBar />
         ) : (
-          <Text style={[HeaderStyle.titleStyle, {marginLeft: title || isMargin ? 15 : 35}]}>
+          <Text
+            style={[
+              HeaderStyle.titleStyle,
+              {marginLeft: title || isMargin ? 15 : 35},
+            ]}>
             {title}
           </Text>
         )
       }
       containerStyle={{
         width: '100%',
-        backgroundColor: 'transparent',
+        backgroundColor: handleFilter ? '#fff' : 'transparent',
         borderBottomColor: 'transparent',
       }}
       leftComponent={
@@ -35,7 +45,7 @@ export const HeaderContainer: FC<Props> = ({title, nearByParking, isMargin}) => 
           size={25}
           style={{
             marginLeft: title || nearByParking || isMargin ? 5 : 15,
-            marginTop: nearByParking? 10 : 0
+            marginTop: nearByParking ? 10 : 0,
           }}></Icon>
       }
       statusBarProps={{barStyle: 'default'}}
@@ -46,6 +56,7 @@ export const HeaderContainer: FC<Props> = ({title, nearByParking, isMargin}) => 
             <Button
               raised
               buttonStyle={HeaderStyle.torchButtonStyle}
+              onPress={handleFilter}
               icon={
                 <Icon
                   name="filter"

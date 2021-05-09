@@ -17,7 +17,7 @@ export const SocialLoginBtn: FC<Props> = ({title, iconName, iconType}) => {
           display:'flex',
           marginRight:6,
           justifyContent:'center'
-      }} type={iconType} size={25} color="white" />}
+      }} type={iconType} size={20} color="white" />}
       title={title}
       titleStyle={{
         fontSize: 13,
@@ -25,11 +25,10 @@ export const SocialLoginBtn: FC<Props> = ({title, iconName, iconType}) => {
       buttonStyle={{
         borderRadius: 10,
         borderWidth: 1,
-        height: 50,
+        height: 40,
       }}
       containerStyle={{
         width: '50%',
-        padding: 2,
       }}
     />
   );

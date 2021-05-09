@@ -4,6 +4,7 @@ export const NearByParkingStyle = StyleSheet.create({
   iconsContainer: {
     display: 'flex',
     flexDirection: 'row',
+    backgroundColor:'#fff'
   },
   iconContainer: {
     width: 40,
@@ -24,7 +25,7 @@ export const DetailStyle = StyleSheet.create({
     fontFamily: 'Segoe UI Bold',
     fontSize: 18,
     color: '#000',
-    marginTop: 10,
+    marginTop: 15,
   },
   subDetail: {
     fontFamily: 'Segoe UI',
@@ -38,6 +39,25 @@ export const DetailStyle = StyleSheet.create({
     borderWidth: 2,
     height: 50,
     fontSize: 15,
+  },
+});
+
+export const MapScreenStyle = StyleSheet.create({
+  btnPick: {
+    marginTop: 15,
+    borderRadius: 10,
+    borderWidth: 2,
+    height: 50,
+    fontSize: 15,
+  },
+});
+
+export const PaymentStyle = StyleSheet.create({
+  titleStyle: {
+    fontFamily: 'Segoe UI Bold',
+    fontSize: 18,
+    color: '#000',
+    marginTop: 10,
   },
   billContainer: {
     display: 'flex',
@@ -58,5 +78,12 @@ export const DetailStyle = StyleSheet.create({
   billPrice: {
     fontFamily: 'Segoe UI Italic',
     fontSize: 18,
+  },
+  btnPick: {
+    marginTop: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    height: 50,
+    fontSize: 15,
   },
 });

@@ -2,49 +2,45 @@ import React, {FC, useState} from 'react';
 import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import {ListItem} from 'react-native-elements';
 
-let timePrice = [
+let floors = [
   {
-    hour: '1',
-    price: 50,
-    selected: false,
-  },
-  {
-    hour: '2',
-    price: 100,
+    floor: 'G',
     selected: true,
   },
   {
-    hour: '3',
-    price: 150,
+    floor: 'F1',
     selected: false,
   },
   {
-    hour: '4',
-    price: 200,
+    floor: 'F2',
+    selected: false,
+  },
+  {
+    floor: 'F3',
+    selected: false,
+  },
+  {
+    floor: 'F4',
     selected: false,
   },
 ];
 
-export const ParkingTime: FC = () => {
-  const [timePriceData, setTimePrice] = useState(timePrice);
-  const handleSelection = (i: {
-    hour: string;
-    price: number;
-    selected: boolean;
-  }) => {
-    timePriceData.map((val) => {
+export const FloorSelections: FC = () => {
+  const [floorData, setFloorData] = useState(floors);
+  const handleSelection = (i: {floor: string; selected: boolean}) => {
+    floorData.map((val) => {
       if (val === i) {
         val.selected = true;
       } else {
         val.selected = false;
       }
     });
-    setTimePrice([...timePriceData]);
+    setFloorData([...floorData]);
   };
   return (
     <View style={style.container}>
-      <ScrollView horizontal={true}>
-        {timePriceData.map((item, i) => (
+      <ScrollView horizontal={true} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
+        {floorData.map((item, i) => (
           <ListItem
             onPress={() => handleSelection(item)}
             containerStyle={[
@@ -56,9 +52,8 @@ export const ParkingTime: FC = () => {
                 style.hourTitle,
                 {color: item.selected ? '#fff' : '#0E5A93'},
               ]}>
-              {item.hour + ' hour'}
+              {item.floor}
             </Text>
-            <Text style={[style.priceTitle]}>{'₹ ' + item.price}</Text>
           </ListItem>
         ))}
       </ScrollView>
@@ -70,20 +65,22 @@ const style = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 15,
+    marginTop: 10,
+    justifyContent:'center',
+    alignItems:'center',
+    width:'100%'
   },
   itemContainer: {
     borderWidth: 0.5,
     borderColor: '#b3b3b3',
-    borderRadius: 15,
+    borderRadius: 5,
     padding: 10,
     marginRight: 10,
-    width: 120,
-    height: 70,
+    width: 45,
+    height: 45,
     display: 'flex',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent:'center'
   },
   hourTitle: {
     fontFamily: 'Segoe UI Bold',

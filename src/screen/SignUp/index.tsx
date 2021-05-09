@@ -1,12 +1,13 @@
 import {NavigationProp, NavigationState} from '@react-navigation/core';
 import {NavigatorScreenParams} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {RootStackParamList} from '../../../App';
 import {SocialLoginBtn} from '../../component/Login/SocialLoginBtn';
+import { VerifyOtpModal } from '../../component/Login/VerifyOtpModal';
 import {TextInput} from '../../component/TextInput';
 import {SignUpStyle} from './style';
 
@@ -15,11 +16,21 @@ type Props = {
 };
 
 export const SignUp: FC<Props> = ({navigation}) => {
+  const [showOtpModal, setShowOtpModal] = useState<boolean>(false);
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
+
+  const handleOtpModal = () => {
+    setShowOtpModal(!showOtpModal);
+  };
+
+  const handleVerifyOtp = () => {
+    handleOtpModal()
+    navigation.navigate('Dashboard');
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -71,7 +82,7 @@ export const SignUp: FC<Props> = ({navigation}) => {
           label="Confirm Password"
           secureTextEntry
         />
-        <Button title="Get Started" buttonStyle={SignUpStyle.btnSignUp} />
+        <Button title="Get Started" onPress={handleOtpModal} buttonStyle={SignUpStyle.btnSignUp} />
         <View style={SignUpStyle.socialContainer}>
           <SocialLoginBtn
             iconName="facebook"
@@ -88,10 +99,7 @@ export const SignUp: FC<Props> = ({navigation}) => {
       <View style={SignUpStyle.forgotPswdContainer}>
         <Text
           style={[
-            SignUpStyle.loginSubTile,
-            {
-              fontSize: 17,
-            },
+            SignUpStyle.loginSubTile
           ]}>
           Have an account ?
         </Text>
@@ -100,8 +108,7 @@ export const SignUp: FC<Props> = ({navigation}) => {
           style={[
             SignUpStyle.loginTile,
             {
-              fontSize: 15,
-              marginBottom: 20,
+              marginBottom: 15,
               marginLeft: 5,
               color: '#0E5A93',
             },
@@ -109,6 +116,11 @@ export const SignUp: FC<Props> = ({navigation}) => {
           Log In
         </Text>
       </View>
+      <VerifyOtpModal
+        {...{handleVerifyOtp}}
+        visible={showOtpModal}
+        handleClose={handleOtpModal}
+      />
     </SafeAreaView>
   );
 };

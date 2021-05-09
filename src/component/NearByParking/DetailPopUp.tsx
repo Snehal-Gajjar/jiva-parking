@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
   view: {
     justifyContent: 'flex-end',
     margin: 0,
-    height: '27%',
     shadowColor: '#0655911A',
     shadowOpacity: 10,
     shadowRadius: 5,
@@ -54,7 +53,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     padding: 10,
     opacity: 1,
-    height: '27%',
     borderRadius: 15,
     margin: 15,
     display: 'flex',
