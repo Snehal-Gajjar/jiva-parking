@@ -30,7 +30,7 @@ export const CarDropDown: FC<Props> = ({selectedCar, setSelectedCar}) => {
           },
         ]}
         defaultValue={selectedCar}
-        containerStyle={{height: 40, marginTop: 10}}
+        containerStyle={{height: 40, marginTop: 5}}
         style={{backgroundColor: '#fff', borderRadius: 10, borderWidth: 1}}
         itemStyle={{
           justifyContent: 'flex-start',

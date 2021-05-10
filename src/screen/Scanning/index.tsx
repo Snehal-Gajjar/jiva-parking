@@ -6,6 +6,7 @@ import {RootStackParamList} from '../../../App';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {ScanningStyle} from './styles';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import QrCodeCamera from '../../component/Dashboard/QrCodeCamera';
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
 };
@@ -27,22 +28,25 @@ export const Scanning: FC<Props> = ({navigation}) => {
           industry. Lorem Ipsum has been the industry's standard
         </Text>
       </Card>
-      <View style={{
-          marginTop:20,
-          alignItems:'center',
-          justifyContent:'center'
-      }}>
-        <QRCodeScanner
+      <View
+        style={{
+          marginTop: 20,
+          alignItems: 'center',
+          justifyContent: 'center',
+          display:'flex'
+        }}>
+        {/* <QRCodeScanner
           onRead={(e) => console.log(e)}
           showMarker
           markerStyle={{
-              height:'100%',
+              height:'90%',
           }}
           cameraStyle={{
-              height:300,
+              height:150,
             //   marginTop:20,
           }}
-        />
+        /> */}
+        <QrCodeCamera />
       </View>
       <View style={ScanningStyle.scanBtnContainer}>
         <Button
@@ -58,8 +62,9 @@ export const Scanning: FC<Props> = ({navigation}) => {
           title="Scan Car QR"
           buttonStyle={ScanningStyle.scanButtonStyle}
           titleStyle={{
-            marginLeft: 10,
             fontSize: 20,
+            alignItems:'center',
+            textAlign:'center'
           }}
           onPress={() => navigation.navigate('Scanning')}></Button>
       </View>

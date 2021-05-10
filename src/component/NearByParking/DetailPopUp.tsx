@@ -60,10 +60,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   btnBook: {
-    marginTop: 10,
+    marginTop: 5,
     borderRadius: 10,
     borderWidth: 2,
-    height: 50,
     fontSize: 15,
   },
 });

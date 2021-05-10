@@ -12,6 +12,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import SplashScreen from 'react-native-splash-screen';
 
 type RootDrawerParamList = {
   Examples: undefined;
@@ -33,7 +34,7 @@ const App = () => {
     const onDimensionsChange = ({window}: {window: ScaledSize}) => {
       setDimensions(window);
     };
-
+    SplashScreen.hide()
     Dimensions.addEventListener('change', onDimensionsChange);
 
     return () => Dimensions.removeEventListener('change', onDimensionsChange);

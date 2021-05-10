@@ -3,21 +3,29 @@ import {View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 
 type Props = {
-    title:string,
-    iconType:string
-    iconName:string
-}
+  title: string;
+  iconType: string;
+  iconName: string;
+};
 
 export const SocialLoginBtn: FC<Props> = ({title, iconName, iconType}) => {
   return (
     <Button
-      icon={<Icon name={iconName} style={{
-          alignItems:'center',
-          borderRadius:10,
-          display:'flex',
-          marginRight:6,
-          justifyContent:'center'
-      }} type={iconType} size={20} color="white" />}
+      icon={
+        <Icon
+          name={iconName}
+          style={{
+            alignItems: 'center',
+            borderRadius: 10,
+            display: 'flex',
+            marginRight: 6,
+            justifyContent: 'center',
+          }}
+          type={iconType}
+          size={20}
+          color="white"
+        />
+      }
       title={title}
       titleStyle={{
         fontSize: 13,
@@ -29,6 +37,7 @@ export const SocialLoginBtn: FC<Props> = ({title, iconName, iconType}) => {
       }}
       containerStyle={{
         width: '50%',
+        marginRight: 5,
       }}
     />
   );

@@ -40,7 +40,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    marginTop: 10,
+    marginTop: 6,
   },
   item: {
     width: '50%',
@@ -52,11 +52,11 @@ const style = StyleSheet.create({
   },
   itemText: {
     fontFamily: 'Segoe UI',
-    fontSize: 18,
+    fontSize: 16,
     marginLeft: 7,
   },
   itemImage: {
-    width: 25,
-    height: 25,
+    width: 20,
+    height: 20,
   },
 });

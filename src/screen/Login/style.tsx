@@ -5,7 +5,7 @@ export const LoginStyle = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '40%',
+    height: '30%',
   },
   logo: {
     width: 90,
@@ -26,19 +26,18 @@ export const LoginStyle = StyleSheet.create({
     marginTop: 5,
   },
   bottomContainer: {
-    position: 'absolute',
-    bottom: '25%',
-    display: 'flex',
-    left: 0,
-    right: 0,
+    // position: 'absolute',
+    // bottom: '25%',
+    // display: 'flex',
+    // left: 0,
+    // right: 0,
     margin: 15,
   },
   btnSignUp: {
     marginTop: 30,
     borderRadius: 10,
-    padding: 10,
+    // padding: 10,
     borderWidth: 2,
-    height:55,
     fontSize:15
   },
   loginTile:{
@@ -59,10 +58,10 @@ export const LoginStyle = StyleSheet.create({
     marginTop:15
   },
   forgotPswdContainer:{
-    position:'absolute',
-    bottom:10,
-    right:0,
-    left:0,
+    // position:'absolute',
+    // bottom:10,
+    // right:0,
+    // left:0,
     display:'flex',
     justifyContent:'center'
   },

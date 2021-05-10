@@ -10,9 +10,12 @@ export const ParkingSearchBar: FC<Props> = ({...props}) => {
       <Input
         inputContainerStyle={style.inputContainerStyle}
         {...props}
-        style={{
-          fontFamily: 'Segoe UI',
+        containerStyle={{
+          height:40
         }}
+        style={[style.inputContainerStyle,{
+          fontFamily: 'Segoe UI',
+        }]}
         placeholder="Search Parking"
       />
       <Button
@@ -39,14 +42,18 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#fff',
     borderRadius: 10,
+    borderWidth:0.3,
+    borderColor:'#0655911A',
     height: 40,
-    shadowColor: '#0655911A',
-    shadowOpacity: 20,
-    shadowRadius: 3.84,
+    shadowColor: "#0655911A",
     shadowOffset: {
-      width: 3,
+      width: 0,
       height: 3,
     },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    
+    elevation: 7,
   },
   labelStyle: {
     color: '#000',
@@ -54,11 +61,10 @@ const style = StyleSheet.create({
     textTransform: 'capitalize',
   },
   inputContainerStyle: {
-    height: 40,
     width: '100%',
     padding: 0,
-    marginTop: 30,
     borderBottomWidth: 0,
+    color:'#8193ae'
   },
   torchContainer: {
     width: 40,

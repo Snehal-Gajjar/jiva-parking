@@ -62,7 +62,7 @@ export const Dashboard: FC<Props> = ({navigation}) => {
             <Icon
               name="qrcode-scan"
               type="material-community"
-              size={30}
+              size={20}
               color="white"
             />
           }></Button>

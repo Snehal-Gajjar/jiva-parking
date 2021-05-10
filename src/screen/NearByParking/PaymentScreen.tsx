@@ -25,7 +25,7 @@ export const PaymentScreen: FC<Props> = ({navigation}) => {
       <HeaderContainer isMargin />
       <View
         style={{
-          margin: 10,
+          marginHorizontal: 10,
         }}>
         <DetailContainer showService />
         <CheckBox
@@ -34,7 +34,7 @@ export const PaymentScreen: FC<Props> = ({navigation}) => {
             marginLeft: 10,
             borderColor: 'transparent',
             padding: 0,
-            marginTop: 10,
+            marginTop: 5,
           }}
           title="VIP Parking"
           checked

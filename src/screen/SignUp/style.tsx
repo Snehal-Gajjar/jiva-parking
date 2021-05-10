@@ -13,6 +13,7 @@ export const SignUpStyle = StyleSheet.create({
     shadowColor: '#0655911A',
     shadowOpacity: 20,
     shadowRadius: 3.84,
+    marginTop:10,
     shadowOffset: {
       width: 3,
       height: 3,
@@ -25,18 +26,17 @@ export const SignUpStyle = StyleSheet.create({
     marginTop: 5,
   },
   bottomContainer: {
-    position: 'absolute',
-    bottom: '5%',
-    display: 'flex',
-    left: 0,
-    right: 0,
+    // position: 'absolute',
+    // bottom: '5%',
+    // display: 'flex',
+    // left: 0,
+    // right: 0,
     margin: 15,
   },
   btnSignUp: {
     marginTop: 15,
     borderRadius: 10,
     borderWidth: 2,
-    height: 45,
     fontSize: 15,
   },
   loginTile: {
@@ -46,7 +46,6 @@ export const SignUpStyle = StyleSheet.create({
   loginSubTile: {
     fontFamily: 'Segoe UI',
     fontSize: 15,
-    marginBottom: 10,
     color: '#707070',
   },
   socialContainer: {

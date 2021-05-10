@@ -4,9 +4,10 @@ export const NearByParkingStyle = StyleSheet.create({
   iconsContainer: {
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor:'#fff'
+    backgroundColor: '#fff',
   },
   iconContainer: {
+    opacity: 1,
     width: 40,
     height: 40,
     borderRadius: 10,
@@ -16,6 +17,7 @@ export const NearByParkingStyle = StyleSheet.create({
   iconButtonStyle: {
     width: 40,
     height: 40,
+    opacity: 1,
     borderRadius: 10,
   },
 });
@@ -23,9 +25,9 @@ export const NearByParkingStyle = StyleSheet.create({
 export const DetailStyle = StyleSheet.create({
   titleStyle: {
     fontFamily: 'Segoe UI Bold',
-    fontSize: 18,
+    fontSize: 17,
     color: '#000',
-    marginTop: 15,
+    marginTop: 10,
   },
   subDetail: {
     fontFamily: 'Segoe UI',
@@ -37,17 +39,15 @@ export const DetailStyle = StyleSheet.create({
     marginTop: 15,
     borderRadius: 10,
     borderWidth: 2,
-    height: 50,
     fontSize: 15,
   },
 });
 
 export const MapScreenStyle = StyleSheet.create({
   btnPick: {
-    marginTop: 15,
+    marginTop: 10,
     borderRadius: 10,
     borderWidth: 2,
-    height: 50,
     fontSize: 15,
   },
 });
@@ -55,35 +55,34 @@ export const MapScreenStyle = StyleSheet.create({
 export const PaymentStyle = StyleSheet.create({
   titleStyle: {
     fontFamily: 'Segoe UI Bold',
-    fontSize: 18,
+    fontSize: 17,
     color: '#000',
-    marginTop: 10,
+    marginTop: 5,
   },
   billContainer: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    marginTop: 10,
+    marginTop: 5,
   },
   billSubContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 5,
+    marginTop: 3,
   },
   billTitles: {
     fontFamily: 'Segoe UI Italic',
-    fontSize: 18,
+    fontSize: 16,
   },
   billPrice: {
     fontFamily: 'Segoe UI Italic',
-    fontSize: 18,
+    fontSize: 16,
   },
   btnPick: {
     marginTop: 20,
     borderRadius: 10,
     borderWidth: 2,
-    height: 50,
     fontSize: 15,
   },
 });

@@ -1,8 +1,9 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect} from 'react';
-import {View} from 'react-native';
+import {Dimensions, View} from 'react-native';
 import {ItemType} from 'react-native-dropdown-picker';
 import {Button, Divider} from 'react-native-elements';
+import WebView from 'react-native-webview';
 import {RootStackParamList} from '../../../App';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {DateTimeDrp} from '../../component/NearByParking/DateTimeDropDown';
@@ -40,6 +41,7 @@ export const SlotScreen: FC<Props> = ({navigation}) => {
     navigation.setOptions({
       headerShown: false,
     });
+    console.log(Dimensions.get('window').width * 0.65)
   }, []);
 
   const handleChange = (item: ItemType) => {
@@ -47,15 +49,19 @@ export const SlotScreen: FC<Props> = ({navigation}) => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: '#fff'}}>
+    <View
+      style={{flex: 1, backgroundColor: '#fff'}}
+      renderToHardwareTextureAndroid={true}>
       <HeaderContainer isMargin />
       <View>
         <FloorSelections />
       </View>
       <View
         style={{
-          margin: 15,
-        }}>
+          marginHorizontal: 15,
+          marginTop: 10,
+        }}
+        renderToHardwareTextureAndroid={true}>
         <Divider style={{backgroundColor: '#065591'}} />
         <View
           style={{
@@ -81,6 +87,18 @@ export const SlotScreen: FC<Props> = ({navigation}) => {
           />
         </View>
         <Divider style={{backgroundColor: '#065591', marginTop: 10}} />
+        <View
+          style={{
+            marginTop: 10,
+            height: 420
+          }}
+          renderToHardwareTextureAndroid={true}>
+          <WebView
+            source={{uri: 'http://parkaro.orbitz.tech/api'}}
+            incognito
+            androidHardwareAccelerationDisabled={true}
+          />
+        </View>
         <Button
           title="Proceed with Spot (G-1P)"
           onPress={() => navigation.navigate('PaymentScreen')}

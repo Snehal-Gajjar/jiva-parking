@@ -41,7 +41,7 @@ export const DetailContainer: FC<Props> = ({showService}) => {
                 name="walking"
                 color="#FFFFFF"
                 type="font-awesome-5"
-                size={26}
+                size={20}
               />
             }
             containerStyle={styles.iconContainer}></Button>
@@ -67,8 +67,8 @@ export const DetailContainer: FC<Props> = ({showService}) => {
           <Image
             key={name}
             style={{
-              height: 25,
-              width: 25,
+              height: 20,
+              width: 20,
               marginRight: 10,
             }}
             source={ServiceImageList[name].image}></Image>
@@ -110,21 +110,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   iconContainer: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
     borderRadius: 10,
     display: 'flex',
     margin: 5,
   },
   iconButtonStyle: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
     borderRadius: 10,
     backgroundColor: '#0E5A93',
   },
   btnImage: {
-    width: 27,
-    height: 27,
+    width: 20,
+    height: 20,
   },
   distanceContainer: {
     display: 'flex',

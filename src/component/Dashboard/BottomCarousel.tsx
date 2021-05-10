@@ -56,7 +56,7 @@ const BottomCarouselStyle = StyleSheet.create({
     bottom: 0,
   },
   slideContainer: {
-    height: 100,
+    height: 90,
     marginLeft: 25,
     marginRight: 25,
   },

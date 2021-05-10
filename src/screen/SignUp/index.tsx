@@ -7,7 +7,7 @@ import {Button, Image} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {RootStackParamList} from '../../../App';
 import {SocialLoginBtn} from '../../component/Login/SocialLoginBtn';
-import { VerifyOtpModal } from '../../component/Login/VerifyOtpModal';
+import {VerifyOtpModal} from '../../component/Login/VerifyOtpModal';
 import {TextInput} from '../../component/TextInput';
 import {SignUpStyle} from './style';
 
@@ -28,7 +28,7 @@ export const SignUp: FC<Props> = ({navigation}) => {
   };
 
   const handleVerifyOtp = () => {
-    handleOtpModal()
+    handleOtpModal();
     navigation.navigate('Dashboard');
   };
 
@@ -53,14 +53,14 @@ export const SignUp: FC<Props> = ({navigation}) => {
         <TextInput
           iconType="feather"
           iconName="user"
-          placeholder="Full Name"
           label="Full Name"
+          placeholder="Name"
         />
         <TextInput
           iconType="feather"
           iconName="phone"
-          placeholder="Phone Number"
           label="Phone"
+          placeholder="Phone"
         />
         <TextInput
           iconType="feather"
@@ -82,7 +82,11 @@ export const SignUp: FC<Props> = ({navigation}) => {
           label="Confirm Password"
           secureTextEntry
         />
-        <Button title="Get Started" onPress={handleOtpModal} buttonStyle={SignUpStyle.btnSignUp} />
+        <Button
+          title="Get Started"
+          onPress={handleOtpModal}
+          buttonStyle={SignUpStyle.btnSignUp}
+        />
         <View style={SignUpStyle.socialContainer}>
           <SocialLoginBtn
             iconName="facebook"
@@ -97,18 +101,13 @@ export const SignUp: FC<Props> = ({navigation}) => {
         </View>
       </View>
       <View style={SignUpStyle.forgotPswdContainer}>
-        <Text
-          style={[
-            SignUpStyle.loginSubTile
-          ]}>
-          Have an account ?
-        </Text>
+        <Text style={[SignUpStyle.loginSubTile]}>Have an account ?</Text>
         <Text
           onPress={() => navigation.navigate('Login')}
           style={[
             SignUpStyle.loginTile,
             {
-              marginBottom: 15,
+              // marginBottom: 15,
               marginLeft: 5,
               color: '#0E5A93',
             },

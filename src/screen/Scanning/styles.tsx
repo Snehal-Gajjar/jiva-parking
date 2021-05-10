@@ -4,26 +4,27 @@ export const ScanningStyle = StyleSheet.create({
   cardContainer: {
     backgroundColor: '#c5e3fa',
     borderRadius: 20,
-    padding: 20,
+    padding: 10,
     height: '20%',
-    marginTop: 30,
+    marginTop: 10,
   },
   cardTitle: {
     color: '#000',
     fontFamily: 'Segoe UI Bold',
     textTransform: 'none',
-    fontSize: 22,
-    marginBottom: 10,
+    fontSize: 19,
+    marginBottom: 5
   },
   cardSubTitle: {
     color: '#000',
     fontFamily: 'Segoe UI',
-    fontSize: 18,
+    fontSize: 16,
+    padding:5,
     textAlign: 'center',
   },
   scanBtnContainer: {
     position: 'absolute',
-    bottom: 50,
+    bottom: 10 ,
     right: 0,
     left: 0,
     display:'flex',
@@ -33,18 +34,19 @@ export const ScanningStyle = StyleSheet.create({
   },
   scanButtonStyle: {
     height: 60,
-    width:'100%',
+    width:'50%',
     borderRadius: 30,
-    marginTop: 25,
+    marginTop: 10,
     fontWeight:'400',
+    textAlign:'center'
   },
   torchContainer:{
-    width: 70,
-    height: 70,
+    width: 50,
+    height: 50,
     borderRadius: 35,
     alignItems:'center',
     justifyContent:'center',
-    marginBottom: 30
+    marginBottom: 10
   },
   torchButtonStyle:{
     backgroundColor: 'transparent',
@@ -52,7 +54,7 @@ export const ScanningStyle = StyleSheet.create({
     alignItems:'center'
   },
   btnImage:{
-    width:40,
-    height:40
+    width:30,
+    height:30
 }
 });

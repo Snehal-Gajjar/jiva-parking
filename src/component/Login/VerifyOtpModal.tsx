@@ -39,7 +39,6 @@ export const VerifyOtpModal: FC<Props> = ({visible, handleClose, handleVerifyOtp
               console.log(extracted); // 1234567890
             }}
             mask={'[0]-[0]-[0]-[0]-[0]-[0]'}
-            underlineColorAndroid="transparent"
           />
         </View>
 
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 15,
     borderRadius:10,
-    height:50
+    height:55
   },
   otpInput: {
     flex: 1,
@@ -95,6 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     color: '#424242',
     fontSize:17,
+    height:50,
     fontFamily: 'Segoe UI Bold',
   },
   otpIcon: {

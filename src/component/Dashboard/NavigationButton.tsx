@@ -20,8 +20,8 @@ export const NavigationButton: FC<Props> = ({image, title, onPress}) => {
           <Image
             source={image}
             style={{
-              height: 60,
-              width: 60,
+              height: 50,
+              width: 50,
             }}
           />
         }></Button>

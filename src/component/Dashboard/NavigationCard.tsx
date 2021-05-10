@@ -28,7 +28,7 @@ export const NavigationCard: FC<Props> = ({handleNavPress}) => {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginVertical: 30,
+        marginVertical: 10,
         marginHorizontal: 30,
         alignItems: 'baseline',
       }}>

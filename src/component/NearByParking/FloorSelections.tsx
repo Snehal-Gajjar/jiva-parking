@@ -65,7 +65,7 @@ const style = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 10,
+    marginTop: 5,
     justifyContent:'center',
     alignItems:'center',
     width:'100%'
@@ -74,21 +74,16 @@ const style = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: '#b3b3b3',
     borderRadius: 5,
-    padding: 10,
+    padding: 5,
     marginRight: 10,
-    width: 45,
-    height: 45,
+    width: 40,
+    height: 40,
     display: 'flex',
     alignItems: 'center',
     justifyContent:'center'
   },
   hourTitle: {
     fontFamily: 'Segoe UI Bold',
-    fontSize: 18,
-  },
-  priceTitle: {
-    fontFamily: 'Segoe UI Bold',
-    fontSize: 18,
-    color: '#a3a3a3',
+    fontSize: 17,
   },
 });

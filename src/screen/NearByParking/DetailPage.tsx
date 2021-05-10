@@ -29,7 +29,7 @@ export const DetailPage: FC<Props> = ({navigation}) => {
       <HeaderContainer isMargin />
       <View
         style={{
-          margin: 10,
+          marginHorizontal: 10,
         }}>
         <DetailContainer />
         {/* <View>
