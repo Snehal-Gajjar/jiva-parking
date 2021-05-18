@@ -57,7 +57,7 @@ const style = StyleSheet.create({
   },
   labelStyle: {
     color: '#000',
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     textTransform: 'capitalize',
   },
   inputContainerStyle: {

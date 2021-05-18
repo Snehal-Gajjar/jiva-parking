@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   titleStyle: {
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     fontSize: 15,
     color: '#000',
     marginTop: 10,

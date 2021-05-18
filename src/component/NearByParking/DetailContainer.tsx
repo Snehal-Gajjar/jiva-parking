@@ -80,7 +80,7 @@ export const DetailContainer: FC<Props> = ({showService}) => {
 
 const styles = StyleSheet.create({
   textTitle: {
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     color: '#000000',
     fontSize: 18,
   },

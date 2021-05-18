@@ -3,15 +3,17 @@ import {StyleSheet, View} from 'react-native';
 import {Icon, Input, InputProps} from 'react-native-elements';
 
 type Props = {
-  iconType: string;
-  iconName: string;
+  iconType?: string;
+  iconName?: string;
 } & InputProps;
 
 export const TextInput: FC<Props> = ({iconName, iconType, ...props}) => {
   return (
     <>
       <View style={style.inputContainer}>
-        <Icon type={iconType} name={iconName} size={20} color="#0E5A93"></Icon>
+        <Icon style={{
+          marginLeft: 5
+        }} type={iconType} name={iconName ? iconName : ''} size={20} color="#0E5A93"></Icon>
 
         <Input
           labelStyle={style.labelStyle}
@@ -22,7 +24,8 @@ export const TextInput: FC<Props> = ({iconName, iconType, ...props}) => {
           {...props}
           style={{
             fontFamily: 'Segoe UI',
-            marginTop: 15
+            marginTop: 15,
+            color:'#8193ae'
           }}
         />
       </View>
@@ -37,8 +40,8 @@ const style = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     borderRadius: 10,
-    height: 55,
-    padding: 5,
+    height: 60,
+    padding: 7,
     marginTop: 10,
     shadowColor: '#0655911A',
     shadowOpacity: 20,
@@ -60,7 +63,11 @@ const style = StyleSheet.create({
     width: '90%',
     padding: 0,
     borderBottomWidth: 0,
-    height: 30,
+    height: 20,
     fontSize: 15,
+    marginBottom: 17,
+    marginTop: 0,
+    color:'#8193ae',
+    fontFamily: 'Segoe UI',
   },
 });

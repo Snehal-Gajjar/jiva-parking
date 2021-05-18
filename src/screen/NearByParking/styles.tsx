@@ -24,7 +24,7 @@ export const NearByParkingStyle = StyleSheet.create({
 
 export const DetailStyle = StyleSheet.create({
   titleStyle: {
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     fontSize: 17,
     color: '#000',
     marginTop: 10,
@@ -54,7 +54,7 @@ export const MapScreenStyle = StyleSheet.create({
 
 export const PaymentStyle = StyleSheet.create({
   titleStyle: {
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     fontSize: 17,
     color: '#000',
     marginTop: 5,
@@ -72,11 +72,11 @@ export const PaymentStyle = StyleSheet.create({
     marginTop: 3,
   },
   billTitles: {
-    fontFamily: 'Segoe UI Italic',
+    fontFamily: 'Segoe UI Semilight Italic',
     fontSize: 16,
   },
   billPrice: {
-    fontFamily: 'Segoe UI Italic',
+    fontFamily: 'Segoe UI Semilight Italic',
     fontSize: 16,
   },
   btnPick: {

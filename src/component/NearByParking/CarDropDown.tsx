@@ -47,7 +47,7 @@ export const CarDropDown: FC<Props> = ({selectedCar, setSelectedCar}) => {
 
 const styles = StyleSheet.create({
   titleStyle: {
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     fontSize: 18,
     color: '#000',
     marginTop: 10,

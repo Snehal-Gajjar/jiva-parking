@@ -22,7 +22,7 @@ export const LoginStyle = StyleSheet.create({
   logoTxt: {
     fontSize: 21,
     color: '#0E5A93',
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     marginTop: 5,
   },
   bottomContainer: {
@@ -41,7 +41,7 @@ export const LoginStyle = StyleSheet.create({
     fontSize:15
   },
   loginTile:{
-    fontFamily:'Segoe UI Bold',
+    fontFamily:'Segoe UI Semibold',
     fontSize: 17
   },
   loginSubTile:{

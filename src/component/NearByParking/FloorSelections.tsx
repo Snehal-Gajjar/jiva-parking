@@ -83,7 +83,7 @@ const style = StyleSheet.create({
     justifyContent:'center'
   },
   hourTitle: {
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     fontSize: 17,
   },
 });

@@ -11,17 +11,12 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		651F9DA0946249B6B866C03C /* Segoe UI Bold Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 580D23647B6F4256ABCF69E7 /* Segoe UI Bold Italic.woff */; };
+		360CF7E492574A12B58DF5CC /* Segoe UI Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0440DE59500E466E9BF4A731 /* Segoe UI Semibold.ttf */; };
 		6E1E51E02629DDB600EC40A3 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1E51DF2629DDB600EC40A3 /* File.swift */; };
-		7DE0F3FFD0B142FD8770EAFE /* Segoe UI Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 2A9232C094534235AE8C5AD9 /* Segoe UI Italic.woff */; };
+		6E36F1542652B72000069FE2 /* Segoe UI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22753F533EBE4BC8B92679C4 /* Segoe UI.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9C566D2D59A864D2E8C8BA5E /* libPods-jivaParking-jivaParkingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B512527734AD02E99C8A37 /* libPods-jivaParking-jivaParkingTests.a */; };
-		A1ED2F9258BD48768529F011 /* Segoe UI Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 85C95E8E39C24C9584B7960D /* Segoe UI Bold.woff */; };
-		D875D6E900474D2B8EE99B28 /* Segoe UI.woff in Resources */ = {isa = PBXBuildFile; fileRef = 5DDDE8018E324E84BADE20A1 /* Segoe UI.woff */; };
-		0153671D708643468B4477C4 /* Segoe UI Bold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 402729CE7DAA432795A7E8EA /* Segoe UI Bold Italic.ttf */; };
-		855990B892D64CCD93E8D7A4 /* Segoe UI Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43B9B2962341499E9895E432 /* Segoe UI Bold.ttf */; };
-		1B0764559913423EA4497520 /* Segoe UI Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC4DE1EE4D41406F9E70BA15 /* Segoe UI Italic.ttf */; };
-		4693FA63614A4C17841FD199 /* Segoe UI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22753F533EBE4BC8B92679C4 /* Segoe UI.ttf */; };
+		475AA16815484674B8B3294A /* Segoe UI Semilight Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11958D23BE8743B09F8776FB /* Segoe UI Semilight Italic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +33,7 @@
 		00E356EE1AD99517003FC87E /* jivaParkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jivaParkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* jivaParkingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jivaParkingTests.m; sourceTree = "<group>"; };
+		0440DE59500E466E9BF4A731 /* Segoe UI Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Semibold.ttf"; path = "../src/assets/fonts/Segoe UI Semibold.ttf"; sourceTree = "<group>"; };
 		0CC1AA9B173C41C9AFF36EB6 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* jivaParking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jivaParking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = jivaParking/AppDelegate.h; sourceTree = "<group>"; };
@@ -46,11 +42,11 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = jivaParking/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = jivaParking/main.m; sourceTree = "<group>"; };
 		19B88EDC7246488FA41D05A7 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		22753F533EBE4BC8B92679C4 /* Segoe UI.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI.ttf"; path = "../src/assets/fonts/Segoe UI.ttf"; sourceTree = "<group>"; };
 		232FA0C6018D4C2AA99E842A /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
-		2A9232C094534235AE8C5AD9 /* Segoe UI Italic.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Italic.woff"; path = "../src/assets/fonts/Segoe UI Italic.woff"; sourceTree = "<group>"; };
 		2AC4B6C7B090437D93C3A77A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		580D23647B6F4256ABCF69E7 /* Segoe UI Bold Italic.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Bold Italic.woff"; path = "../src/assets/fonts/Segoe UI Bold Italic.woff"; sourceTree = "<group>"; };
-		5DDDE8018E324E84BADE20A1 /* Segoe UI.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI.woff"; path = "../src/assets/fonts/Segoe UI.woff"; sourceTree = "<group>"; };
+		402729CE7DAA432795A7E8EA /* Segoe UI Bold Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Bold Italic.ttf"; path = "../src/assets/fonts/Segoe UI Bold Italic.ttf"; sourceTree = "<group>"; };
+		43B9B2962341499E9895E432 /* Segoe UI Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Bold.ttf"; path = "../src/assets/fonts/Segoe UI Bold.ttf"; sourceTree = "<group>"; };
 		5E199C0AFD954A79839A2FC4 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		5F25EA523F544FA5B3AA9210 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		6A2E2E279651422F97FC13A1 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
@@ -60,11 +56,11 @@
 		7824E148AAB44E54A8057072 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = jivaParking/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		842AF01779EE47BE846EA10D /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		85C95E8E39C24C9584B7960D /* Segoe UI Bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Bold.woff"; path = "../src/assets/fonts/Segoe UI Bold.woff"; sourceTree = "<group>"; };
 		8A7EE6381C044B8D82FC6DBE /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		AD5A7501057A48249034E559 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		B4D8D985CDC8449AAEAD80F6 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		BB0FD7072E9B4364B395CA34 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		BC4DE1EE4D41406F9E70BA15 /* Segoe UI Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Segoe UI Italic.ttf"; path = "../src/assets/fonts/Segoe UI Italic.ttf"; sourceTree = "<group>"; };
 		C597CC51F3E44B5EA781394B /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		C5A5B45CC138519306C8891D /* Pods-jivaParking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jivaParking.release.xcconfig"; path = "Target Support Files/Pods-jivaParking/Pods-jivaParking.release.xcconfig"; sourceTree = "<group>"; };
 		D3B512527734AD02E99C8A37 /* libPods-jivaParking-jivaParkingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jivaParking-jivaParkingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,10 +71,7 @@
 		E8D771134DAD6F2656E29424 /* libPods-jivaParking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jivaParking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90C337BEAE7474391604613 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		402729CE7DAA432795A7E8EA /* Segoe UI Bold Italic.ttf */ = {isa = PBXFileReference; name = "Segoe UI Bold Italic.ttf"; path = "../src/assets/fonts/Segoe UI Bold Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		43B9B2962341499E9895E432 /* Segoe UI Bold.ttf */ = {isa = PBXFileReference; name = "Segoe UI Bold.ttf"; path = "../src/assets/fonts/Segoe UI Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BC4DE1EE4D41406F9E70BA15 /* Segoe UI Italic.ttf */ = {isa = PBXFileReference; name = "Segoe UI Italic.ttf"; path = "../src/assets/fonts/Segoe UI Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		22753F533EBE4BC8B92679C4 /* Segoe UI.ttf */ = {isa = PBXFileReference; name = "Segoe UI.ttf"; path = "../src/assets/fonts/Segoe UI.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		11958D23BE8743B09F8776FB /* Segoe UI Semilight Italic.ttf */ = {isa = PBXFileReference; name = "Segoe UI Semilight Italic.ttf"; path = "../src/assets/fonts/Segoe UI Semilight Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,14 +198,12 @@
 				B4D8D985CDC8449AAEAD80F6 /* Octicons.ttf */,
 				E90C337BEAE7474391604613 /* SimpleLineIcons.ttf */,
 				2AC4B6C7B090437D93C3A77A /* Zocial.ttf */,
-				580D23647B6F4256ABCF69E7 /* Segoe UI Bold Italic.woff */,
-				85C95E8E39C24C9584B7960D /* Segoe UI Bold.woff */,
-				2A9232C094534235AE8C5AD9 /* Segoe UI Italic.woff */,
-				5DDDE8018E324E84BADE20A1 /* Segoe UI.woff */,
 				402729CE7DAA432795A7E8EA /* Segoe UI Bold Italic.ttf */,
 				43B9B2962341499E9895E432 /* Segoe UI Bold.ttf */,
 				BC4DE1EE4D41406F9E70BA15 /* Segoe UI Italic.ttf */,
 				22753F533EBE4BC8B92679C4 /* Segoe UI.ttf */,
+				0440DE59500E466E9BF4A731 /* Segoe UI Semibold.ttf */,
+				11958D23BE8743B09F8776FB /* Segoe UI Semilight Italic.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -311,16 +302,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E36F1542652B72000069FE2 /* Segoe UI.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				651F9DA0946249B6B866C03C /* Segoe UI Bold Italic.woff in Resources */,
-				A1ED2F9258BD48768529F011 /* Segoe UI Bold.woff in Resources */,
-				7DE0F3FFD0B142FD8770EAFE /* Segoe UI Italic.woff in Resources */,
-				D875D6E900474D2B8EE99B28 /* Segoe UI.woff in Resources */,
-				0153671D708643468B4477C4 /* Segoe UI Bold Italic.ttf in Resources */,
-				855990B892D64CCD93E8D7A4 /* Segoe UI Bold.ttf in Resources */,
-				1B0764559913423EA4497520 /* Segoe UI Italic.ttf in Resources */,
-				4693FA63614A4C17841FD199 /* Segoe UI.ttf in Resources */,
+				360CF7E492574A12B58DF5CC /* Segoe UI Semibold.ttf in Resources */,
+				475AA16815484674B8B3294A /* Segoe UI Semilight Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

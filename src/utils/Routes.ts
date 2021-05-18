@@ -8,6 +8,7 @@ import { PaymentScreen } from "../screen/NearByParking/PaymentScreen"
 import { Scanning } from "../screen/Scanning"
 import { SignUp } from "../screen/SignUp"
 import { Wallet } from "../screen/Wallet"
+import { AddCar } from "../screen/CarDetail/AddCar"
 
 export const SCREENS = {
     SignUp: { title: 'SignUp', component: SignUp },
@@ -19,7 +20,8 @@ export const SCREENS = {
     CarDetail: { title: 'CarDetail', component: CarDetail },
     DetailPage: { title: 'Detail', component: DetailPage },
     PaymentScreen: { title: 'Payment', component: PaymentScreen },
-    MapScreen: { title: 'Detail', component: SlotScreen }
+    MapScreen: { title: 'Detail', component: SlotScreen },
+    AddCar: { title: 'AddCar', component: AddCar }
 }
 
 export default SCREENS

@@ -32,7 +32,7 @@ export const DashboardStyle = StyleSheet.create({
   logoTxt: {
     fontSize: 19,
     color: '#0E5A93',
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     marginTop: 5,
   },
   detailContainer: {

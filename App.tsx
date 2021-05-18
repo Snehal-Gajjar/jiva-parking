@@ -34,7 +34,6 @@ const App = () => {
     const onDimensionsChange = ({window}: {window: ScaledSize}) => {
       setDimensions(window);
     };
-    SplashScreen.hide()
     Dimensions.addEventListener('change', onDimensionsChange);
 
     return () => Dimensions.removeEventListener('change', onDimensionsChange);

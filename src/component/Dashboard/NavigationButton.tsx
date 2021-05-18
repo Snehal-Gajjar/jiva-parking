@@ -48,7 +48,7 @@ const ButtonStyle = StyleSheet.create({
     borderRadius: 20,
   },
   title: {
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     color: '#0E5A93',
     fontSize: 15,
     marginTop: 7,

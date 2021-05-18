@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   titleModal: {
     color: '#0E5A93',
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     fontSize: 18,
     textAlign: 'center',
     marginBottom: 15,
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     color: '#424242',
     fontSize:17,
     height:50,
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
   },
   otpIcon: {
     height: 25,

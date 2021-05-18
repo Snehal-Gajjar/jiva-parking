@@ -7,7 +7,7 @@ export const HeaderStyle = StyleSheet.create({
     justifyContent: 'space-between',
   },
   titleStyle:{
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     color: '#0E5A93',
     fontSize: 19,
   },

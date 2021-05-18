@@ -86,11 +86,11 @@ const style = StyleSheet.create({
     flexDirection: 'column',
   },
   hourTitle: {
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     fontSize: 17,
   },
   priceTitle: {
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'Segoe UI Semibold',
     fontSize: 17,
     color: '#a3a3a3',
   },
