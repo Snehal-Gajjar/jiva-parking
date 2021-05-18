@@ -16,12 +16,28 @@ export const CarItem: FC<Props> = ({data}) => {
     <View>
       <Card containerStyle={CarItemStyle.cardContainer}>
         <View style={CarItemStyle.cardTitleContainer}>
-          <Text style={{
-              color:'#8294ad',
-              fontFamily:'Segoe UI',
-              fontSize: 15
-          }}>{data.carName}</Text>
-          <Icon size={20} name="edit-3" type="feather" color="#0E5A93" />
+          <Text
+            style={{
+              color: '#8294ad',
+              fontFamily: 'Segoe UI',
+              fontSize: 15,
+            }}>
+            {data.carName}
+          </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <Icon
+              name="qrcode"
+              type="antdesign"
+              color="#0E5A93"
+              size={25}
+              style={{marginRight: 10}}></Icon>
+            <Icon size={25} name="edit-3" type="feather" color="#0E5A93" />
+          </View>
         </View>
         <View
           style={{
@@ -40,11 +56,14 @@ export const CarItem: FC<Props> = ({data}) => {
           </View>
         </View>
         <View style={CarItemStyle.carNumberContainer}>
-          <Text style={{
+          <Text
+            style={{
               fontSize: 18,
-              fontFamily:'Segoe UI Semibold',
-              color:'#0E5A93'
-          }}>{data.carNumber}</Text>
+              fontFamily: 'Segoe UI Semibold',
+              color: '#0E5A93',
+            }}>
+            {data.carNumber}
+          </Text>
           <Button
             buttonStyle={CarItemStyle.deleteButtonStyle}
             icon={
