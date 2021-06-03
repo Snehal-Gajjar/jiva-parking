@@ -1,11 +1,12 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect} from 'react';
-import {Dimensions, View} from 'react-native';
+import {BackHandler, Dimensions, View} from 'react-native';
 import {ItemType} from 'react-native-dropdown-picker';
 import {Button, Divider} from 'react-native-elements';
 import WebView from 'react-native-webview';
 import {RootStackParamList} from '../../../App';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
+import {CalendarView} from '../../component/NearByParking/CalendarView';
 import {DateTimeDrp} from '../../component/NearByParking/DateTimeDropDown';
 import {FloorSelections} from '../../component/NearByParking/FloorSelections';
 import {MapScreenStyle} from './styles';
@@ -37,15 +38,22 @@ const hourDrp = [
   {label: '5 hour', value: '5'},
 ];
 export const SlotScreen: FC<Props> = ({navigation}) => {
+  const WEBVIEW_REF = React.createRef<WebView>();
+  const backHandler = () => {
+    WEBVIEW_REF.current?.goBack();
+    return true;
+  };
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
-    console.log(Dimensions.get('window').width * 0.65)
+    BackHandler.addEventListener('hardwareBackPress', backHandler);
+
+    return BackHandler.removeEventListener('hardwareBackPress', backHandler);
   }, []);
 
-  const handleChange = (item: ItemType) => {
-    console.log(item.value);
+  const handleChange = (item: string) => {
+    console.log(item);
   };
 
   return (
@@ -65,40 +73,51 @@ export const SlotScreen: FC<Props> = ({navigation}) => {
         <Divider style={{backgroundColor: '#065591'}} />
         <View
           style={{
-            zIndex: 999,
             display: 'flex',
             flexDirection: 'row',
+            alignItems: 'center',
             justifyContent: 'space-between',
           }}>
-          <DateTimeDrp
+          <CalendarView />
+          {/* <DateTimeDrp
             items={dateDrp}
             defaultValue="04-04-2021"
             onChangeItem={handleChange}
-          />
-          <DateTimeDrp
+          /> */}
+          {/* <DateTimeDrp
             items={timeDrp}
             defaultValue="04:00 AM"
             onChangeItem={handleChange}
-          />
+          /> */}
           <DateTimeDrp
             items={hourDrp}
             defaultValue="1"
             onChangeItem={handleChange}
           />
         </View>
-        <Divider style={{backgroundColor: '#065591', marginTop: 10}} />
+        <Divider style={{backgroundColor: '#065591'}} />
         <View
           style={{
             marginTop: 10,
-            height: 420
+            height: Dimensions.get('screen').height - 50,
           }}
           renderToHardwareTextureAndroid={true}>
           <WebView
+            ref={WEBVIEW_REF}
             source={{uri: 'http://parkaro.orbitz.tech/api'}}
             incognito
             androidHardwareAccelerationDisabled={true}
           />
         </View>
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          bottom: 10,
+          left: 0,
+          right: 0,
+          margin: 10,
+        }}>
         <Button
           title="Proceed with Spot (G-1P)"
           onPress={() => navigation.navigate('PaymentScreen')}

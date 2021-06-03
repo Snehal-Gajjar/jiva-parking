@@ -43,9 +43,10 @@ export const FloorSelections: FC = () => {
         {floorData.map((item, i) => (
           <ListItem
             onPress={() => handleSelection(item)}
+            underlayColor="transparent"
             containerStyle={[
               style.itemContainer,
-              {backgroundColor: item.selected ? '#0E5A93' : 'transparent'},
+              {backgroundColor: item.selected ? '#0E5A93' : '#ffffff'},
             ]}>
             <Text
               style={[

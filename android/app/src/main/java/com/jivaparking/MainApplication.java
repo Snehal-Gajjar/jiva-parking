@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.brentvatne.react.ReactVideoPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import org.reactnative.camera.RNCameraPackage;
 import com.RNTextInputMask.RNTextInputMaskPackage;

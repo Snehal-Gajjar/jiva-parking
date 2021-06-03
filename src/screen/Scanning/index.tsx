@@ -61,6 +61,9 @@ export const Scanning: FC<Props> = ({navigation}) => {
         <Button
           title="Scan Car QR"
           buttonStyle={ScanningStyle.scanButtonStyle}
+          containerStyle={{
+            width:'60%',
+          }}
           titleStyle={{
             fontSize: 20,
             alignItems:'center',

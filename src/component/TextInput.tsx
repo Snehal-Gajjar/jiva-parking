@@ -1,34 +1,62 @@
 import React, {FC} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {Icon, Input, InputProps} from 'react-native-elements';
 
 type Props = {
   iconType?: string;
   iconName?: string;
+  error?: string;
 } & InputProps;
 
 export const TextInput: FC<Props> = ({iconName, iconType, ...props}) => {
   return (
     <>
-      <View style={style.inputContainer}>
-        <Icon style={{
-          marginLeft: 5
-        }} type={iconType} name={iconName ? iconName : ''} size={20} color="#0E5A93"></Icon>
+      <View
+        style={[
+          style.inputContainer,
+          {
+            borderColor: props.error ? 'red' : 'transparent',
+            borderWidth: props.error ? 1 : 0,
+          },
+        ]}>
+        <Icon
+          style={{
+            marginLeft: 5,
+          }}
+          type={iconType}
+          name={iconName ? iconName : ''}
+          size={20}
+          color="#0E5A93"></Icon>
 
         <Input
           labelStyle={style.labelStyle}
-          inputContainerStyle={style.inputContainerStyle}
-          containerStyle={{
-            marginTop:10
+          inputContainerStyle={{
+            borderBottomWidth: 0,
+            height: 45,
           }}
+          inputStyle={style.inputContainerStyle}
+          containerStyle={{
+            height: 45,
+          }}
+          errorMessage=""
           {...props}
           style={{
             fontFamily: 'Segoe UI',
             marginTop: 15,
-            color:'#8193ae'
+            color: '#8193ae',
           }}
         />
       </View>
+      {props.error && (
+        <Text
+          style={{
+            fontSize: 15,
+            color: 'red',
+            fontFamily: 'Segoe UI',
+          }}>
+          {props.error}
+        </Text>
+      )}
     </>
   );
 };
@@ -40,8 +68,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     borderRadius: 10,
-    height: 60,
-    padding: 7,
+    padding: 10,
     marginTop: 10,
     shadowColor: '#0655911A',
     shadowOpacity: 20,
@@ -54,7 +81,7 @@ const style = StyleSheet.create({
   labelStyle: {
     color: '#000',
     fontFamily: 'Segoe UI',
-    marginTop: 20,
+    marginTop: 0,
     marginBottom: 0,
     textTransform: 'uppercase',
     fontSize: 13,
@@ -63,11 +90,9 @@ const style = StyleSheet.create({
     width: '90%',
     padding: 0,
     borderBottomWidth: 0,
-    height: 20,
-    fontSize: 15,
-    marginBottom: 17,
-    marginTop: 0,
-    color:'#8193ae',
+    fontSize: 17,
+    marginBottom: 20,
+    color: '#8193ae',
     fontFamily: 'Segoe UI',
   },
 });

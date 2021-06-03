@@ -47,9 +47,11 @@ export const ParkingTime: FC = () => {
         {timePriceData.map((item, i) => (
           <ListItem
             onPress={() => handleSelection(item)}
+            underlayColor="transparent"
+            activeOpacity={1}
             containerStyle={[
               style.itemContainer,
-              {backgroundColor: item.selected ? '#0E5A93' : 'transparent'},
+              {backgroundColor: item.selected ? '#0E5A93' : '#ffffff'},
             ]}>
             <Text
               style={[
@@ -79,7 +81,6 @@ const style = StyleSheet.create({
     padding: 5,
     marginRight: 10,
     width: 120,
-    height: 60,
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'space-between',

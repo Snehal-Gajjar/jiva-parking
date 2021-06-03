@@ -1,6 +1,8 @@
 import React, {Dispatch, FC, SetStateAction} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {Picker} from '@react-native-picker/picker';
+import RNPickerSelect from 'react-native-picker-select';
 
 type Props = {
   selectedCar: string;
@@ -14,33 +16,38 @@ export const CarDropDown: FC<Props> = ({selectedCar, setSelectedCar}) => {
         zIndex: 999,
       }}>
       <Text style={styles.titleStyle}>Car Info</Text>
-      <DropDownPicker
-        items={[
-          {
-            label: 'GJ 02 BJ 0420',
-            value: 'GJ01',
-          },
-          {
-            label: 'GJ 02 BJ 0420',
-            value: 'GJ01',
-          },
-          {
-            label: 'GJ 02 BJ 0420',
-            value: 'GJ03',
-          },
-        ]}
-        defaultValue={selectedCar}
-        containerStyle={{height: 40, marginTop: 5}}
-        style={{backgroundColor: '#fff', borderRadius: 10, borderWidth: 1}}
-        itemStyle={{
-          justifyContent: 'flex-start',
+      <View
+        style={{
+          width: '100%',
+          height: 45,
           backgroundColor: '#fff',
-        }}
-        zIndex={999}
-        zIndexInverse={6000}
-        dropDownStyle={{backgroundColor: '#fff', borderRadius: 20}}
-        onChangeItem={(item) => setSelectedCar(item.value)}
-      />
+          borderRadius: 10,
+        }}>
+        <Picker
+          selectedValue={selectedCar}
+          onValueChange={(item) => setSelectedCar(item)}
+          style={{
+            fontSize: 13,
+          }}
+          mode="dropdown">
+          {[
+            {
+              label: 'GJ 02 BJ 0420',
+              value: 'GJ01',
+            },
+            {
+              label: 'GJ 02 BJ 0420',
+              value: 'GJ01',
+            },
+            {
+              label: 'GJ 02 BJ 0420',
+              value: 'GJ03',
+            },
+          ].map((val) => (
+            <Picker.Item label={val.label} value={val.value} />
+          ))}
+        </Picker>
+      </View>
     </View>
   );
 };

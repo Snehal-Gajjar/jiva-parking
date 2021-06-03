@@ -55,9 +55,9 @@ export const MapScreenStyle = StyleSheet.create({
 export const PaymentStyle = StyleSheet.create({
   titleStyle: {
     fontFamily: 'Segoe UI Semibold',
-    fontSize: 17,
+    fontSize: 18,
     color: '#000',
-    marginTop: 5,
+    marginTop: 10,
   },
   billContainer: {
     display: 'flex',
@@ -72,11 +72,11 @@ export const PaymentStyle = StyleSheet.create({
     marginTop: 3,
   },
   billTitles: {
-    fontFamily: 'Segoe UI Semilight Italic',
+    fontFamily: 'Segoe UI',
     fontSize: 16,
   },
   billPrice: {
-    fontFamily: 'Segoe UI Semilight Italic',
+    fontFamily: 'Segoe UI',
     fontSize: 16,
   },
   btnPick: {

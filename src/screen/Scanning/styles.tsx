@@ -34,11 +34,9 @@ export const ScanningStyle = StyleSheet.create({
   },
   scanButtonStyle: {
     height: 60,
-    width:'90%',
     borderRadius: 30,
     marginTop: 10,
     fontWeight:'500',
-    textAlign:'center'
   },
   torchContainer:{
     width: 50,

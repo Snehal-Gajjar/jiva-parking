@@ -13,7 +13,7 @@ export const SignUpStyle = StyleSheet.create({
     shadowColor: '#0655911A',
     shadowOpacity: 20,
     shadowRadius: 3.84,
-    marginTop:10,
+    marginTop: 10,
     shadowOffset: {
       width: 3,
       height: 3,
@@ -56,10 +56,7 @@ export const SignUpStyle = StyleSheet.create({
     marginTop: 10,
   },
   forgotPswdContainer: {
-    position: 'absolute',
-    bottom: 5,
-    right: 0,
-    left: 0,
+    width: '100%',
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row',

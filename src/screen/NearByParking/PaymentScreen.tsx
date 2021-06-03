@@ -68,7 +68,6 @@ export const PaymentScreen: FC<Props> = ({navigation}) => {
         </View>
         <Button
           title="Pay Amount"
-          onPress={() => navigation.navigate('PaymentScreen')}
           buttonStyle={PaymentStyle.btnPick}
         />
       </View>

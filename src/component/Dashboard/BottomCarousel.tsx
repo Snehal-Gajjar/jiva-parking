@@ -1,12 +1,10 @@
 import React from 'react';
-import {
-  View,
-  ImageSourcePropType,
-  Dimensions,
-  StyleSheet,
-} from 'react-native';
+import {View, ImageSourcePropType, Dimensions, StyleSheet} from 'react-native';
 import {Image} from 'react-native-elements';
-import Carousel from 'react-native-snap-carousel';
+// import Carousel from 'react-native-snap-carousel';
+import ImageSlider from 'react-native-image-slider';
+// import {SwiperFlatList} from 'react-native-swiper-flatlist';
+import Swiper from 'react-native-swiper';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
@@ -24,12 +22,7 @@ const imageCollection: {img: ImageSourcePropType}[] = [
 ];
 
 export const BottomCarousel = () => {
-  const _renderItem = ({
-    item,
-  }: {
-    item: {img: ImageSourcePropType};
-    index: number;
-  }) => {
+  const _renderItem = (item: {img: ImageSourcePropType}) => {
     return (
       <View style={BottomCarouselStyle.slideContainer}>
         <Image source={item.img} style={BottomCarouselStyle.slideImage} />
@@ -38,14 +31,9 @@ export const BottomCarousel = () => {
   };
   return (
     <View style={BottomCarouselStyle.container}>
-      <Carousel
-        layout={'default'}
-        data={imageCollection}
-        sliderWidth={SLIDER_WIDTH}
-        itemWidth={ITEM_WIDTH}
-        renderItem={_renderItem}
-        autoplay
-      />
+      <Swiper height={90} loop autoplay autoplayTimeout={2} showsPagination={false}>
+        {imageCollection.map((img) => _renderItem(img))}
+      </Swiper>
     </View>
   );
 };
@@ -53,17 +41,14 @@ export const BottomCarousel = () => {
 const BottomCarouselStyle = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 4,
+    flex: 1,
   },
   slideContainer: {
-    height: 90,
-    marginLeft: 25,
-    marginRight: 25,
+    height: 100,
   },
   slideImage: {
     width: '100%',
     height: '100%',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
   },
 });

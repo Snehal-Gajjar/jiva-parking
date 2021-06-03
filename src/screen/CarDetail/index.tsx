@@ -27,12 +27,13 @@ export const CarDetail: FC<Props> = ({navigation}) => {
         <Button
           onPress={() => navigation.navigate('AddCar')}
           title="Add Car"
+          containerStyle={{
+            width:'60%'
+          }}
           buttonStyle={CarDetailStyle.addCarBtn}
           titleStyle={{
-            fontSize: 20,
+            fontSize: 15,
             fontWeight: '500',
-            alignItems: 'center',
-            textAlign: 'center',
           }}></Button>
       </View>
     </View>

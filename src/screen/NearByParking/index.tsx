@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const NearByParking: FC<Props> = ({navigation}) => {
-  const [visible, setVisible] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(false);
   const [filterVisible, setFilterVisible] = useState<boolean>(false);
 
   const handleClose = (type?: string) => {
@@ -27,6 +27,7 @@ export const NearByParking: FC<Props> = ({navigation}) => {
 
   const hanldeBookNow = () => {
     navigation.navigate('DetailPage');
+    handleClose()
   };
 
   const handleFilter = () => {

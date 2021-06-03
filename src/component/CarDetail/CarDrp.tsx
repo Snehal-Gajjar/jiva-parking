@@ -1,24 +1,48 @@
 import React, {FC} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import DropDownPicker, {ItemType} from 'react-native-dropdown-picker';
+import {Picker} from '@react-native-picker/picker';
+
+const Item: any = Picker.Item;
 
 type Props = {
   items: ItemType[];
   defaultValue?: string;
-  onChangeItem: (item: ItemType) => void;
-  placeholder:string
+  onChangeItem: (item: string) => void;
+  placeholder: string;
 };
 
-export const CarDrp: FC<Props> = ({items, defaultValue, onChangeItem, placeholder}) => {
+export const CarDrp: FC<Props> = ({
+  items,
+  defaultValue,
+  onChangeItem,
+  placeholder,
+}) => {
   return (
     <View style={style.inputContainer}>
       <Text style={style.labelStyle}>{placeholder}</Text>
-      <DropDownPicker
+      <Picker
+        selectedValue={defaultValue}
+        onValueChange={onChangeItem}
+        style={{
+          height:20,
+          color: '#8193ae',
+          fontFamily: 'Segoe UI',
+          fontSize: 13,
+        }}
+        mode="dropdown">
+          <Item label={placeholder} />
+        {items.map((val) => (
+          <Item label={val.label} value={val.value} />
+        ))}
+      </Picker>
+      {/* <DropDownPicker
         items={items}
         defaultValue={defaultValue}
         containerStyle={{
+          padding:0,
           marginTop: 0,
-          height: 35,
+          height: 40,
         }}
         placeholder={placeholder}
         style={{
@@ -26,16 +50,21 @@ export const CarDrp: FC<Props> = ({items, defaultValue, onChangeItem, placeholde
           width: '100%',
           borderWidth: 0,
           borderRadius: 20,
+          marginBottom: 10
         }}
         selectedLabelStyle={{
           color: '#8193ae',
           fontFamily: 'Segoe UI',
           fontSize: 17,
+          margin:0,
+          padding:0
         }}
         placeholderStyle={{
           color: '#8193ae',
           fontFamily: 'Segoe UI',
           fontSize: 17,
+          margin:0,
+          padding:0
         }}
         labelStyle={{
           fontFamily: 'Segoe UI',
@@ -49,7 +78,7 @@ export const CarDrp: FC<Props> = ({items, defaultValue, onChangeItem, placeholde
         zIndexInverse={6000}
         dropDownStyle={{backgroundColor: '#fff'}}
         onChangeItem={onChangeItem}
-      />
+      /> */}
     </View>
   );
 };
@@ -59,9 +88,9 @@ const style = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: '#fff',
+    padding: 5,
     borderRadius: 10,
-    height: 60,
-    padding: 7,
+    height: 65,
     marginTop: 10,
     shadowColor: '#0655911A',
     shadowOpacity: 20,
@@ -73,11 +102,13 @@ const style = StyleSheet.create({
   },
   labelStyle: {
     color: '#000',
-    fontFamily: 'Segoe UI',
-    fontWeight: '500',
+    fontFamily: 'Segoe UI Semibold',
+    fontWeight: 'bold',
     marginBottom: 0,
     marginLeft: 10,
+    padding:0,
     textTransform: 'uppercase',
     fontSize: 13,
+    height:15
   },
 });
