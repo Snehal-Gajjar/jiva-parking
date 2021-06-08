@@ -63,7 +63,7 @@ const App = () => {
     Dimensions.addEventListener('change', onDimensionsChange);
     init();
     return () => Dimensions.removeEventListener('change', onDimensionsChange);
-  }, []);
+  }, [isLoggedIn]);
 
   const isLargeScreen = dimensions.width >= 1024;
   console.log(dimensions.width);
@@ -80,27 +80,26 @@ const App = () => {
                 headerShown: false,
                 ...TransitionPresets.DefaultTransition,
               })}>
-              {!isLoggedIn
-                ? (Object.keys(
-                    AUTHSCREENS,
-                  ) as (keyof typeof AUTHSCREENS)[]).map((name) => (
-                    <Stack.Screen
-                      key={name}
-                      name={name}
-                      getComponent={() => AUTHSCREENS[name].component}
-                      options={{title: AUTHSCREENS[name].title}}
-                    />
-                  ))
-                : (Object.keys(
-                    SCREENS,
-                  ) as (keyof typeof SCREENS)[]).map((name) => (
-                    <Stack.Screen
-                      key={name}
-                      name={name}
-                      getComponent={() => SCREENS[name].component}
-                      options={{title: SCREENS[name].title}}
-                    />
-                  ))}
+              {(Object.keys(AUTHSCREENS) as (keyof typeof AUTHSCREENS)[]).map(
+                (name) => (
+                  <Stack.Screen
+                    key={name}
+                    name={name}
+                    getComponent={() => AUTHSCREENS[name].component}
+                    options={{title: AUTHSCREENS[name].title}}
+                  />
+                ),
+              )}
+              {(Object.keys(SCREENS) as (keyof typeof SCREENS)[]).map(
+                (name) => (
+                  <Stack.Screen
+                    key={name}
+                    name={name}
+                    getComponent={() => SCREENS[name].component}
+                    options={{title: SCREENS[name].title}}
+                  />
+                ),
+              )}
               {/* {(Object.keys(SCREENS) as (keyof typeof SCREENS)[]).map(
                 (name) => (
                   <Stack.Screen

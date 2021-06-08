@@ -47,12 +47,12 @@ export const SignUp: FC<Props> = ({navigation}) => {
         const {
           data: {token},
         } = result;
-        storage.clearMap();
-        storage.save({
-          key: 'user',
-          data: JSON.stringify({token, isUserLoggedIn: true}),
-        });
-        toastShow('success', result.data);
+        // storage.clearMap();
+        // storage.save({
+        //   key: 'user',
+        //   data: JSON.stringify({token, isUserLoggedIn: true}),
+        // });
+        toastShow('success', result.message);
         handleOtpModal();
         setLoading(false);
       })

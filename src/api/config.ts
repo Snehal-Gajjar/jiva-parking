@@ -5,20 +5,14 @@ import storage from '../utils/storage';
 export default (url: string, method?: Method, data?: any) => {
 
     let token = '';
-    storage.load({
-        key: 'user',
-        autoSync: true,
-        syncInBackground: true
-    }).then(res => {
-        const parsedneoUser = JSON.parse(res);
-        token = parsedneoUser.token;
-    });
-    var formBody = [];
-    for (var property in data) {
-        var encodedKey = encodeURIComponent(property);
-        var encodedValue = encodeURIComponent(data[property]);
-        formBody.push(encodedKey + "=" + encodedValue);
-    }
+    // storage.load({
+    //     key: 'user',
+    //     autoSync: true,
+    //     syncInBackground: true
+    // }).then(res => {
+    //     const parsedneoUser = JSON.parse(res);
+    //     token = parsedneoUser.token;
+    // });
 
     return axios({
         url: Config.REST_ENDPOINT + url,

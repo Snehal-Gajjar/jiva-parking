@@ -49,7 +49,8 @@ export const Login: FC<Props> = ({navigation}) => {
           key: 'user',
           data: JSON.stringify({token, isUserLoggedIn: true}),
         });
-        toastShow('success', result.data);
+        toastShow('success', result.message);
+        navigation.navigate('Dashboard');
         setLoading(false);
       })
       .catch((error) => {

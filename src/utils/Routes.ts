@@ -23,8 +23,8 @@ export const SCREENS = {
 }
 
 export const AUTHSCREENS = {
-    SignUp: { title: 'SignUp', component: SignUp },
     Login: { title: 'Login', component: Login },
+    SignUp: { title: 'SignUp', component: SignUp },
 }
 
 export default SCREENS
