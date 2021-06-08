@@ -1,16 +1,16 @@
-import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect} from 'react';
 import {Image, Text, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {RootStackParamList} from '../../../App';
 import {BottomCarousel} from '../../component/Dashboard/BottomCarousel';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {NavigationCard} from '../../component/Dashboard/NavigationCard';
 import {DashboardStyle} from './styles';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {RootDrawerParamList} from '../../utils/NavigationTypes';
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: DrawerNavigationProp<RootDrawerParamList>;
 };
 
 export const Dashboard: FC<Props> = ({navigation}) => {
@@ -27,7 +27,7 @@ export const Dashboard: FC<Props> = ({navigation}) => {
   return (
     <View style={{flex: 1}}>
       <View style={DashboardStyle.headerContainer}>
-        <HeaderContainer />
+        <HeaderContainer {...{navigation}} />
         <View style={DashboardStyle.logoContainer}>
           <View style={DashboardStyle.logo}>
             <Image

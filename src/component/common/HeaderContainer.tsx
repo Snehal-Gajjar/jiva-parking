@@ -1,6 +1,8 @@
+import {DrawerNavigationProp} from '@react-navigation/drawer';
 import React, {FC} from 'react';
 import {View, Text} from 'react-native';
 import {Icon, Header, Button} from 'react-native-elements';
+import {RootDrawerParamList} from '../../utils/NavigationTypes';
 import {ParkingSearchBar} from '../NearByParking/ParkingSearchBar';
 import {HeaderStyle} from './styles';
 
@@ -9,6 +11,7 @@ type Props = {
   nearByParking?: boolean;
   isMargin?: boolean;
   handleFilter?: () => void;
+  navigation: any;
 };
 
 export const HeaderContainer: FC<Props> = ({
@@ -16,7 +19,11 @@ export const HeaderContainer: FC<Props> = ({
   nearByParking,
   isMargin,
   handleFilter,
+  navigation,
 }) => {
+  const handleDrawer = () => {
+    navigation.openDrawer();
+  };
   return (
     <Header
       centerComponent={
@@ -46,7 +53,8 @@ export const HeaderContainer: FC<Props> = ({
           style={{
             marginLeft: title || nearByParking || isMargin ? 5 : 15,
             marginTop: nearByParking ? 10 : 0,
-          }}></Icon>
+          }}
+          onPress={handleDrawer}></Icon>
       }
       statusBarProps={{barStyle: 'default'}}
       placement="center"

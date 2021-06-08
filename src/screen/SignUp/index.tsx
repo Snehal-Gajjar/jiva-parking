@@ -1,14 +1,15 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Formik} from 'formik';
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useContext, useEffect, useState} from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {Button, Image} from 'react-native-elements';
-import {RootStackParamList} from '../../../App';
 import {AuthService} from '../../api/services';
 import {SocialLoginBtn} from '../../component/Login/SocialLoginBtn';
 import {VerifyOtpModal} from '../../component/Login/VerifyOtpModal';
 import {TextInput} from '../../component/TextInput';
 import Config from '../../utils/apiConfig';
+import {CurrentUserContext} from '../../utils/context';
+import {RootStackParamList} from '../../utils/NavigationTypes';
 import storage from '../../utils/storage';
 import {toastShow} from '../../utils/Toast';
 import {Register} from '../../utils/types';
@@ -20,6 +21,7 @@ type Props = {
 };
 
 export const SignUp: FC<Props> = ({navigation}) => {
+  const context = useContext(CurrentUserContext);
   const [showOtpModal, setShowOtpModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
@@ -35,7 +37,7 @@ export const SignUp: FC<Props> = ({navigation}) => {
   const handleVerifyOtp = (otp?: string) => {
     if (otp && otp === Config.MASTER_OTP.toString()) {
       handleOtpModal();
-      navigation.navigate('Dashboard');
+      navigation.navigate('Drawer');
     }
   };
 
@@ -48,10 +50,11 @@ export const SignUp: FC<Props> = ({navigation}) => {
           data: {token},
         } = result;
         // storage.clearMap();
-        // storage.save({
-        //   key: 'user',
-        //   data: JSON.stringify({token, isUserLoggedIn: true}),
-        // });
+        storage.save({
+          key: 'user',
+          data: JSON.stringify({token, isUserLoggedIn: true}),
+        });
+        context.handleUser();
         toastShow('success', result.message);
         handleOtpModal();
         setLoading(false);

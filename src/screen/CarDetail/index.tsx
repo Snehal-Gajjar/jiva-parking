@@ -1,14 +1,14 @@
-import {StackNavigationProp} from '@react-navigation/stack';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
 import React, {FC, useEffect} from 'react';
 import {View} from 'react-native';
 import {Button} from 'react-native-elements';
-import {RootStackParamList} from '../../../App';
 import {CarListing} from '../../component/CarDetail/CarsListing';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
+import {CarRootParamList} from '../../utils/NavigationTypes';
 import {CarDetailStyle} from './style';
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: DrawerNavigationProp<CarRootParamList>;
 };
 
 export const CarDetail: FC<Props> = ({navigation}) => {
@@ -19,7 +19,7 @@ export const CarDetail: FC<Props> = ({navigation}) => {
   }, []);
   return (
     <View style={{flex: 1}}>
-      <HeaderContainer title="Car Detail" />
+      <HeaderContainer title="Car Detail" {...{navigation}} />
       <View style={{flex: 1}}>
         <CarListing />
       </View>
@@ -28,7 +28,7 @@ export const CarDetail: FC<Props> = ({navigation}) => {
           onPress={() => navigation.navigate('AddCar')}
           title="Add Car"
           containerStyle={{
-            width:'60%'
+            width: '60%',
           }}
           buttonStyle={CarDetailStyle.addCarBtn}
           titleStyle={{

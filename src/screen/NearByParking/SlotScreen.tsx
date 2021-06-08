@@ -1,18 +1,18 @@
-import {StackNavigationProp} from '@react-navigation/stack';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
 import React, {FC, useEffect} from 'react';
 import {BackHandler, Dimensions, View} from 'react-native';
 import {ItemType} from 'react-native-dropdown-picker';
 import {Button, Divider} from 'react-native-elements';
 import WebView from 'react-native-webview';
-import {RootStackParamList} from '../../../App';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {CalendarView} from '../../component/NearByParking/CalendarView';
 import {DateTimeDrp} from '../../component/NearByParking/DateTimeDropDown';
 import {FloorSelections} from '../../component/NearByParking/FloorSelections';
+import { NearByRootParamList } from '../../utils/NavigationTypes';
 import {MapScreenStyle} from './styles';
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: DrawerNavigationProp<NearByRootParamList>;
 };
 
 const dateDrp = [
@@ -60,7 +60,7 @@ export const SlotScreen: FC<Props> = ({navigation}) => {
     <View
       style={{flex: 1, backgroundColor: '#fff'}}
       renderToHardwareTextureAndroid={true}>
-      <HeaderContainer isMargin />
+      <HeaderContainer isMargin {...{navigation}} />
       <View>
         <FloorSelections />
       </View>

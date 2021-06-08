@@ -1,16 +1,16 @@
-import {StackNavigationProp} from '@react-navigation/stack';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
 import React, {FC, useEffect, useState} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {Button, Image} from 'react-native-elements';
-import {RootStackParamList} from '../../../App';
 import {CarDrp} from '../../component/CarDetail/CarDrp';
 import {VehicleFuel, VehicleType} from '../../component/CarDetail/CarDrpData';
 import {CarNotificationAlert} from '../../component/CarDetail/CarNotificationAlert';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {TextInput} from '../../component/TextInput';
+import {CarRootParamList} from '../../utils/NavigationTypes';
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: DrawerNavigationProp<CarRootParamList>;
 };
 
 export const AddCar: FC<Props> = ({navigation}) => {
@@ -28,7 +28,7 @@ export const AddCar: FC<Props> = ({navigation}) => {
   return (
     <View style={{flex: 1}}>
       <ScrollView>
-        <HeaderContainer />
+        <HeaderContainer {...{navigation}} />
         <View
           style={{
             display: 'flex',

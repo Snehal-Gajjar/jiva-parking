@@ -1,14 +1,15 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Formik} from 'formik';
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useContext, useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {RootStackParamList} from '../../../App';
 import {AuthService} from '../../api/services';
 import {SocialLoginBtn} from '../../component/Login/SocialLoginBtn';
 import {VerifyOtpModal} from '../../component/Login/VerifyOtpModal';
 import {TextInput} from '../../component/TextInput';
+import {CurrentUserContext} from '../../utils/context';
+import {RootStackParamList} from '../../utils/NavigationTypes';
 import storage from '../../utils/storage';
 import {toastShow} from '../../utils/Toast';
 import {commonValidationSchema, getInitialValue} from './initialValues';
@@ -19,6 +20,7 @@ type Props = {
 };
 
 export const Login: FC<Props> = ({navigation}) => {
+  const context = useContext(CurrentUserContext);
   const [showOtpModal, setShowOtpModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
@@ -33,7 +35,7 @@ export const Login: FC<Props> = ({navigation}) => {
 
   const handleVerifyOtp = () => {
     handleOtpModal();
-    navigation.navigate('Dashboard');
+    navigation.navigate('Drawer');
   };
 
   const handleSubmit = (values: {phone: string; password: string}) => {
@@ -49,8 +51,10 @@ export const Login: FC<Props> = ({navigation}) => {
           key: 'user',
           data: JSON.stringify({token, isUserLoggedIn: true}),
         });
+
         toastShow('success', result.message);
-        navigation.navigate('Dashboard');
+        context.handleUser();
+        navigation.navigate('Drawer');
         setLoading(false);
       })
       .catch((error) => {

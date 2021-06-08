@@ -1,17 +1,17 @@
-import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect, useState} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
-import {RootStackParamList} from '../../../App';
 import {DetailContainer} from '../../component/NearByParking/DetailContainer';
 import {DetailStyle} from './styles';
 import {Button} from 'react-native-elements';
 import Collapsible from 'react-native-collapsible';
 import {CarDropDown} from '../../component/NearByParking/CarDropDown';
 import {ParkingTime} from '../../component/NearByParking/ParkingTime';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
+import { NearByRootParamList } from '../../utils/NavigationTypes';
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: DrawerNavigationProp<NearByRootParamList>;
 };
 
 export const DetailPage: FC<Props> = ({navigation}) => {
@@ -26,7 +26,7 @@ export const DetailPage: FC<Props> = ({navigation}) => {
       style={{
         flex: 1,
       }}>
-      <HeaderContainer isMargin />
+      <HeaderContainer isMargin {...{navigation}} />
       <View
         style={{
           marginHorizontal: 10,
@@ -98,7 +98,11 @@ export const DetailPage: FC<Props> = ({navigation}) => {
           </View>
         </View>
         <CarDropDown {...{setSelectedCar, selectedCar}} />
-        <Button title="Pick Parking Slot" onPress={() => navigation.navigate('MapScreen')} buttonStyle={DetailStyle.btnPick} />
+        <Button
+          title="Pick Parking Slot"
+          onPress={() => navigation.navigate('MapScreen')}
+          buttonStyle={DetailStyle.btnPick}
+        />
       </View>
     </ScrollView>
   );

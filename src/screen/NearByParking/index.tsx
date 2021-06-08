@@ -1,16 +1,16 @@
-import {StackNavigationProp} from '@react-navigation/stack';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
 import React, {FC, useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button, Icon, Image} from 'react-native-elements';
 import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
-import {RootStackParamList} from '../../../App';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {DetailPopUp} from '../../component/NearByParking/DetailPopUp';
 import {FliterPopUp} from '../../component/NearByParking/FliterPopUp';
+import {NearByRootParamList} from '../../utils/NavigationTypes';
 import {NearByParkingStyle} from './styles';
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: DrawerNavigationProp<NearByRootParamList>;
 };
 
 export const NearByParking: FC<Props> = ({navigation}) => {
@@ -27,7 +27,7 @@ export const NearByParking: FC<Props> = ({navigation}) => {
 
   const hanldeBookNow = () => {
     navigation.navigate('DetailPage');
-    handleClose()
+    handleClose();
   };
 
   const handleFilter = () => {
@@ -42,7 +42,7 @@ export const NearByParking: FC<Props> = ({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <HeaderContainer nearByParking {...{handleFilter}} />
+      <HeaderContainer nearByParking {...{handleFilter, navigation}} />
       <View style={NearByParkingStyle.iconsContainer}>
         <Button
           raised

@@ -1,14 +1,15 @@
-import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect} from 'react';
 import {View, Text, Image} from 'react-native';
 import {Button, Card} from 'react-native-elements';
-import {RootStackParamList} from '../../../App';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {ScanningStyle} from './styles';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import QrCodeCamera from '../../component/Dashboard/QrCodeCamera';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {RootDrawerParamList} from '../../utils/NavigationTypes';
+
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: DrawerNavigationProp<RootDrawerParamList>;
 };
 
 export const Scanning: FC<Props> = ({navigation}) => {
@@ -20,7 +21,7 @@ export const Scanning: FC<Props> = ({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <HeaderContainer title="Scanning" />
+      <HeaderContainer title="Scanning" {...{navigation}} />
       <Card containerStyle={ScanningStyle.cardContainer}>
         <Card.Title style={ScanningStyle.cardTitle}>Scan QR Code</Card.Title>
         <Text style={ScanningStyle.cardSubTitle}>
@@ -33,7 +34,7 @@ export const Scanning: FC<Props> = ({navigation}) => {
           marginTop: 20,
           alignItems: 'center',
           justifyContent: 'center',
-          display:'flex'
+          display: 'flex',
         }}>
         {/* <QRCodeScanner
           onRead={(e) => console.log(e)}
@@ -62,12 +63,12 @@ export const Scanning: FC<Props> = ({navigation}) => {
           title="Scan Car QR"
           buttonStyle={ScanningStyle.scanButtonStyle}
           containerStyle={{
-            width:'60%',
+            width: '60%',
           }}
           titleStyle={{
             fontSize: 20,
-            alignItems:'center',
-            textAlign:'center'
+            alignItems: 'center',
+            textAlign: 'center',
           }}
           onPress={() => navigation.navigate('Scanning')}></Button>
       </View>

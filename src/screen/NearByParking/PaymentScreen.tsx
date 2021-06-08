@@ -1,16 +1,16 @@
-import {StackNavigationProp} from '@react-navigation/stack';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
 import React, {FC, useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import {Button, CheckBox, Divider} from 'react-native-elements';
-import {RootStackParamList} from '../../../App';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {AmenitiesList} from '../../component/NearByParking/AmenitiesList';
 import {CarDropDown} from '../../component/NearByParking/CarDropDown';
 import {DetailContainer} from '../../component/NearByParking/DetailContainer';
+import { NearByRootParamList } from '../../utils/NavigationTypes';
 import {PaymentStyle} from './styles';
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: DrawerNavigationProp<NearByRootParamList>;
 };
 
 export const PaymentScreen: FC<Props> = ({navigation}) => {
@@ -22,7 +22,7 @@ export const PaymentScreen: FC<Props> = ({navigation}) => {
   }, []);
   return (
     <View style={{flex: 1}}>
-      <HeaderContainer isMargin />
+      <HeaderContainer isMargin  {...{navigation}} />
       <View
         style={{
           marginHorizontal: 10,
@@ -66,10 +66,7 @@ export const PaymentScreen: FC<Props> = ({navigation}) => {
             </View>
           </View>
         </View>
-        <Button
-          title="Pay Amount"
-          buttonStyle={PaymentStyle.btnPick}
-        />
+        <Button title="Pay Amount" buttonStyle={PaymentStyle.btnPick} />
       </View>
     </View>
   );
