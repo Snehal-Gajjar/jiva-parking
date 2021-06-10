@@ -1,26 +1,39 @@
 import axios, { Method } from 'axios';
 import Config from '../utils/apiConfig';
-import storage from '../utils/storage';
+import { extractCurrentUser } from '../utils/auth';
 
-export default (url: string, method?: Method, data?: any) => {
+export default async (url: string, method?: Method, data?: any) => {
 
     let token = '';
-    // storage.load({
-    //     key: 'user',
-    //     autoSync: true,
-    //     syncInBackground: true
-    // }).then(res => {
-    //     const parsedneoUser = JSON.parse(res);
-    //     token = parsedneoUser.token;
-    // });
+    const user = await extractCurrentUser()
+    if (user) token = user.token as string
+
+    let requestData = {
+        ...data,
+        token
+    }
+
+    if (method === 'GET') {
+        return axios.get(Config.REST_ENDPOINT + url, {
+            params: {
+                token
+            }
+        }).then((response) => {
+            console.log(response.data)
+            if (response.data.status && response.data.status === 'success') {
+                return response.data
+            } else {
+                return Promise.reject(data);
+            }
+        })
+    }
 
     return axios({
         url: Config.REST_ENDPOINT + url,
         headers: {
-            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
         },
-        data: JSON.stringify(data),
+        data: JSON.stringify(requestData),
         method: method
     }).then((response) => {
         console.log(response.data)

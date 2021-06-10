@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
 import Modal from 'react-native-modal';
+import {Insurance, PUC} from '../../utils/types';
 import {CarNotiBtn} from './CarNotiBtn';
 import {InsurancePopUp} from './InsurancePopUp';
 import {PUCPopUp} from './PUCPopUp';
@@ -9,9 +10,18 @@ import {PUCPopUp} from './PUCPopUp';
 type Props = {
   visible: boolean;
   handleClose: () => void;
+  handleAddCar: () => void;
+  setPuc: Dispatch<SetStateAction<PUC | undefined>>;
+  setInsurance: Dispatch<SetStateAction<Insurance | undefined>>;
 };
 
-export const CarNotificationAlert = ({visible, handleClose}: Props) => {
+export const CarNotificationAlert = ({
+  visible,
+  handleClose,
+  setPuc,
+  setInsurance,
+  handleAddCar,
+}: Props) => {
   const [open, setOpen] = useState({
     puc: false,
     insurance: false,
@@ -44,11 +54,20 @@ export const CarNotificationAlert = ({visible, handleClose}: Props) => {
             onPress={() => handlePopUpClose('insurance')}
           />
         </View>
-        <Button title="Add Notification" buttonStyle={styles.btnLogIn} onPress={handleClose} />
+        <Button
+          title="Add Notification"
+          buttonStyle={styles.btnLogIn}
+          onPress={handleAddCar}
+        />
       </View>
-      <PUCPopUp visible={puc} handleClose={() => handlePopUpClose('puc')} />
+      <PUCPopUp
+        setPuc={setPuc}
+        visible={puc}
+        handleClose={() => handlePopUpClose('puc')}
+      />
       <InsurancePopUp
         visible={insurance}
+        setInsurance={setInsurance}
         handleClose={() => handlePopUpClose('insurance')}
       />
     </Modal>
@@ -60,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
     backgroundColor: 'rgba(0,0,0,0)',
-    zIndex:9999
+    zIndex: 9999,
   },
   btnLogIn: {
     marginTop: 15,

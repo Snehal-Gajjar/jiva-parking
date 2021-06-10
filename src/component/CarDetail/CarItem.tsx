@@ -1,19 +1,33 @@
-import React, {FC} from 'react';
+import {StackNavigationProp} from '@react-navigation/stack';
+import React, {FC, useState} from 'react';
 import {View, Text} from 'react-native';
 import {Button, Card, Icon, Image} from 'react-native-elements';
+import {RootStackParamList} from '../../utils/NavigationTypes';
+import {CarList} from '../../utils/types';
+import {DeleteCarPopUp} from './common/DeleteCarPopUp';
 import {CarItemStyle} from './style';
 
 type Props = {
-  data: {
-    id: string;
-    carName: string;
-    carNumber: string;
-  };
+  data: CarList;
+  navigation: StackNavigationProp<RootStackParamList>;
 };
 
-export const CarItem: FC<Props> = ({data}) => {
+export const CarItem: FC<Props> = ({data, navigation}) => {
+  const [visible, setVisible] = useState<boolean>(false);
+
+  const handleClose = () => {
+    setVisible(!visible);
+  };
+
+  const handleEdit = () => {
+    navigation.navigate('AddCar', {
+      edit: true,
+      carDetail: {},
+    });
+  };
+
   return (
-    <View>
+    <View style={{flex: 1}}>
       <Card containerStyle={CarItemStyle.cardContainer}>
         <View style={CarItemStyle.cardTitleContainer}>
           <Text
@@ -22,7 +36,7 @@ export const CarItem: FC<Props> = ({data}) => {
               fontFamily: 'Segoe UI',
               fontSize: 15,
             }}>
-            {data.carName}
+            {data.brand + ' ' + data.model}
           </Text>
           <View
             style={{
@@ -36,7 +50,13 @@ export const CarItem: FC<Props> = ({data}) => {
               color="#0E5A93"
               size={25}
               style={{marginRight: 10}}></Icon>
-            <Icon size={25} name="edit-3" type="feather" color="#0E5A93" />
+            <Icon
+              size={25}
+              name="edit-3"
+              onPress={handleEdit}
+              type="feather"
+              color="#0E5A93"
+            />
           </View>
         </View>
         <View
@@ -47,7 +67,11 @@ export const CarItem: FC<Props> = ({data}) => {
           }}>
           <View style={CarItemStyle.carImageContainer}>
             <Image
-              source={require('../../assets/images/car.png')}
+              source={
+                data.icon
+                  ? {uri: data.icon}
+                  : require('../../assets/images/car.png')
+              }
               style={{
                 height: '100%',
                 width: '100%',
@@ -62,7 +86,7 @@ export const CarItem: FC<Props> = ({data}) => {
               fontFamily: 'Segoe UI Semibold',
               color: '#0E5A93',
             }}>
-            {data.carNumber}
+            {data.registration_no}
           </Text>
           <Button
             buttonStyle={CarItemStyle.deleteButtonStyle}
@@ -73,10 +97,16 @@ export const CarItem: FC<Props> = ({data}) => {
                 color="#FFFFFF"
               />
             }
+            onPress={handleClose}
             containerStyle={CarItemStyle.deleteContainer}></Button>
-          {/* <Icon name="delete-empty" type="material-community" color="#FFFFFF" /> */}
         </View>
       </Card>
+      <DeleteCarPopUp
+        {...{visible, handleClose}}
+        carId={data.id}
+        carName={data.brand + ' ' + data.model}
+        carNo={data.registration_no}
+      />
     </View>
   );
 };

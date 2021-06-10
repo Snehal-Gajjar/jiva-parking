@@ -10,9 +10,9 @@ import { SignUp } from "../screen/SignUp"
 import { Wallet } from "../screen/Wallet"
 import { AddCar } from "../screen/CarDetail/AddCar"
 import { CarNavigator, DrawerNavigator, NearByParkingNavigator } from "../component/Navigations/CustomStackNavigation"
+import React from "react"
 
-export const CARSCREENS = {
-    CarDetail: { title: 'CarDetail', component: CarDetail },
+export const ADDSCREEN = {
     AddCar: { title: 'AddCar', component: AddCar }
 }
 
@@ -26,9 +26,12 @@ export const NEARBYPARKING = {
 export const SCREENS = {
     Dashboard: { title: 'Dashboard', component: Dashboard },
     Scanning: { title: 'Scanning', component: Scanning },
-    NearByParking: { title: 'NearByParking', component: NearByParkingNavigator },
+    NearByParking: { title: 'NearByParking', component: NearByParking },
+    DetailPage: { title: 'Detail', component: DetailPage },
+    PaymentScreen: { title: 'Payment', component: PaymentScreen },
+    MapScreen: { title: 'Detail', component: SlotScreen },
     Wallet: { title: 'Wallet', component: Wallet },
-    CarDetail: { title: 'CarDetail', component: CarNavigator },
+    CarDetail: { title: 'CarDetail', component: CarDetail },
 }
 
 export const AUTHSCREENS = {

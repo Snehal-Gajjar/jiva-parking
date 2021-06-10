@@ -1,4 +1,4 @@
-import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect} from 'react';
 import {BackHandler, Dimensions, View} from 'react-native';
 import {ItemType} from 'react-native-dropdown-picker';
@@ -8,11 +8,11 @@ import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {CalendarView} from '../../component/NearByParking/CalendarView';
 import {DateTimeDrp} from '../../component/NearByParking/DateTimeDropDown';
 import {FloorSelections} from '../../component/NearByParking/FloorSelections';
-import { NearByRootParamList } from '../../utils/NavigationTypes';
+import {RootStackParamList} from '../../utils/NavigationTypes';
 import {MapScreenStyle} from './styles';
 
 type Props = {
-  navigation: DrawerNavigationProp<NearByRootParamList>;
+  navigation: StackNavigationProp<RootStackParamList>;
 };
 
 const dateDrp = [

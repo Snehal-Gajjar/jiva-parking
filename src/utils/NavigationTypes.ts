@@ -1,4 +1,5 @@
-import { AUTHSCREENS, CARSCREENS, DRAWER, NEARBYPARKING, SCREENS } from "./Routes";
+import { AUTHSCREENS, ADDSCREEN, DRAWER, NEARBYPARKING, SCREENS } from "./Routes";
+import { CarList } from "./types";
 
 export type NearByRootParamList = {
     [P in keyof typeof NEARBYPARKING]: undefined;
@@ -6,7 +7,7 @@ export type NearByRootParamList = {
 
 
 export type CarRootParamList = {
-    [P in keyof typeof CARSCREENS]: undefined;
+    [P in keyof typeof ADDSCREEN]: undefined;
 };
 
 
@@ -17,8 +18,10 @@ export type RootDrawerParamList = {
     };
 
 export type RootStackParamList = {
-    [P in keyof typeof DRAWER]: undefined;
+    [P in keyof typeof SCREENS]: undefined;
 } &
     {
         [P in keyof typeof AUTHSCREENS]: undefined;
+    } & {
+        AddCar: { edit: boolean, carDetail: CarList }
     };

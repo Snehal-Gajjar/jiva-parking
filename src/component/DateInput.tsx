@@ -1,22 +1,45 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import TextInputMask, {TextInputMaskProps} from 'react-native-text-input-mask';
+import {TextInputMaskProps, TextInputMask} from 'react-native-masked-text';
 
 type Props = {
   label: string;
+  error?: string;
 } & TextInputMaskProps;
 
 export const DateInput = ({...props}: Props) => {
   return (
-    <View style={styles.dateSection}>
-      <Text style={styles.labelStyle}>{props.label}</Text>
-      <TextInputMask
-        style={styles.dateInput}
-        placeholder="DD/MM/YYYY"
-        {...props}
-        mask={'[0][0]-[0][0]-[0][0][0][0]'}
-      />
-    </View>
+    <>
+      <View
+        style={[
+          styles.dateSection,
+          {
+            borderColor: props.error ? 'red' : 'transparent',
+            borderWidth: props.error ? 1 : 0,
+          },
+        ]}>
+        <Text style={styles.labelStyle}>{props.label}</Text>
+        <TextInputMask
+          options={{
+            format: 'YYYY-DD-MM',
+            mask: '[0][0][0][0]-[0][0]-[0][0]',
+          }}
+          style={styles.dateInput}
+          placeholder="DD/MM/YYYY"
+          {...props}
+        />
+      </View>
+      {props.error && (
+        <Text
+          style={{
+            fontSize: 15,
+            color: 'red',
+            fontFamily: 'Segoe UI',
+          }}>
+          {props.error}
+        </Text>
+      )}
+    </>
   );
 };
 

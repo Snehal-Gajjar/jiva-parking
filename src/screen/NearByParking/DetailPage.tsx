@@ -7,11 +7,11 @@ import {Button} from 'react-native-elements';
 import Collapsible from 'react-native-collapsible';
 import {CarDropDown} from '../../component/NearByParking/CarDropDown';
 import {ParkingTime} from '../../component/NearByParking/ParkingTime';
-import {DrawerNavigationProp} from '@react-navigation/drawer';
-import { NearByRootParamList } from '../../utils/NavigationTypes';
+import { RootStackParamList } from '../../utils/NavigationTypes';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
-  navigation: DrawerNavigationProp<NearByRootParamList>;
+  navigation: StackNavigationProp<RootStackParamList>;
 };
 
 export const DetailPage: FC<Props> = ({navigation}) => {

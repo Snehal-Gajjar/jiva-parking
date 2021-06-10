@@ -6,7 +6,7 @@ import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import React, {useEffect, useState} from 'react';
 import {ListItem, Text, ThemeProvider} from 'react-native-elements';
-import SCREENS, {AUTHSCREENS, DRAWER} from './src/utils/Routes';
+import SCREENS, {ADDSCREEN, AUTHSCREENS, DRAWER} from './src/utils/Routes';
 import {theme} from './src/utils/theme';
 import {Dimensions, ScaledSize, ScrollView} from 'react-native';
 import {SplashScreen} from './src/screen/SplashScreen';
@@ -16,6 +16,7 @@ import storage from './src/utils/storage';
 import {RootStackParamList} from './src/utils/NavigationTypes';
 import {CurrentUserContext} from './src/utils/context';
 import {CurrentUser, extractCurrentUser, NULL_USER} from './src/utils/auth';
+import {AddCar} from './src/screen/CarDetail/AddCar';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -75,15 +76,27 @@ const App = () => {
                     options={{title: AUTHSCREENS[name].title}}
                   />
                 ))}
-              {currentUser.loggedIn &&
-                (Object.keys(DRAWER) as (keyof typeof DRAWER)[]).map((name) => (
+              {currentUser.loggedIn && (
+                <>
+                  {(Object.keys(SCREENS) as (keyof typeof SCREENS)[]).map(
+                    (name) => (
+                      <Stack.Screen
+                        key={name}
+                        name={name}
+                        getComponent={() => SCREENS[name].component}
+                        options={{title: SCREENS[name].title}}
+                      />
+                    ),
+                  )}
                   <Stack.Screen
-                    key={name}
-                    name={name}
-                    getComponent={() => DRAWER[name].component}
-                    options={{title: DRAWER[name].title}}
+                    name="AddCar"
+                    component={AddCar}
+                    initialParams={{
+                      edit: false,
+                    }}
                   />
-                ))}
+                </>
+              )}
             </Stack.Navigator>
           </NavigationContainer>
         )}

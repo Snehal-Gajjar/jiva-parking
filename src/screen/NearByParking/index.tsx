@@ -1,4 +1,5 @@
 import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button, Icon, Image} from 'react-native-elements';
@@ -6,11 +7,11 @@ import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {DetailPopUp} from '../../component/NearByParking/DetailPopUp';
 import {FliterPopUp} from '../../component/NearByParking/FliterPopUp';
-import {NearByRootParamList} from '../../utils/NavigationTypes';
+import {RootStackParamList} from '../../utils/NavigationTypes';
 import {NearByParkingStyle} from './styles';
 
 type Props = {
-  navigation: DrawerNavigationProp<NearByRootParamList>;
+  navigation: StackNavigationProp<RootStackParamList>;
 };
 
 export const NearByParking: FC<Props> = ({navigation}) => {

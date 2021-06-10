@@ -6,11 +6,11 @@ import {BottomCarousel} from '../../component/Dashboard/BottomCarousel';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {NavigationCard} from '../../component/Dashboard/NavigationCard';
 import {DashboardStyle} from './styles';
-import {DrawerNavigationProp} from '@react-navigation/drawer';
-import {RootDrawerParamList} from '../../utils/NavigationTypes';
+import {RootStackParamList} from '../../utils/NavigationTypes';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
-  navigation: DrawerNavigationProp<RootDrawerParamList>;
+  navigation: StackNavigationProp<RootStackParamList>;
 };
 
 export const Dashboard: FC<Props> = ({navigation}) => {

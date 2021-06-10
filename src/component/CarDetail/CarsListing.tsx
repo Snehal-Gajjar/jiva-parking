@@ -1,46 +1,20 @@
+import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 import {ScrollView, View} from 'react-native';
+import {RootStackParamList} from '../../utils/NavigationTypes';
+import {CarList} from '../../utils/types';
 import {CarItem} from './CarItem';
 
-const carData = [
-  {
-    id: '1',
-    carName: 'BMW i3',
-    carNumber: 'GJ 01 UD 9050',
-  },
-  {
-    id: '2',
-    carName: 'BMW i3',
-    carNumber: 'GJ 01 UD 9051',
-  },
-  {
-    id: '3',
-    carName: 'BMW i3',
-    carNumber: 'GJ 01 UD 9052',
-  },
-  {
-    id: '4',
-    carName: 'BMW i3',
-    carNumber: 'GJ 01 UD 9053',
-  },
-  {
-    id: '5',
-    carName: 'BMW i3',
-    carNumber: 'GJ 01 UD 9054',
-  },
-  {
-    id: '5',
-    carName: 'BMW i3',
-    carNumber: 'GJ 01 UD 9054',
-  },
-];
+type Props = {
+  carData?: CarList[];
+  navigation: StackNavigationProp<RootStackParamList>;
+};
 
-export const CarListing = () => {
+export const CarListing = ({carData, navigation}: Props) => {
   return (
     <ScrollView>
-      {carData.map((car) => (
-        <CarItem data={car} />
-      ))}
+      {carData &&
+        carData.map((car) => <CarItem data={car} navigation={navigation} />)}
     </ScrollView>
   );
 };

@@ -1,17 +1,24 @@
-import React from 'react';
+import {Formik} from 'formik';
+import moment from 'moment';
+import React, {Dispatch, SetStateAction, useRef} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import Modal from 'react-native-modal';
-import TextInputMask from 'react-native-text-input-mask';
+import {
+  getPUCInitialValue,
+  pucValidationSchema,
+} from '../../screen/CarDetail/addCarValues';
+import {PUC} from '../../utils/types';
 import {DateInput} from '../DateInput';
 import {TextInput} from '../TextInput';
 
 type Props = {
   visible: boolean;
+  setPuc: Dispatch<SetStateAction<PUC | undefined>>;
   handleClose: () => void;
 };
 
-export const PUCPopUp = ({visible, handleClose}: Props) => {
+export const PUCPopUp = ({visible, handleClose, setPuc}: Props) => {
   return (
     <Modal
       testID={'modal'}
@@ -30,27 +37,66 @@ export const PUCPopUp = ({visible, handleClose}: Props) => {
             size={20}
             color="#0E5A93"></Icon>
         </View>
-        <View
-          style={{
-            margin: 10,
+        <Formik
+          initialValues={getPUCInitialValue()}
+          validationSchema={pucValidationSchema}
+          onSubmit={(values) => {
+            setPuc(values);
+            handleClose();
           }}>
-          <TextInput placeholder="PUC No" label="PUC No" />
-          <DateInput
-            onChangeText={(formatted, extracted) => {
-              console.log(formatted); // +1 (123) 456-78-90
-              console.log(extracted); // 1234567890
-            }}
-            label="PUC Date"
-          />
-          <DateInput
-            onChangeText={(formatted, extracted) => {
-              console.log(formatted); // +1 (123) 456-78-90
-              console.log(extracted); // 1234567890
-            }}
-            label="Valid Date"
-          />
-          <Button title="Add PUC" buttonStyle={styles.btnLogIn} />
-        </View>
+          {({
+            handleChange,
+            errors,
+            handleSubmit,
+            values,
+            setFieldError,
+            setFieldValue,
+          }) => (
+            <View
+              style={{
+                margin: 10,
+              }}>
+              <TextInput
+                placeholder="PUC No"
+                error={errors.puc_no && errors.puc_no}
+                value={values.puc_no}
+                onChangeText={handleChange('puc_no')}
+                label="PUC No"
+              />
+              <DateInput
+                type="datetime"
+                onChangeText={(formatted) => {
+                  setFieldValue('puc_date', moment(formatted));
+                }}
+                onSubmitEditing={() => {
+                  if (!moment(values.puc_date).isValid()) {
+                    setFieldError('puc_date', 'Invalid Date');
+                  }
+                }}
+                error={errors.puc_date && 'Invalid Date'}
+                label="PUC Date"
+              />
+              <DateInput
+                type="datetime"
+                onChangeText={(formatted) => {
+                  setFieldValue('puc_expiry', moment(formatted));
+                }}
+                onSubmitEditing={() => {
+                  if (!moment(values.puc_expiry).isValid()) {
+                    setFieldError('puc_expiry', 'Invalid Date');
+                  }
+                }}
+                error={errors.puc_expiry && 'Invalid Date'}
+                label="Valid Date"
+              />
+              <Button
+                title="Add PUC"
+                buttonStyle={styles.btnLogIn}
+                onPress={handleSubmit}
+              />
+            </View>
+          )}
+        </Formik>
       </View>
     </Modal>
   );
@@ -82,7 +128,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   container: {
-    backgroundColor:'#f6f7fb',
+    backgroundColor: '#f6f7fb',
     padding: 10,
     opacity: 1,
     borderRadius: 15,

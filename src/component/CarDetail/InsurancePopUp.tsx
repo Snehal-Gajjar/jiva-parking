@@ -1,8 +1,14 @@
-import React from 'react';
+import {Formik} from 'formik';
+import moment from 'moment';
+import React, {Dispatch, SetStateAction} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import Modal from 'react-native-modal';
-import TextInputMask from 'react-native-text-input-mask';
+import {
+  getInsuranceInitialValue,
+  insuranceValidationSchema,
+} from '../../screen/CarDetail/addCarValues';
+import {Insurance} from '../../utils/types';
 import {DateInput} from '../DateInput';
 import {TextInput} from '../TextInput';
 import {CarDrp} from './CarDrp';
@@ -11,9 +17,10 @@ import {InsuranceType} from './CarDrpData';
 type Props = {
   visible: boolean;
   handleClose: () => void;
+  setInsurance: Dispatch<SetStateAction<Insurance | undefined>>;
 };
 
-export const InsurancePopUp = ({visible, handleClose}: Props) => {
+export const InsurancePopUp = ({visible, handleClose, setInsurance}: Props) => {
   return (
     <Modal
       testID={'modal'}
@@ -32,37 +39,99 @@ export const InsurancePopUp = ({visible, handleClose}: Props) => {
             size={20}
             color="#0E5A93"></Icon>
         </View>
-        <View
-          style={{
-            margin: 10,
-            zIndex: 999,
+        <Formik
+          initialValues={getInsuranceInitialValue()}
+          validationSchema={insuranceValidationSchema}
+          onSubmit={(values) => {
+            setInsurance(values);
+            handleClose();
           }}>
-          <TextInput placeholder="Policy No" label="Polic Number" />
-          <TextInput placeholder="Company name" label="Company" />
-          <DateInput
-            onChangeText={(formatted, extracted) => {
-              console.log(formatted); // +1 (123) 456-78-90
-              console.log(extracted); // 1234567890
-            }}
-            label="Date"
-          />
-          <DateInput
-            onChangeText={(formatted, extracted) => {
-              console.log(formatted); // +1 (123) 456-78-90
-              console.log(extracted); // 1234567890
-            }}
-            label="Expire Date"
-          />
-          <TextInput placeholder="Insurance Amount" label="Amount" />
-          <CarDrp
-            items={InsuranceType}
-            placeholder="Insurance Type"
-            onChangeItem={(data) => {
-              console.log(data);
-            }}
-          />
-        </View>
-        <Button title="Add Insurance" buttonStyle={styles.btnLogIn} />
+          {({
+            handleChange,
+            errors,
+            handleSubmit,
+            values,
+            setFieldValue,
+            setFieldError,
+          }) => (
+            <View>
+              <View
+                style={{
+                  margin: 10,
+                  zIndex: 999,
+                }}>
+                <TextInput
+                  placeholder="Policy No"
+                  label="Policy Number"
+                  error={
+                    errors.insurance_policy_no && errors.insurance_policy_no
+                  }
+                  value={values.insurance_policy_no}
+                  onChangeText={handleChange('insurance_policy_no')}
+                />
+                <TextInput
+                  placeholder="Company name"
+                  label="Company"
+                  error={
+                    errors.insurance_policy_company &&
+                    errors.insurance_policy_company
+                  }
+                  value={values.insurance_policy_company}
+                  onChangeText={handleChange('insurance_policy_company')}
+                />
+                <DateInput
+                  type="datetime"
+                  onChangeText={(formatted) => {
+                    setFieldValue('insurance_policy_date', moment(formatted));
+                  }}
+                  onSubmitEditing={() => {
+                    if (!moment(values.insurance_policy_date).isValid()) {
+                      setFieldError('puc_expiry', 'Invalid Date');
+                    }
+                  }}
+                  error={errors.insurance_policy_date && 'Invalid Date'}
+                  label="Date"
+                />
+                <DateInput
+                  type="datetime"
+                  onChangeText={(formatted) => {
+                    setFieldValue(
+                      'insurance_policy_expiry_date',
+                      moment(formatted),
+                    );
+                  }}
+                  onSubmitEditing={() => {
+                    if (
+                      !moment(values.insurance_policy_expiry_date).isValid()
+                    ) {
+                      setFieldError('puc_expiry', 'Invalid Date');
+                    }
+                  }}
+                  error={errors.insurance_policy_expiry_date && 'Invalid Date'}
+                  label="Expire Date"
+                />
+                <TextInput
+                  placeholder="Insurance Amount"
+                  label="Amount"
+                  value={values.insurance_policy_amount}
+                  onChangeText={handleChange('insurance_policy_amount')}
+                />
+                <CarDrp
+                  items={InsuranceType}
+                  placeholder="Insurance Type"
+                  onChangeItem={(data) => {
+                    setFieldValue('insurance_policy_type', data);
+                  }}
+                />
+              </View>
+              <Button
+                title="Add Insurance"
+                buttonStyle={styles.btnLogIn}
+                onPress={handleSubmit}
+              />
+            </View>
+          )}
+        </Formik>
       </View>
     </Modal>
   );
@@ -94,7 +163,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   container: {
-    backgroundColor:'#f6f7fb',
+    backgroundColor: '#f6f7fb',
     padding: 10,
     opacity: 1,
     borderRadius: 15,

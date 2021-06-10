@@ -5,11 +5,11 @@ import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {ScanningStyle} from './styles';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import QrCodeCamera from '../../component/Dashboard/QrCodeCamera';
-import {DrawerNavigationProp} from '@react-navigation/drawer';
-import {RootDrawerParamList} from '../../utils/NavigationTypes';
+import {RootStackParamList} from '../../utils/NavigationTypes';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
-  navigation: DrawerNavigationProp<RootDrawerParamList>;
+  navigation: StackNavigationProp<RootStackParamList>;
 };
 
 export const Scanning: FC<Props> = ({navigation}) => {

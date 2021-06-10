@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import DropDownPicker, {ItemType} from 'react-native-dropdown-picker';
+import {ItemType} from 'react-native-dropdown-picker';
 import {Picker} from '@react-native-picker/picker';
 
 const Item: any = Picker.Item;
 
 type Props = {
-  items: ItemType[];
+  items?: ItemType[];
   defaultValue?: string;
   onChangeItem: (item: string) => void;
   placeholder: string;
@@ -17,6 +17,7 @@ export const CarDrp: FC<Props> = ({
   defaultValue,
   onChangeItem,
   placeholder,
+  children,
 }) => {
   return (
     <View style={style.inputContainer}>
@@ -25,16 +26,19 @@ export const CarDrp: FC<Props> = ({
         selectedValue={defaultValue}
         onValueChange={onChangeItem}
         style={{
-          height:20,
+          height: 20,
           color: '#8193ae',
           fontFamily: 'Segoe UI',
           fontSize: 13,
         }}
         mode="dropdown">
-          <Item label={placeholder} />
-        {items.map((val) => (
+        <Item label={placeholder} />
+        {items
+          ? items.map((val) => <Item label={val.label} value={val.value} />)
+          : children}
+        {/* {items.map((val) => (
           <Item label={val.label} value={val.value} />
-        ))}
+        ))} */}
       </Picker>
       {/* <DropDownPicker
         items={items}
@@ -106,9 +110,9 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 0,
     marginLeft: 10,
-    padding:0,
+    padding: 0,
     textTransform: 'uppercase',
     fontSize: 13,
-    height:15
+    height: 15,
   },
 });

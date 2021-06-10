@@ -1,4 +1,4 @@
-import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import {Button, CheckBox, Divider} from 'react-native-elements';
@@ -6,11 +6,11 @@ import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {AmenitiesList} from '../../component/NearByParking/AmenitiesList';
 import {CarDropDown} from '../../component/NearByParking/CarDropDown';
 import {DetailContainer} from '../../component/NearByParking/DetailContainer';
-import { NearByRootParamList } from '../../utils/NavigationTypes';
+import {RootStackParamList} from '../../utils/NavigationTypes';
 import {PaymentStyle} from './styles';
 
 type Props = {
-  navigation: DrawerNavigationProp<NearByRootParamList>;
+  navigation: StackNavigationProp<RootStackParamList>;
 };
 
 export const PaymentScreen: FC<Props> = ({navigation}) => {
@@ -22,7 +22,7 @@ export const PaymentScreen: FC<Props> = ({navigation}) => {
   }, []);
   return (
     <View style={{flex: 1}}>
-      <HeaderContainer isMargin  {...{navigation}} />
+      <HeaderContainer isMargin {...{navigation}} />
       <View
         style={{
           marginHorizontal: 10,
