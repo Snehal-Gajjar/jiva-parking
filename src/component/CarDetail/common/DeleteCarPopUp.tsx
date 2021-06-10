@@ -12,6 +12,7 @@ type Props = {
   carName: string;
   carNo?: string;
   carId?: string;
+  getCars: () => void;
 };
 export const DeleteCarPopUp = ({
   visible,
@@ -19,23 +20,26 @@ export const DeleteCarPopUp = ({
   carId,
   carName,
   carNo,
+  getCars,
 }: Props) => {
   const [loading, setloading] = useState<boolean>(false);
   const handleDelete = () => {
     setloading(true);
-    carId && CarService.deleteCar(carId)
-      .then((result) => {
-        console.log(`ASTHA ${JSON.stringify(result)}`);
-        setloading(false);
-        handleClose();
-        toastShow('success', result.message);
-      })
-      .catch((error) => {
-        setloading(false);
-        console.log(error);
-        handleClose();
-        toastShow('error', error.message);
-      });
+    carId &&
+      CarService.deleteCar(carId)
+        .then((result) => {
+          console.log(`ASTHA ${JSON.stringify(result)}`);
+          setloading(false);
+          handleClose();
+          getCars();
+          toastShow('success', result.message);
+        })
+        .catch((error) => {
+          setloading(false);
+          console.log(error);
+          handleClose();
+          toastShow('error', error.message);
+        });
   };
   return (
     <Modal

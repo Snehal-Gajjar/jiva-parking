@@ -1,8 +1,12 @@
 import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC} from 'react';
 import {View, Text} from 'react-native';
 import {Icon, Header, Button} from 'react-native-elements';
-import {RootDrawerParamList} from '../../utils/NavigationTypes';
+import {
+  RootDrawerParamList,
+  RootStackParamList,
+} from '../../utils/NavigationTypes';
 import {ParkingSearchBar} from '../NearByParking/ParkingSearchBar';
 import {HeaderStyle} from './styles';
 
@@ -11,7 +15,8 @@ type Props = {
   nearByParking?: boolean;
   isMargin?: boolean;
   handleFilter?: () => void;
-  navigation: any;
+  isProfile?: boolean;
+  navigation: StackNavigationProp<RootStackParamList>;
 };
 
 export const HeaderContainer: FC<Props> = ({
@@ -20,9 +25,10 @@ export const HeaderContainer: FC<Props> = ({
   isMargin,
   handleFilter,
   navigation,
+  isProfile,
 }) => {
   const handleDrawer = () => {
-    navigation.openDrawer();
+    navigation.navigate('Profile');
   };
   return (
     <Header
@@ -45,16 +51,29 @@ export const HeaderContainer: FC<Props> = ({
         borderBottomColor: 'transparent',
       }}
       leftComponent={
-        <Icon
-          name="align-left"
-          type="foundation"
-          color="#0E5A93"
-          size={25}
-          style={{
-            marginLeft: title || nearByParking || isMargin ? 5 : 15,
-            marginTop: nearByParking ? 10 : 0,
-          }}
-          onPress={handleDrawer}></Icon>
+        isProfile ? (
+          <Icon
+            name="arrow-back"
+            type="ionicon"
+            color="#0E5A93"
+            size={25}
+            style={{
+              marginLeft: title || nearByParking || isMargin ? 5 : 20,
+              marginTop: nearByParking ? 10 : 0,
+            }}
+            onPress={() => navigation.goBack()}></Icon>
+        ) : (
+          <Icon
+            name="align-left"
+            type="foundation"
+            color="#0E5A93"
+            size={25}
+            style={{
+              marginLeft: title || nearByParking || isMargin ? 5 : 20,
+              marginTop: nearByParking ? 10 : 0,
+            }}
+            onPress={handleDrawer}></Icon>
+        )
       }
       statusBarProps={{barStyle: 'default'}}
       placement="center"
@@ -75,7 +94,7 @@ export const HeaderContainer: FC<Props> = ({
               }
               containerStyle={HeaderStyle.torchContainer}></Button>
           </View>
-        ) : (
+        ) : !isProfile ? (
           <View style={HeaderStyle.iconContainer}>
             <Icon
               name="search"
@@ -94,6 +113,8 @@ export const HeaderContainer: FC<Props> = ({
                 marginRight: title ? 5 : 15,
               }}></Icon>
           </View>
+        ) : (
+          <></>
         )
       }
     />

@@ -23,7 +23,14 @@ export const CarDetail: FC<Props> = ({navigation}) => {
       headerShown: false,
     });
     getCars();
-  }, [car]);
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getCars();
+    });
+    return unsubscribe;
+  }, []);
 
   const getCars = () => {
     setloading(true);
@@ -45,7 +52,7 @@ export const CarDetail: FC<Props> = ({navigation}) => {
         {loading ? (
           <ActivityIndicator size="large" color="#0E5A93" />
         ) : car && car.length > 0 ? (
-          <CarListing carData={car} navigation={navigation} />
+          <CarListing carData={car} navigation={navigation} getCars={getCars} />
         ) : (
           <View
             style={{

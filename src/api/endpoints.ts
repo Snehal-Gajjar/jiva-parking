@@ -29,3 +29,11 @@ export const vehicle_models = (brandId: string): string => {
 export const vehicle_delete = (carID: string): string => {
     return `/vehicle_delete/${carID}`
 }
+
+export const vehicle_update = (): string => {
+    return '/vehicle_update'
+}
+
+export const profile = (): string => {
+    return '/profile'
+}

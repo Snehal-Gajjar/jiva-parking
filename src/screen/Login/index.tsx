@@ -35,7 +35,7 @@ export const Login: FC<Props> = ({navigation}) => {
 
   const handleVerifyOtp = () => {
     handleOtpModal();
-    navigation.navigate('Drawer');
+    navigation.navigate('Dashboard');
   };
 
   const handleSubmit = (values: {phone: string; password: string}) => {
@@ -54,7 +54,7 @@ export const Login: FC<Props> = ({navigation}) => {
 
         toastShow('success', result.message);
         context.handleUser();
-        navigation.navigate('Drawer');
+        navigation.navigate('Dashboard');
         setLoading(false);
       })
       .catch((error) => {

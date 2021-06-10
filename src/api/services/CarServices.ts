@@ -1,6 +1,6 @@
-import { Car } from '../../utils/types';
+import { Car, CarList } from '../../utils/types';
 import Config from '../config'
-import { vehicles, vehicle_add, vehicle_brands, vehicle_categories, vehicle_delete, vehicle_models } from '../endpoints';
+import { vehicles, vehicle_add, vehicle_brands, vehicle_categories, vehicle_delete, vehicle_models, vehicle_update } from '../endpoints';
 
 export const getCars = () => {
     return Config(vehicles(), 'GET');
@@ -24,4 +24,11 @@ export const getModel = (brandId: string) => {
 
 export const deleteCar = (carID: string) => {
     return Config(vehicle_delete(carID), 'GET')
+}
+
+export const updateCar = (data: Car, id: string) => {
+    return Config(vehicle_update(), 'POST', {
+        ...data,
+        id: id
+    })
 }

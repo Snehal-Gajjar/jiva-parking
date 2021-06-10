@@ -7,7 +7,7 @@ import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {NavigationCard} from '../../component/Dashboard/NavigationCard';
 import {DashboardStyle} from './styles';
 import {RootStackParamList} from '../../utils/NavigationTypes';
-import { StackNavigationProp } from '@react-navigation/stack';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -25,7 +25,7 @@ export const Dashboard: FC<Props> = ({navigation}) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, flexDirection: 'column'}}>
       <View style={DashboardStyle.headerContainer}>
         <HeaderContainer {...{navigation}} />
         <View style={DashboardStyle.logoContainer}>

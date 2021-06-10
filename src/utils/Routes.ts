@@ -11,6 +11,7 @@ import { Wallet } from "../screen/Wallet"
 import { AddCar } from "../screen/CarDetail/AddCar"
 import { CarNavigator, DrawerNavigator, NearByParkingNavigator } from "../component/Navigations/CustomStackNavigation"
 import React from "react"
+import { Profile } from "../screen/Profile"
 
 export const ADDSCREEN = {
     AddCar: { title: 'AddCar', component: AddCar }
@@ -32,6 +33,7 @@ export const SCREENS = {
     MapScreen: { title: 'Detail', component: SlotScreen },
     Wallet: { title: 'Wallet', component: Wallet },
     CarDetail: { title: 'CarDetail', component: CarDetail },
+    Profile: { title: 'Profile', component: Profile },
 }
 
 export const AUTHSCREENS = {

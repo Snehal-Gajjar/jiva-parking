@@ -10,19 +10,20 @@ import {CarItemStyle} from './style';
 type Props = {
   data: CarList;
   navigation: StackNavigationProp<RootStackParamList>;
+  getCars: () => void;
 };
 
-export const CarItem: FC<Props> = ({data, navigation}) => {
+export const CarItem: FC<Props> = ({data, navigation, getCars}) => {
   const [visible, setVisible] = useState<boolean>(false);
 
   const handleClose = () => {
     setVisible(!visible);
   };
 
-  const handleEdit = () => {
+  const handleEdit = (data: CarList) => {
     navigation.navigate('AddCar', {
       edit: true,
-      carDetail: {},
+      carDetail: data,
     });
   };
 
@@ -53,7 +54,7 @@ export const CarItem: FC<Props> = ({data, navigation}) => {
             <Icon
               size={25}
               name="edit-3"
-              onPress={handleEdit}
+              onPress={() => handleEdit(data)}
               type="feather"
               color="#0E5A93"
             />
@@ -102,7 +103,7 @@ export const CarItem: FC<Props> = ({data, navigation}) => {
         </View>
       </Card>
       <DeleteCarPopUp
-        {...{visible, handleClose}}
+        {...{visible, handleClose, getCars}}
         carId={data.id}
         carName={data.brand + ' ' + data.model}
         carNo={data.registration_no}

@@ -4,8 +4,8 @@ export const DashboardStyle = StyleSheet.create({
   headerContainer: {
     backgroundColor: '#fff',
     height: '30%',
-    width: '110%',
-    marginLeft: -19,
+    width: '101%',
+    marginLeft: -2,
     borderBottomLeftRadius: 250,
     borderBottomRightRadius: 250,
   },

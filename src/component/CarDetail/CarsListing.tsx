@@ -8,13 +8,16 @@ import {CarItem} from './CarItem';
 type Props = {
   carData?: CarList[];
   navigation: StackNavigationProp<RootStackParamList>;
+  getCars: () => void;
 };
 
-export const CarListing = ({carData, navigation}: Props) => {
+export const CarListing = ({carData, navigation, getCars}: Props) => {
   return (
     <ScrollView>
       {carData &&
-        carData.map((car) => <CarItem data={car} navigation={navigation} />)}
+        carData.map((car) => (
+          <CarItem data={car} navigation={navigation} getCars={getCars} />
+        ))}
     </ScrollView>
   );
 };

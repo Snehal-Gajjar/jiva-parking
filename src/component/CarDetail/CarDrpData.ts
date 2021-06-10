@@ -14,13 +14,16 @@ export const VehicleFuel = [{
     value: 'CNG'
 }, {
     label: 'Diesel',
-    value: 'diesel'
+    value: 'Diesel'
 }, {
     label: 'Petrol',
-    value: 'petrol'
+    value: 'Petrol'
 }, {
     label: 'Electric',
-    value: 'electric'
+    value: 'Electric'
+}, {
+    label: 'LPG',
+    value: 'LPG'
 }]
 
 export const InsuranceType = [{

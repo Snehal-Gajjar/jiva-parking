@@ -43,7 +43,7 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
     navigation.setOptions({
       headerShown: false,
     });
-  }, []);
+  }, [intialValues]);
 
   const handleAddCar = () => {
     CarService.addCar({
@@ -54,6 +54,24 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
       .then((result) => {
         console.log(`ASTHA ${JSON.stringify(result)}`);
         handleClose();
+        navigation.navigate('CarDetail');
+      })
+      .catch((error) => {
+        console.log(error);
+        toastShow('error', error.message);
+      });
+  };
+
+  const handleUpdateCar = (values: AddCarDetail, id: string) => {
+    CarService.updateCar(
+      {
+        ...values,
+      },
+      id,
+    )
+      .then((result) => {
+        console.log(result);
+        toastShow('success', result.message);
         navigation.navigate('CarDetail');
       })
       .catch((error) => {
@@ -99,8 +117,12 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
           initialValues={intialValues}
           validationSchema={commonValidationSchema}
           onSubmit={(values) => {
-            handleClose();
-            setValues({...values});
+            if (isEdit) {
+              handleUpdateCar({...values}, route.params.carDetail.id as string);
+            } else {
+              handleClose();
+              setValues({...values});
+            }
           }}>
           {({handleChange, errors, handleSubmit, values, setFieldValue}) => (
             <View style={{flex: 1, margin: 10}}>
@@ -119,7 +141,7 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
               />
               <CarDrp
                 items={VehicleFuel}
-                defaultValue="CNG"
+                defaultValue={values.fuel_type}
                 placeholder="Vehicle Fuel"
                 onChangeItem={(data) => {
                   setFieldValue('fuel_type', data);
@@ -145,7 +167,7 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
                 label="MFG Year"
               />
               <Button
-                title="Add Car"
+                title={isEdit ? 'Update Car' : 'Add Car'}
                 buttonStyle={{
                   marginTop: 15,
                   borderRadius: 10,

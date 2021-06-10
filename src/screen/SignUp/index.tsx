@@ -37,7 +37,7 @@ export const SignUp: FC<Props> = ({navigation}) => {
   const handleVerifyOtp = (otp?: string) => {
     if (otp && otp === Config.MASTER_OTP.toString()) {
       handleOtpModal();
-      navigation.navigate('Drawer');
+      navigation.navigate('Dashboard');
     }
   };
 

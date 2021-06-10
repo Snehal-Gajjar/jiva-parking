@@ -41,11 +41,7 @@ export type CarList = AddCarDetail & PUC & Insurance & {
     model?: string
 }
 
-// export interface Car {
-//     year: string,
-//     registration_no: string,
-//     vehicle_category_id: string,
-//     vehicle_brand_id: string,
-//     vehicle_model_id: string,
-//     fuel_type: 'Petrol' | 'Diesel' | 'CNG' | 'LPG' | 'Electric',
-// }
+export type ProfileUser = {
+    id: string
+    photo?: string
+} & Register

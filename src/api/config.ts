@@ -2,11 +2,13 @@ import axios, { Method } from 'axios';
 import Config from '../utils/apiConfig';
 import { extractCurrentUser } from '../utils/auth';
 
-export default async (url: string, method?: Method, data?: any) => {
-
+export default async (url: string, method?: Method, data?: any, auth?: boolean) => {
     let token = '';
-    const user = await extractCurrentUser()
-    if (user) token = user.token as string
+
+    if (!auth) {
+        const user = await extractCurrentUser()
+        if (user) token = user.token as string
+    }
 
     let requestData = {
         ...data,

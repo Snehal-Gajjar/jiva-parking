@@ -3,8 +3,8 @@ import {
   DrawerContentOptions,
 } from '@react-navigation/drawer';
 import React, {useContext} from 'react';
-import {View} from 'react-native';
-import {ListItem} from 'react-native-elements';
+import {Text, View} from 'react-native';
+import {Icon, ListItem} from 'react-native-elements';
 import {CurrentUserContext} from '../../utils/context';
 import storage from '../../utils/storage';
 

@@ -31,7 +31,12 @@ export const BottomCarousel = () => {
   };
   return (
     <View style={BottomCarouselStyle.container}>
-      <Swiper height={90} loop autoplay autoplayTimeout={2} showsPagination={false}>
+      <Swiper
+        height={90}
+        loop
+        autoplay
+        autoplayTimeout={2}
+        showsPagination={false}>
         {imageCollection.map((img) => _renderItem(img))}
       </Swiper>
     </View>
@@ -40,15 +45,17 @@ export const BottomCarousel = () => {
 
 const BottomCarouselStyle = StyleSheet.create({
   container: {
-    position: 'absolute',
-    bottom: 4,
-    flex: 1,
+    padding:15,
+    marginTop: 15,
+    marginBottom: 10,
+    height: 150,
   },
   slideContainer: {
-    height: 100,
+    height: '100%',
   },
   slideImage: {
     width: '100%',
     height: '100%',
+    borderRadius: 10,
   },
 });
