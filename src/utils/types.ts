@@ -12,7 +12,7 @@ export interface AddCarDetail {
     vehicle_category_id?: string,
     vehicle_brand_id?: string
     vehicle_model_id?: string,
-    fuel_type?: 'Petrol' | 'Diesel' | 'CNG' | 'LPG' | 'Electric'
+    fuel_type?: 'Fuel' | 'Petrol' | 'Diesel' | 'CNG' | 'LPG' | 'Electric'
 }
 
 export interface PUC {
@@ -45,3 +45,96 @@ export type ProfileUser = {
     id: string
     photo?: string
 } & Register
+
+export interface NearByFilter {
+    search?: string,
+    aminity_ids?: string,
+    top?: string,
+    use?: string,
+    lat: string,
+    long: string
+}
+
+export interface NearByParkingDetailParams {
+    id: string,
+    lat: string,
+    long: string
+}
+
+export type Price = {
+    id: string,
+    parking_id: string,
+    time: number,
+    cost: string
+}
+
+export type NearByParkingDetail = {
+    place: string
+    distance: string,
+    country: string,
+    state: string,
+    city: string,
+    area: string,
+    prices: Price[],
+    description: string
+} & MarkerData
+
+export interface Amenities {
+    id: string
+    title: string,
+    icon?: string
+    checked?: boolean
+}
+
+export interface MarkerData {
+    id: string,
+    place: string,
+    latitude: string,
+    longitude: string,
+    distance: string
+    area: string,
+    city: string
+    base_amount?: string,
+}
+
+export interface Advertisement {
+    title: string,
+    content: string
+    id: string
+}
+
+export interface Notification {
+    title: string,
+    notification_content: string
+    id: string
+    sending_schedule:string
+}
+
+export interface ParkingOptions {
+    floors: string[],
+    times: []
+    id: string
+}
+
+export interface PaymentDetailParams {
+    parking_id: string
+    for_time: string
+}
+
+export type PaymentDetail = {
+    is_vip: 0 | 1,
+    total: number
+    tax: number,
+    extra_facilities: number,
+    parking_charge: number,
+    place_name: string,
+    parking_details: NearByParkingDetail & {aminities :Amenities[]},
+    vehicle_details: { registration_no: string }[]
+}
+
+export interface BookingHistoryData {
+    place: string
+    for_date: string
+    amount: string
+    from_time: string
+}

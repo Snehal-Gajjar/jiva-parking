@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export const WalletCard = () => {
   return (

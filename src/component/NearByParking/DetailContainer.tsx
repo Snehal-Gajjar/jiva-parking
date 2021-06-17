@@ -2,17 +2,21 @@ import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button, Icon, Image} from 'react-native-elements';
 import {ServiceImageList} from '../../utils/ServiceImageList';
+import {MarkerData, PaymentDetail} from '../../utils/types';
 
 type Props = {
   showService?: boolean;
+  data?: MarkerData;
 };
 
-export const DetailContainer: FC<Props> = ({showService}) => {
+export const DetailContainer: FC<Props> = ({showService, data}) => {
   return (
     <View>
       <View style={styles.titleContainer}>
         <View style={styles.subtitleContainer}>
-          <Text style={styles.textTitle}>Raypur Gomtipur, Road</Text>
+          <Text style={styles.textTitle}>
+            {data ? data.place : 'Raypur Gomtipur,Road'}
+          </Text>
           <View style={styles.placeContainer}>
             <Icon
               name="map-pin"
@@ -23,11 +27,13 @@ export const DetailContainer: FC<Props> = ({showService}) => {
               }}
               color="#8193ae"
             />
-            <Text style={styles.textSubTitle}>Raypur Gomtipur,Road</Text>
+            <Text style={styles.textSubTitle}>
+              {data ? data.area + ',' + data.city : 'Raypur Gomtipur,Road'}
+            </Text>
           </View>
         </View>
         <View style={[styles.subtitleContainer, {alignItems: 'center'}]}>
-          <Text style={styles.textTitle}>50 ₹</Text>
+          <Text style={styles.textTitle}>{data ? data.base_amount : 50} ₹</Text>
           <Text style={styles.textSubTitle}>per hour</Text>
         </View>
       </View>
@@ -41,11 +47,13 @@ export const DetailContainer: FC<Props> = ({showService}) => {
                 name="walking"
                 color="#FFFFFF"
                 type="font-awesome-5"
-                size={20}
+                size={16}
               />
             }
             containerStyle={styles.iconContainer}></Button>
-          <Text style={[styles.detailText, {color: '#0f2e5c'}]}>800m away</Text>
+          <Text style={[styles.detailText, {color: '#0f2e5c'}]}>
+            {data ? data.distance : '800m'} away
+          </Text>
         </View>
         <View style={styles.spotsContainer}>
           <Button
@@ -60,20 +68,22 @@ export const DetailContainer: FC<Props> = ({showService}) => {
           <Text style={[styles.detailText, {color: '#04ad5f'}]}>15 spots</Text>
         </View>
       </View>
-      {!showService && <View style={styles.serviceImageContainer}>
-        {(Object.keys(
-          ServiceImageList,
-        ) as (keyof typeof ServiceImageList)[]).map((name) => (
-          <Image
-            key={name}
-            style={{
-              height: 20,
-              width: 20,
-              marginRight: 10,
-            }}
-            source={ServiceImageList[name].image}></Image>
-        ))}
-      </View>}
+      {!showService && (
+        <View style={styles.serviceImageContainer}>
+          {(Object.keys(
+            ServiceImageList,
+          ) as (keyof typeof ServiceImageList)[]).map((name) => (
+            <Image
+              key={name}
+              style={{
+                height: 20,
+                width: 20,
+                marginRight: 10,
+              }}
+              source={ServiceImageList[name].image}></Image>
+          ))}
+        </View>
+      )}
     </View>
   );
 };
@@ -104,6 +114,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Segoe UI',
     color: '#8193ae',
     fontSize: 16,
+    textTransform: 'capitalize',
   },
   iconsContainer: {
     display: 'flex',

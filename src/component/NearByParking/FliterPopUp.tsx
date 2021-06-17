@@ -1,14 +1,80 @@
 import React, {FC, useState} from 'react';
+import {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button, CheckBox, Divider, Icon} from 'react-native-elements';
 import Modal from 'react-native-modal';
+import {NearByParkingService} from '../../api/services';
+import {Amenities} from '../../utils/types';
 type Props = {
   visible: boolean;
   handleClose: () => void;
+  handleFilterEvent: (
+    checkedId: string,
+    roof: 'open' | 'close',
+    use: 'personal' | 'event',
+  ) => void;
 };
 
-export const FliterPopUp: FC<Props> = ({visible, handleClose}) => {
-  const [checked, setChecked] = useState(false);
+export const FliterPopUp: FC<Props> = ({
+  visible,
+  handleClose,
+  handleFilterEvent,
+}) => {
+  const [amenities, setAmenities] = useState<Amenities[]>([]);
+  const [checkedState, setCheckedState] = useState<boolean[]>([]);
+  const [checkedId, setCheckedId] = useState<string[]>([]);
+  const [roof, setRoof] = useState<boolean>(false);
+  const [use, setUse] = useState<boolean>(false);
+
+  const handleRadioChange = (name: 'roof' | 'use') => {
+    if (name === 'roof') {
+      setRoof(!roof);
+    } else {
+      setUse(!use);
+    }
+  };
+
+  const handleChange = (position: number, id: string) => {
+    const updatedCheckedState = checkedState.map((item, index) => {
+      if (index === position) {
+        if (!item) {
+          checkedId.push(id);
+        } else {
+          const index = checkedId.indexOf(id);
+          if (index > -1) {
+            checkedId.splice(index, 1);
+          }
+        }
+        return !item;
+      } else {
+        return item;
+      }
+    });
+    setCheckedId(checkedId);
+    setCheckedState(updatedCheckedState);
+  };
+
+  const handleFilterPress = () => {
+    handleFilterEvent(
+      JSON.stringify(checkedId),
+      roof ? 'open' : 'close',
+      use ? 'event' : 'personal',
+    );
+  };
+
+  useEffect(() => {
+    getAmenities();
+  }, []);
+
+  const getAmenities = () => {
+    NearByParkingService.Amenities()
+      .then((result) => {
+        setAmenities(result.data);
+        setCheckedState(new Array(result.data.length).fill(false));
+      })
+      .catch((error) => console.log(error.message));
+  };
+
   return (
     <Modal
       testID={'modal'}
@@ -24,69 +90,32 @@ export const FliterPopUp: FC<Props> = ({visible, handleClose}) => {
           </Text>
           <Icon
             name="close"
-            onPress={handleClose}
+            onPress={handleClose.bind(this)}
             size={20}
             color="#0E5A93"></Icon>
         </View>
         <View>
           <Text style={styles.titleStyle}>Amenities</Text>
           <View style={styles.amcontainer}>
-            <View style={styles.amitem}>
-              <CheckBox
-                containerStyle={{
-                  backgroundColor: 'transparent',
-                  marginLeft: 5,
-                  borderColor: 'transparent',
-                  padding: 0,
-                  marginTop: 5,
-                }}
-                title="Parking Barrier"
-                checked={checked}
-                onPress={() => setChecked(!checked)}
-              />
-            </View>
-            <View style={styles.amitem}>
-              <CheckBox
-                containerStyle={{
-                  backgroundColor: 'transparent',
-                  marginLeft: 5,
-                  borderColor: 'transparent',
-                  padding: 0,
-                  marginTop: 5,
-                }}
-                title="EV Charger Point"
-                checked={checked}
-                onPress={() => setChecked(!checked)}
-              />
-            </View>
-            <View style={styles.amitem}>
-              <CheckBox
-                containerStyle={{
-                  backgroundColor: 'transparent',
-                  marginLeft: 5,
-                  borderColor: 'transparent',
-                  padding: 0,
-                  marginTop: 5,
-                }}
-                title="Disable Support"
-                checked={checked}
-                onPress={() => setChecked(!checked)}
-              />
-            </View>
-            <View style={styles.amitem}>
-              <CheckBox
-                containerStyle={{
-                  backgroundColor: 'transparent',
-                  marginLeft: 5,
-                  borderColor: 'transparent',
-                  padding: 0,
-                  marginTop: 5,
-                }}
-                title="CCTV Surviallance"
-                checked={checked}
-                onPress={() => setChecked(!checked)}
-              />
-            </View>
+            {amenities.map((val, index) => (
+              <View style={styles.amitem}>
+                <CheckBox
+                  containerStyle={{
+                    backgroundColor: 'transparent',
+                    marginLeft: 5,
+                    borderColor: 'transparent',
+                    padding: 0,
+                    marginTop: 5,
+                  }}
+                  title={val.title}
+                  checked={checkedState[index]}
+                  onPress={(e) => {
+                    e.preventDefault();
+                    handleChange(index, val.id);
+                  }}
+                />
+              </View>
+            ))}
           </View>
         </View>
         <Divider style={{backgroundColor: '#0E5A93', margin: 5}} />
@@ -104,8 +133,11 @@ export const FliterPopUp: FC<Props> = ({visible, handleClose}) => {
               checkedIcon="dot-circle-o"
               uncheckedIcon="circle-o"
               title="Open"
-              checked={checked}
-              onPress={() => setChecked(!checked)}
+              checked={roof}
+              onPress={(e) => {
+                e.preventDefault();
+                handleRadioChange('roof');
+              }}
             />
             <CheckBox
               containerStyle={{
@@ -118,8 +150,11 @@ export const FliterPopUp: FC<Props> = ({visible, handleClose}) => {
               checkedIcon="dot-circle-o"
               uncheckedIcon="circle-o"
               title="Close"
-              checked={checked}
-              onPress={() => setChecked(!checked)}
+              checked={!roof}
+              onPress={(e) => {
+                e.preventDefault();
+                handleRadioChange('roof');
+              }}
             />
           </View>
           <View style={{width: '50%'}}>
@@ -135,8 +170,11 @@ export const FliterPopUp: FC<Props> = ({visible, handleClose}) => {
               checkedIcon="dot-circle-o"
               uncheckedIcon="circle-o"
               title="Event"
-              checked={checked}
-              onPress={() => setChecked(!checked)}
+              checked={use}
+              onPress={(e) => {
+                e.preventDefault();
+                handleRadioChange('use');
+              }}
             />
             <CheckBox
               containerStyle={{
@@ -149,14 +187,17 @@ export const FliterPopUp: FC<Props> = ({visible, handleClose}) => {
               checkedIcon="dot-circle-o"
               uncheckedIcon="circle-o"
               title="Personal"
-              checked={checked}
-              onPress={() => setChecked(!checked)}
+              checked={!use}
+              onPress={(e) => {
+                e.preventDefault();
+                handleRadioChange('use');
+              }}
             />
           </View>
         </View>
         <Button
           title="Search"
-          onPress={handleClose}
+          onPress={handleFilterPress.bind(this)}
           buttonStyle={styles.search}
         />
       </View>

@@ -1,6 +1,9 @@
+import moment from 'moment';
 import React, {FC, useState} from 'react';
+import {useEffect} from 'react';
 import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import {ListItem} from 'react-native-elements';
+import {Price} from '../../utils/types';
 
 let timePrice = [
   {
@@ -25,12 +28,37 @@ let timePrice = [
   },
 ];
 
-export const ParkingTime: FC = () => {
-  const [timePriceData, setTimePrice] = useState(timePrice);
+type Props = {
+  data: Price[];
+};
+
+export const ParkingTime: FC<Props> = ({data}) => {
+  const [timePriceData, setTimePrice] = useState<
+    {
+      selected: boolean;
+      id: string;
+      parking_id: string;
+      time: number;
+      cost: string;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    const changeData = data.map((obj, index) => {
+      if (index === 0) {
+        return {...obj, selected: true};
+      }
+      return {...obj, selected: false};
+    });
+    setTimePrice(changeData);
+  }, [data]);
+
   const handleSelection = (i: {
-    hour: string;
-    price: number;
     selected: boolean;
+    id: string;
+    parking_id: string;
+    time: number;
+    cost: string;
   }) => {
     timePriceData.map((val) => {
       if (val === i) {
@@ -46,7 +74,10 @@ export const ParkingTime: FC = () => {
       <ScrollView horizontal={true}>
         {timePriceData.map((item, i) => (
           <ListItem
-            onPress={() => handleSelection(item)}
+            onPress={(e) => {
+              e.preventDefault();
+              handleSelection(item);
+            }}
             underlayColor="transparent"
             activeOpacity={1}
             containerStyle={[
@@ -58,9 +89,11 @@ export const ParkingTime: FC = () => {
                 style.hourTitle,
                 {color: item.selected ? '#fff' : '#0E5A93'},
               ]}>
-              {item.hour + ' hour'}
+              {moment
+                .utc(moment.duration(item.time, 'minute').asMilliseconds())
+                .format('H') + ' hour'}
             </Text>
-            <Text style={[style.priceTitle]}>{'₹ ' + item.price}</Text>
+            <Text style={[style.priceTitle]}>{'₹ ' + item.cost}</Text>
           </ListItem>
         ))}
       </ScrollView>

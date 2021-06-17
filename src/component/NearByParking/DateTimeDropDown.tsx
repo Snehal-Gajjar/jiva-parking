@@ -1,21 +1,26 @@
 import {Picker} from '@react-native-picker/picker';
 import React, {FC} from 'react';
 import {Dimensions, View} from 'react-native';
-import DropDownPicker, {ItemType} from 'react-native-dropdown-picker';
 
 type Props = {
-  items: {label: string; value: string}[];
-  defaultValue: string;
+  items?: {label: string; value: string}[];
+  defaultValue?: string;
   onChangeItem: (item: string) => void;
 };
 
-export const DateTimeDrp: FC<Props> = ({items, defaultValue, onChangeItem}) => {
+export const DateTimeDrp: FC<Props> = ({
+  items,
+  defaultValue,
+  onChangeItem,
+  children,
+}) => {
   return (
     <View
       style={{
         backgroundColor: '#fff',
         height: 40,
-        flex: 1,
+        width: '40%',
+        overflow: 'hidden',
         borderWidth: 0.5,
         borderColor: '#065591',
         borderRadius: 10,
@@ -24,17 +29,15 @@ export const DateTimeDrp: FC<Props> = ({items, defaultValue, onChangeItem}) => {
       <Picker
         selectedValue={defaultValue}
         onValueChange={(item) => onChangeItem(item)}
-        renderToHardwareTextureAndroid
         style={{
           fontSize: 12,
         }}
-        itemStyle={{
-          textAlign: 'center',
-        }}
         mode="dropdown">
-        {items.map((val) => (
-          <Picker.Item label={val.label} value={val.value} />
-        ))}
+        {items
+          ? items.map((val) => (
+              <Picker.Item label={val.label} value={val.value} />
+            ))
+          : children}
       </Picker>
       {/* <DropDownPicker
         items={items}

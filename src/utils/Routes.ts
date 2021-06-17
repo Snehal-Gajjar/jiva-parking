@@ -9,31 +9,20 @@ import { Scanning } from "../screen/Scanning"
 import { SignUp } from "../screen/SignUp"
 import { Wallet } from "../screen/Wallet"
 import { AddCar } from "../screen/CarDetail/AddCar"
-import { CarNavigator, DrawerNavigator, NearByParkingNavigator } from "../component/Navigations/CustomStackNavigation"
+import { DrawerNavigator } from "../component/Navigations/CustomStackNavigation"
 import React from "react"
 import { Profile } from "../screen/Profile"
+import { NotificationScreen } from "../screen/NotificationScreen"
 
-export const ADDSCREEN = {
-    AddCar: { title: 'AddCar', component: AddCar }
-}
-
-export const NEARBYPARKING = {
-    NearByParking: { title: 'NearByParking', component: NearByParking },
-    DetailPage: { title: 'Detail', component: DetailPage },
-    PaymentScreen: { title: 'Payment', component: PaymentScreen },
-    MapScreen: { title: 'Detail', component: SlotScreen },
-}
 
 export const SCREENS = {
     Dashboard: { title: 'Dashboard', component: Dashboard },
     Scanning: { title: 'Scanning', component: Scanning },
     NearByParking: { title: 'NearByParking', component: NearByParking },
-    DetailPage: { title: 'Detail', component: DetailPage },
-    PaymentScreen: { title: 'Payment', component: PaymentScreen },
-    MapScreen: { title: 'Detail', component: SlotScreen },
     Wallet: { title: 'Wallet', component: Wallet },
     CarDetail: { title: 'CarDetail', component: CarDetail },
     Profile: { title: 'Profile', component: Profile },
+    Notification: { title: 'Notification', component: NotificationScreen }
 }
 
 export const AUTHSCREENS = {

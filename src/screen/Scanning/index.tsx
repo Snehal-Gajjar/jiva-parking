@@ -6,7 +6,7 @@ import {ScanningStyle} from './styles';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import QrCodeCamera from '../../component/Dashboard/QrCodeCamera';
 import {RootStackParamList} from '../../utils/NavigationTypes';
-import { StackNavigationProp } from '@react-navigation/stack';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -70,7 +70,10 @@ export const Scanning: FC<Props> = ({navigation}) => {
             alignItems: 'center',
             textAlign: 'center',
           }}
-          onPress={() => navigation.navigate('Scanning')}></Button>
+          onPress={(e) => {
+            e.preventDefault();
+            navigation.navigate('Scanning');
+          }}></Button>
       </View>
     </View>
   );

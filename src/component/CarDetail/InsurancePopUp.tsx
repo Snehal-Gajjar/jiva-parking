@@ -35,7 +35,7 @@ export const InsurancePopUp = ({visible, handleClose, setInsurance}: Props) => {
           </Text>
           <Icon
             name="close"
-            onPress={handleClose}
+            onPress={handleClose.bind(this)}
             size={20}
             color="#0E5A93"></Icon>
         </View>
@@ -127,7 +127,7 @@ export const InsurancePopUp = ({visible, handleClose, setInsurance}: Props) => {
               <Button
                 title="Add Insurance"
                 buttonStyle={styles.btnLogIn}
-                onPress={handleSubmit}
+                onPress={handleSubmit.bind(this)}
               />
             </View>
           )}

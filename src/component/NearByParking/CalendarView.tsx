@@ -3,7 +3,11 @@ import {Platform, Text, TouchableOpacity} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
 
-export const CalendarView = () => {
+type Props = {
+  type: 'date' | 'time';
+};
+
+export const CalendarView = ({type}: Props) => {
   const [show, setShow] = useState<boolean>(false);
   const [date, setDate] = useState(new Date());
   const onChange = (event: any, selectedDate: any) => {
@@ -17,26 +21,32 @@ export const CalendarView = () => {
       style={{
         backgroundColor: '#fff',
         height: 40,
-        flex: 1,
+        width: '20%',
         borderWidth: 0.5,
         borderColor: '#065591',
         borderRadius: 10,
         margin: 5,
-        padding: 5
+        padding: 5,
       }}
-      onPress={() => setShow(!show)}>
+      onPress={(e) => {
+        e.preventDefault();
+        setShow(!show);
+      }}>
       <Text
         style={{
           fontFamily: 'Segoe UI',
           fontSize: 16,
         }}>
-        {moment(date).format('DD/MM/YYYY h:mm a')}
+        {type === 'date'
+          ? moment(date).format('DD/MM/YYYY')
+          : moment(date).format('hh:mm a')}
       </Text>
       {show && (
         <DateTimePicker
           testID="dateTimePicker"
           value={date}
-          mode="datetime"
+          minimumDate={new Date()}
+          mode={type}
           display="default"
           onChange={onChange}
         />

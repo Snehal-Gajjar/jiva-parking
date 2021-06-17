@@ -1,15 +1,5 @@
-import { AUTHSCREENS, ADDSCREEN, DRAWER, NEARBYPARKING, SCREENS } from "./Routes";
-import { CarList } from "./types";
-
-export type NearByRootParamList = {
-    [P in keyof typeof NEARBYPARKING]: undefined;
-};
-
-
-export type CarRootParamList = {
-    [P in keyof typeof ADDSCREEN]: undefined;
-};
-
+import { AUTHSCREENS, DRAWER, SCREENS } from "./Routes";
+import { CarList, NearByParkingDetailParams, PaymentDetailParams } from "./types";
 
 export type RootDrawerParamList = {
     SignOut: undefined
@@ -24,4 +14,7 @@ export type RootStackParamList = {
         [P in keyof typeof AUTHSCREENS]: undefined;
     } & {
         AddCar: { edit: boolean, carDetail: CarList }
+        DetailPage: NearByParkingDetailParams,
+        MapScreen: { parking_id: string },
+        PaymentScreen: PaymentDetailParams,
     };

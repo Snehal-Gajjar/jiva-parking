@@ -109,7 +109,7 @@ const style = StyleSheet.create({
     fontFamily: 'Segoe UI Semibold',
     fontWeight: 'bold',
     marginBottom: 0,
-    marginLeft: 10,
+    marginLeft: 15,
     padding: 0,
     textTransform: 'uppercase',
     fontSize: 13,

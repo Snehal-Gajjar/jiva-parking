@@ -57,7 +57,10 @@ export const Dashboard: FC<Props> = ({navigation}) => {
           titleStyle={{
             marginLeft: 10,
           }}
-          onPress={() => navigation.navigate('Scanning')}
+          onPress={(e) => {
+            e.preventDefault();
+            navigation.navigate('Scanning');
+          }}
           icon={
             <Icon
               name="qrcode-scan"

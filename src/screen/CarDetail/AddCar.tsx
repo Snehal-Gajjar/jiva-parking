@@ -110,7 +110,7 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
               fontFamily: 'Segoe UI Semibold',
               color: '#0E5A93',
             }}>
-            Add Car
+            {isEdit ? 'Edit Car' : 'Add Car'}
           </Text>
         </View>
         <Formik
@@ -173,7 +173,7 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
                   borderRadius: 10,
                   borderWidth: 2,
                 }}
-                onPress={handleSubmit}
+                onPress={handleSubmit.bind(this)}
                 titleStyle={{
                   fontWeight: '700',
                   fontFamily: 'Segoe UI',

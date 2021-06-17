@@ -55,7 +55,7 @@ export const DeleteCarPopUp = ({
           </Text>
           <Icon
             name="close"
-            onPress={handleClose}
+            onPress={handleClose.bind(this)}
             size={20}
             color="#0E5A93"></Icon>
         </View>
@@ -82,13 +82,13 @@ export const DeleteCarPopUp = ({
               loading={loading}
               title="Delete"
               buttonStyle={styles.btnLogIn}
-              onPress={handleDelete}
+              onPress={handleDelete.bind(this)}
             />
             <Button
               type="outline"
               title="Cancel"
               buttonStyle={styles.btnLogIn}
-              onPress={handleClose}
+              onPress={handleClose.bind(this)}
             />
           </View>
         </View>

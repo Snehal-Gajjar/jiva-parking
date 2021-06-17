@@ -4,23 +4,38 @@ import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {DetailContainer} from '../../component/NearByParking/DetailContainer';
 import {DetailStyle} from './styles';
 import {Button} from 'react-native-elements';
-import Collapsible from 'react-native-collapsible';
 import {CarDropDown} from '../../component/NearByParking/CarDropDown';
 import {ParkingTime} from '../../component/NearByParking/ParkingTime';
-import { RootStackParamList } from '../../utils/NavigationTypes';
-import { StackNavigationProp } from '@react-navigation/stack';
+import {RootStackParamList} from '../../utils/NavigationTypes';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RouteProp} from '@react-navigation/native';
+import {NearByParkingService} from '../../api/services';
+import {NearByParkingDetail} from '../../utils/types';
+import {toastShow} from '../../utils/Toast';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList, 'DetailPage'>;
 };
 
-export const DetailPage: FC<Props> = ({navigation}) => {
+export const DetailPage: FC<Props> = ({navigation, route}) => {
+  const {id, lat, long} = route.params;
   const [selectedCar, setSelectedCar] = useState<string>('GJ01');
+  const [parkDetail, setParkDetail] = useState<NearByParkingDetail>();
+
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
+    getParkDetail();
   }, []);
+
+  const getParkDetail = () => {
+    NearByParkingService.NearByParkingDetails({id, lat, long})
+      .then((result) => setParkDetail(result.data))
+      .catch((err) => toastShow('error', err.message));
+  };
+
   return (
     <ScrollView
       style={{
@@ -31,56 +46,10 @@ export const DetailPage: FC<Props> = ({navigation}) => {
         style={{
           marginHorizontal: 10,
         }}>
-        <DetailContainer />
-        {/* <View>
-          <CheckBox
-            containerStyle={{
-              backgroundColor: 'transparent',
-              marginLeft: 0,
-              borderColor: 'transparent',
-              padding: 0,
-            }}
-            title="VIP Parking"
-            checked={vipChecked}
-            onPress={() => setvipChecked(!vipChecked)}
-          />
-          <Collapsible collapsed={!vipChecked}>
-            <View>
-              <Text style={DetailStyle.subDetail}>
-                If you select vip you can access all the amenities such as cctv,
-                security, insurance and car wash.
-              </Text>
-            </View>
-          </Collapsible>
-        </View>
-         */}
-
-        {/* <View>
-          <Text style={DetailStyle.titleStyle}>Payable Amount</Text>
-          <View style={DetailStyle.billContainer}>
-            <View style={DetailStyle.billSubContainer}>
-              <Text style={DetailStyle.billTitles}>Parking Charge</Text>
-              <Text style={DetailStyle.billPrice}>₹ 50</Text>
-            </View>
-            <View style={DetailStyle.billSubContainer}>
-              <Text style={DetailStyle.billTitles}>Extra Facilities</Text>
-              <Text style={DetailStyle.billPrice}>₹ 05</Text>
-            </View>
-            <View style={DetailStyle.billSubContainer}>
-              <Text style={DetailStyle.billTitles}>Tax 2%</Text>
-              <Text style={DetailStyle.billPrice}>₹ 02</Text>
-            </View>
-            <Divider style={{backgroundColor: '#b3b3b3', marginTop: 5}} />
-            <View style={DetailStyle.billSubContainer}>
-              <Text style={DetailStyle.billTitles}>Total Pay</Text>
-              <Text style={DetailStyle.billPrice}>₹ 57</Text>
-            </View>
-          </View>
-        </View>
-       */}
+        <DetailContainer data={parkDetail} />
         <View>
           <Text style={DetailStyle.titleStyle}>Parking Time</Text>
-          <ParkingTime />
+          <ParkingTime data={parkDetail ? parkDetail.prices : []} />
         </View>
         <View>
           <Text style={DetailStyle.titleStyle}>Info</Text>
@@ -90,9 +59,7 @@ export const DetailPage: FC<Props> = ({navigation}) => {
               alignItems: 'baseline',
             }}>
             <Text numberOfLines={4} style={DetailStyle.subDetail}>
-              24/7 parking facility with cctv camera, professional security
-              gaurd, chair for disable,floor parking lift facilities. You will
-              get hassle parkingfacilities with 35% cashback on first parking...
+              {parkDetail?.description}
             </Text>
             <Text>Read More</Text>
           </View>
@@ -100,7 +67,12 @@ export const DetailPage: FC<Props> = ({navigation}) => {
         <CarDropDown {...{setSelectedCar, selectedCar}} />
         <Button
           title="Pick Parking Slot"
-          onPress={() => navigation.navigate('MapScreen')}
+          onPress={(e) => {
+            e.preventDefault();
+            navigation.navigate('MapScreen', {
+              parking_id: parkDetail ? parkDetail.id : '',
+            });
+          }}
           buttonStyle={DetailStyle.btnPick}
         />
       </View>

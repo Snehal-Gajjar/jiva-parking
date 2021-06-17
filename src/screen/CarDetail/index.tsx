@@ -72,9 +72,10 @@ export const CarDetail: FC<Props> = ({navigation}) => {
       </View>
       <View style={CarDetailStyle.addCarConatiner}>
         <Button
-          onPress={() =>
-            navigation.navigate('AddCar', {edit: false, carDetail: {}})
-          }
+          onPress={(e) => {
+            e.preventDefault();
+            navigation.navigate('AddCar', {edit: false, carDetail: {}});
+          }}
           title="Add Car"
           containerStyle={{
             width: '60%',

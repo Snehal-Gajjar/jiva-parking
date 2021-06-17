@@ -49,11 +49,11 @@ const style = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '50%',
+    height: '60%',
   },
   logo: {
-    width: 90,
-    height: 90,
+    width: 120,
+    height: 120,
     ...Platform.select({
       ios: {
         shadowColor: '#0655911A',

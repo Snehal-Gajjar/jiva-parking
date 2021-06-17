@@ -1,6 +1,6 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect, useState} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import {Icon, Image} from 'react-native-elements';
 import {AuthService} from '../../api/services';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
@@ -60,7 +60,7 @@ export const Profile: FC<Props> = ({navigation}) => {
         <WalletCard />
       </View>
       <View style={ProfileStyle.mainiconcontainer}>
-        <View style={ProfileStyle.iconContianer}>
+        <TouchableOpacity activeOpacity={1} style={ProfileStyle.iconContianer}>
           <View style={ProfileStyle.iconCircle}>
             <Icon
               name="ticket-confirmation-outline"
@@ -70,8 +70,11 @@ export const Profile: FC<Props> = ({navigation}) => {
             />
           </View>
           <Text style={ProfileStyle.title}>My booking</Text>
-        </View>
-        <View style={ProfileStyle.iconContianer}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={1}
+          style={ProfileStyle.iconContianer}
+          onPress={() => navigation.navigate('Notification')}>
           <View style={ProfileStyle.iconCircle}>
             <Icon
               name="notifications-outline"
@@ -81,7 +84,7 @@ export const Profile: FC<Props> = ({navigation}) => {
             />
           </View>
           <Text style={ProfileStyle.title}>Notification</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View>
         <NavigationList />

@@ -37,3 +37,35 @@ export const vehicle_update = (): string => {
 export const profile = (): string => {
     return '/profile'
 }
+
+export const near_parking = (): string => {
+    return '/near_parking'
+}
+
+export const parking_detail = (id: string): string => {
+    return `/parking_detail/${id}`
+}
+
+export const parking_aminities = (): string => {
+    return '/parking_aminities'
+}
+
+export const parking_option = (): string => {
+    return '/parking_option'
+}
+
+export const payment_detail = (): string => {
+    return '/payment_detail'
+}
+
+export const user_notification = (): string => {
+    return '/user_notification'
+}
+
+export const advertisement = (): string => {
+    return '/advertisement'
+}
+
+export const wallet_history = ():string => {
+    return '/wallet_history'
+}

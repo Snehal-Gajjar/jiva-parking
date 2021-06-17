@@ -46,18 +46,27 @@ export const CarNotificationAlert = ({
           <CarNotiBtn
             image={require('../../assets/images/puc.png')}
             title="PUC"
-            onPress={() => handlePopUpClose('puc')}
+            onPress={(e) => {
+              e.preventDefault();
+              handlePopUpClose('puc');
+            }}
           />
           <CarNotiBtn
             image={require('../../assets/images/insuarnce.png')}
             title="Insurance"
-            onPress={() => handlePopUpClose('insurance')}
+            onPress={(e) => {
+              e.preventDefault();
+              handlePopUpClose('insurance');
+            }}
           />
         </View>
         <Button
           title="Add Notification"
           buttonStyle={styles.btnLogIn}
-          onPress={handleAddCar}
+          onPress={(e) => {
+            e.preventDefault()
+            handleAddCar()
+          }}
         />
       </View>
       <PUCPopUp

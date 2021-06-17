@@ -10,7 +10,7 @@ export const getInitialValue: () => Register = () => ({
 })
 
 export const commonValidationSchema = yup.object().shape({
-    email: yup.string().email('Please enter valid email').required('Email is required'),
+    email: yup.string().email('Please enter valid email'),
     full_name: yup.string().required('Full Name is required'),
     phone: yup.string().required('Phone is required'),
     password: yup.string().required('Password is required').min(6, 'Password is too short - should be 6 chars minimum.'),

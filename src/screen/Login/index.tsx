@@ -115,7 +115,7 @@ export const Login: FC<Props> = ({navigation}) => {
             <Button
               title="Log In"
               loading={loading}
-              onPress={handleSubmit}
+              onPress={handleSubmit.bind(this)}
               buttonStyle={LoginStyle.btnSignUp}
             />
             <View style={LoginStyle.socialContainer}>
@@ -151,7 +151,10 @@ export const Login: FC<Props> = ({navigation}) => {
             Don't have an account?
           </Text>
           <Text
-            onPress={() => navigation.navigate('SignUp')}
+            onPress={(e) => {
+              e.preventDefault();
+              navigation.navigate('SignUp');
+            }}
             style={[
               LoginStyle.loginTile,
               {

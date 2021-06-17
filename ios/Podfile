@@ -25,6 +25,10 @@ pod 'react-native-google-maps', :path => rn_maps_path
 
   pod 'react-native-video', :path => '../node_modules/react-native-video'
 
+  pod 'RNImageToPdf', :path => '../node_modules/react-native-image-to-pdf'
+
+  pod 'RNReactNativePdfLib', :path => '../node_modules/react-native-pdf-lib'
+
   target 'jivaParkingTests' do
     inherit! :complete
     # Pods for testing

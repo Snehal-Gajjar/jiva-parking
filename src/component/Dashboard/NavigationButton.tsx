@@ -11,7 +11,7 @@ export const NavigationButton: FC<Props> = ({image, title, onPress}) => {
   return (
     <View style={ButtonStyle.container}>
       <Button
-        onPress={onPress}
+        onPress={onPress?.bind(this)}
         raised
         type="outline"
         buttonStyle={ButtonStyle.buttonStyle}

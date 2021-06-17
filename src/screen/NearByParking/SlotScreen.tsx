@@ -1,43 +1,31 @@
+import {Picker} from '@react-native-picker/picker';
+import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import moment from 'moment';
 import React, {FC, useEffect} from 'react';
+import {useState} from 'react';
 import {BackHandler, Dimensions, View} from 'react-native';
 import {ItemType} from 'react-native-dropdown-picker';
 import {Button, Divider} from 'react-native-elements';
 import WebView from 'react-native-webview';
+import {NearByParkingService} from '../../api/services';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {CalendarView} from '../../component/NearByParking/CalendarView';
 import {DateTimeDrp} from '../../component/NearByParking/DateTimeDropDown';
 import {FloorSelections} from '../../component/NearByParking/FloorSelections';
 import {RootStackParamList} from '../../utils/NavigationTypes';
+import {toastShow} from '../../utils/Toast';
+import {ParkingOptions} from '../../utils/types';
 import {MapScreenStyle} from './styles';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList, 'MapScreen'>;
 };
 
-const dateDrp = [
-  {label: '04-04-2021', value: '04-04-2021'},
-  {label: '05-04-2021', value: '05-04-2021'},
-  {label: '06-04-2021', value: '06-04-2021'},
-  {label: '07-04-2021', value: '07-04-2021'},
-  {label: '08-04-2021', value: '08-04-2021'},
-];
-
-const timeDrp = [
-  {label: '04:00 AM', value: '04:00 AM'},
-  {label: '05:00 AM', value: '05:00 AM'},
-  {label: '06:00 AM', value: '06:00 AM'},
-  {label: '07:00 AM', value: '07:00 AM'},
-  {label: '08:00 AM', value: '08:00 AM'},
-];
-
-const hourDrp = [
-  {label: '1 hour', value: '1'},
-  {label: '3 hour', value: '3'},
-  {label: '4 hour', value: '4'},
-  {label: '5 hour', value: '5'},
-];
-export const SlotScreen: FC<Props> = ({navigation}) => {
+export const SlotScreen: FC<Props> = ({navigation, route}) => {
+  const parking_id = route.params.parking_id;
+  const [parkingOptions, setParkingOptions] = useState<ParkingOptions>();
   const WEBVIEW_REF = React.createRef<WebView>();
   const backHandler = () => {
     WEBVIEW_REF.current?.goBack();
@@ -48,9 +36,17 @@ export const SlotScreen: FC<Props> = ({navigation}) => {
       headerShown: false,
     });
     BackHandler.addEventListener('hardwareBackPress', backHandler);
-
+    getParkingOptions();
     return BackHandler.removeEventListener('hardwareBackPress', backHandler);
   }, []);
+
+  const getParkingOptions = () => {
+    NearByParkingService.ParkingOptions(parking_id)
+      .then((result) => {
+        setParkingOptions(result.data);
+      })
+      .catch((err) => toastShow('error', err.message));
+  };
 
   const handleChange = (item: string) => {
     console.log(item);
@@ -62,7 +58,7 @@ export const SlotScreen: FC<Props> = ({navigation}) => {
       renderToHardwareTextureAndroid={true}>
       <HeaderContainer isMargin {...{navigation}} />
       <View>
-        <FloorSelections />
+        <FloorSelections floors={parkingOptions ? parkingOptions.floors : []} />
       </View>
       <View
         style={{
@@ -75,10 +71,10 @@ export const SlotScreen: FC<Props> = ({navigation}) => {
           style={{
             display: 'flex',
             flexDirection: 'row',
-            alignItems: 'center',
             justifyContent: 'space-between',
           }}>
-          <CalendarView />
+          <CalendarView type="date" />
+          <CalendarView type="time" />
           {/* <DateTimeDrp
             items={dateDrp}
             defaultValue="04-04-2021"
@@ -89,11 +85,27 @@ export const SlotScreen: FC<Props> = ({navigation}) => {
             defaultValue="04:00 AM"
             onChangeItem={handleChange}
           /> */}
-          <DateTimeDrp
-            items={hourDrp}
-            defaultValue="1"
-            onChangeItem={handleChange}
-          />
+          <DateTimeDrp onChangeItem={handleChange}>
+            {/* {parkingOptions ? (
+              parkingOptions.times.map((val) => {
+                console.log(
+                  moment
+                    .utc(moment.duration(val, 'hours').asMinutes())
+                    .format('mm'),
+                );
+                return (
+                  <Picker.Item
+                    label={val}
+                    value={moment
+                      .utc(moment.duration(val, 'hours').asMilliseconds())
+                      .format('mm')}
+                  />
+                );
+              })
+            ) : ( */}
+            <Picker.Item label={'1 Hour'} value={'0'} />
+            {/* )} */}
+          </DateTimeDrp>
         </View>
         <Divider style={{backgroundColor: '#065591'}} />
         <View
@@ -120,7 +132,13 @@ export const SlotScreen: FC<Props> = ({navigation}) => {
         }}>
         <Button
           title="Proceed with Spot (G-1P)"
-          onPress={() => navigation.navigate('PaymentScreen')}
+          onPress={(e) => {
+            e.preventDefault();
+            navigation.navigate('PaymentScreen', {
+              parking_id: parking_id,
+              for_time: '120',
+            });
+          }}
           buttonStyle={MapScreenStyle.btnPick}
         />
       </View>

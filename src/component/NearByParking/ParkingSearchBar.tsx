@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Icon, Input, InputProps} from 'react-native-elements';
 
-type Props = InputProps;
+type Props = {handleSearchBtn?: () => void} & InputProps;
 
 export const ParkingSearchBar: FC<Props> = ({...props}) => {
   return (
@@ -11,15 +11,19 @@ export const ParkingSearchBar: FC<Props> = ({...props}) => {
         inputContainerStyle={style.inputContainerStyle}
         {...props}
         containerStyle={{
-          height:40
+          height: 40,
         }}
-        style={[style.inputContainerStyle,{
-          fontFamily: 'Segoe UI',
-        }]}
+        style={[
+          style.inputContainerStyle,
+          {
+            fontFamily: 'Segoe UI',
+          },
+        ]}
         placeholder="Search Parking"
       />
       <Button
         raised
+        onPress={props.handleSearchBtn?.bind(this)}
         buttonStyle={style.torchButtonStyle}
         icon={
           <Icon
@@ -42,17 +46,17 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#fff',
     borderRadius: 10,
-    borderWidth:0.3,
-    borderColor:'#0655911A',
+    borderWidth: 0.3,
+    borderColor: '#0655911A',
     height: 40,
-    shadowColor: "#0655911A",
+    shadowColor: '#0655911A',
     shadowOffset: {
       width: 0,
       height: 3,
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-    
+
     elevation: 7,
   },
   labelStyle: {
@@ -64,7 +68,7 @@ const style = StyleSheet.create({
     width: '100%',
     padding: 0,
     borderBottomWidth: 0,
-    color:'#8193ae'
+    color: '#8193ae',
   },
   torchContainer: {
     width: 40,

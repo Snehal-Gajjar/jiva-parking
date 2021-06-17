@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import {ListItem} from 'react-native-elements';
 
@@ -25,8 +25,14 @@ let floors = [
   },
 ];
 
-export const FloorSelections: FC = () => {
-  const [floorData, setFloorData] = useState(floors);
+type Props = {
+  floors: string[];
+};
+
+export const FloorSelections: FC<Props> = ({floors}) => {
+  const [floorData, setFloorData] = useState<
+    {floor: string; selected: boolean}[]
+  >([]);
   const handleSelection = (i: {floor: string; selected: boolean}) => {
     floorData.map((val) => {
       if (val === i) {
@@ -37,12 +43,28 @@ export const FloorSelections: FC = () => {
     });
     setFloorData([...floorData]);
   };
+
+  useEffect(() => {
+    const changeData = floors.map((obj, index) => {
+      if (index === 0) {
+        return {floor: obj, selected: true};
+      }
+      return {floor: obj, selected: false};
+    });
+    setFloorData(changeData);
+  }, [floors]);
+
   return (
     <View style={style.container}>
-      <ScrollView horizontal={true} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
+      <ScrollView
+        horizontal={true}
+        contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
         {floorData.map((item, i) => (
           <ListItem
-            onPress={() => handleSelection(item)}
+            onPress={(e) => {
+              e.preventDefault();
+              handleSelection(item);
+            }}
             underlayColor="transparent"
             containerStyle={[
               style.itemContainer,
@@ -67,9 +89,9 @@ const style = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginTop: 5,
-    justifyContent:'center',
-    alignItems:'center',
-    width:'100%'
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
   },
   itemContainer: {
     borderWidth: 0.5,
@@ -81,7 +103,7 @@ const style = StyleSheet.create({
     height: 40,
     display: 'flex',
     alignItems: 'center',
-    justifyContent:'center'
+    justifyContent: 'center',
   },
   hourTitle: {
     fontFamily: 'Segoe UI Semibold',

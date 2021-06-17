@@ -148,7 +148,7 @@ export const SignUp: FC<Props> = ({navigation}) => {
               <Button
                 title="Get Started"
                 loading={loading}
-                onPress={handleSubmit}
+                onPress={handleSubmit.bind(this)}
                 buttonStyle={SignUpStyle.btnSignUp}
               />
               <View style={SignUpStyle.socialContainer}>
@@ -168,7 +168,10 @@ export const SignUp: FC<Props> = ({navigation}) => {
                   Have an account ?
                 </Text>
                 <Text
-                  onPress={() => navigation.navigate('Login')}
+                  onPress={(e) => {
+                    e.preventDefault();
+                    navigation.navigate('Login');
+                  }}
                   style={[
                     SignUpStyle.loginTile,
                     {

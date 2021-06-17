@@ -62,7 +62,7 @@ export const NavigationList = () => {
       </ListItem>
       <ListItem
         bottomDivider
-        onPress={handleLogout}
+        onPress={handleLogout.bind(this)}
         containerStyle={{
           backgroundColor: 'transparent',
         }}>

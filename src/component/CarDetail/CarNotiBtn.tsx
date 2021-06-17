@@ -11,7 +11,7 @@ export const CarNotiBtn: FC<Props> = ({image, title, onPress}) => {
   return (
     <View style={ButtonStyle.container}>
       <Button
-        onPress={onPress}
+        onPress={onPress?.bind(this)}
         type="outline"
         raised
         buttonStyle={ButtonStyle.buttonStyle}
@@ -43,7 +43,6 @@ const ButtonStyle = StyleSheet.create({
     borderColor: '#fff',
     padding: 15,
     borderRadius: 20,
-   
   },
   containerStyle: {
     borderRadius: 20,

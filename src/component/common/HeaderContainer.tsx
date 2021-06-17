@@ -15,6 +15,8 @@ type Props = {
   nearByParking?: boolean;
   isMargin?: boolean;
   handleFilter?: () => void;
+  handleSearch?: (searchText: string) => void;
+  handleSearchBtn?: () => void;
   isProfile?: boolean;
   navigation: StackNavigationProp<RootStackParamList>;
 };
@@ -26,6 +28,8 @@ export const HeaderContainer: FC<Props> = ({
   handleFilter,
   navigation,
   isProfile,
+  handleSearchBtn,
+  handleSearch,
 }) => {
   const handleDrawer = () => {
     navigation.navigate('Profile');
@@ -34,7 +38,10 @@ export const HeaderContainer: FC<Props> = ({
     <Header
       centerComponent={
         nearByParking ? (
-          <ParkingSearchBar />
+          <ParkingSearchBar
+            onChangeText={handleSearch}
+            handleSearchBtn={handleSearchBtn}
+          />
         ) : (
           <Text
             style={[
@@ -70,9 +77,9 @@ export const HeaderContainer: FC<Props> = ({
             size={25}
             style={{
               marginLeft: title || nearByParking || isMargin ? 5 : 20,
-              marginTop: nearByParking ? 10 : 0,
+              marginTop: nearByParking ? 20 : 0,
             }}
-            onPress={handleDrawer}></Icon>
+            onPress={handleDrawer.bind(this)}></Icon>
         )
       }
       statusBarProps={{barStyle: 'default'}}
@@ -83,7 +90,7 @@ export const HeaderContainer: FC<Props> = ({
             <Button
               raised
               buttonStyle={HeaderStyle.torchButtonStyle}
-              onPress={handleFilter}
+              onPress={handleFilter?.bind(this)}
               icon={
                 <Icon
                   name="filter"
@@ -97,21 +104,14 @@ export const HeaderContainer: FC<Props> = ({
         ) : !isProfile ? (
           <View style={HeaderStyle.iconContainer}>
             <Icon
-              name="search"
-              type="feather"
-              color="#0E5A93"
-              size={25}
-              style={{
-                marginRight: 10,
-              }}></Icon>
-            <Icon
               name="bell"
               type="feather"
               color="#0E5A93"
               size={25}
               style={{
                 marginRight: title ? 5 : 15,
-              }}></Icon>
+              }}
+              onPress={() => navigation.navigate('Notification')}></Icon>
           </View>
         ) : (
           <></>

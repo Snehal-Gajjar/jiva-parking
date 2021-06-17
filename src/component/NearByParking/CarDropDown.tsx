@@ -1,8 +1,11 @@
-import React, {Dispatch, FC, SetStateAction} from 'react';
+import React, {Dispatch, FC, SetStateAction, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Picker} from '@react-native-picker/picker';
 import RNPickerSelect from 'react-native-picker-select';
+import {useEffect} from 'react';
+import {CarService} from '../../api/services';
+import {toastShow} from '../../utils/Toast';
 
 type Props = {
   selectedCar: string;
@@ -10,6 +13,20 @@ type Props = {
 };
 
 export const CarDropDown: FC<Props> = ({selectedCar, setSelectedCar}) => {
+  const [car, setCars] = useState<{registration_no: string; id: string}[]>([]);
+  useEffect(() => {
+    getCars();
+  }, []);
+  const getCars = () => {
+    CarService.getCars()
+      .then((result) => {
+        setCars(result.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        toastShow('error', error.message);
+      });
+  };
   return (
     <View
       style={{
@@ -30,21 +47,8 @@ export const CarDropDown: FC<Props> = ({selectedCar, setSelectedCar}) => {
             fontSize: 13,
           }}
           mode="dropdown">
-          {[
-            {
-              label: 'GJ 02 BJ 0420',
-              value: 'GJ01',
-            },
-            {
-              label: 'GJ 02 BJ 0420',
-              value: 'GJ01',
-            },
-            {
-              label: 'GJ 02 BJ 0420',
-              value: 'GJ03',
-            },
-          ].map((val) => (
-            <Picker.Item label={val.label} value={val.value} />
+          {car.map((val) => (
+            <Picker.Item label={val.registration_no} value={val.id} />
           ))}
         </Picker>
       </View>

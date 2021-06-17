@@ -78,7 +78,7 @@ export const VerifyOtpModal: FC<Props> = ({
           loading={loading}
           title="Verfiy OTP"
           buttonStyle={styles.btnLogIn}
-          onPress={handleOTPVerify}
+          onPress={handleOTPVerify.bind(this)}
         />
       </View>
     </Modal>

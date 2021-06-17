@@ -35,17 +35,26 @@ export const NavigationCard: FC<Props> = ({handleNavPress}) => {
       <NavigationButton
         image={require('../../assets/images/parking.png')}
         title="Near By Parking"
-        onPress={() => handlePress('NearByParking')}
+        onPress={(e) => {
+          e.preventDefault();
+          handlePress('NearByParking');
+        }}
       />
       <NavigationButton
         image={require('../../assets/images/digitalWallet.png')}
         title="Wallet"
-        onPress={() => handlePress('Wallet')}
+        onPress={(e) => {
+          e.preventDefault();
+          handlePress('Wallet');
+        }}
       />
       <NavigationButton
         image={require('../../assets/images/check.png')}
         title="Car Details"
-        onPress={() => handlePress('CarDetail')}
+        onPress={(e) => {
+          e.preventDefault();
+          handlePress('CarDetail');
+        }}
       />
     </View>
   );

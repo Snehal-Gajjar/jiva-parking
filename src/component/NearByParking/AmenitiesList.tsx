@@ -2,33 +2,28 @@ import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {Image} from 'react-native-elements';
+import {Amenities} from '../../utils/types';
 
-export const AmenitiesList: FC = () => {
+type Props = {
+  data: Amenities[];
+};
+
+export const AmenitiesList: FC<Props> = ({data}) => {
   return (
     <View style={style.container}>
-      <View style={style.item}>
-        <Icon name="eye-off-outline" type="ionicon" size={25} />
-        <Text style={style.itemText}>Disable Support</Text>
-      </View>
-      <View style={style.item}>
-        <Icon name="charging-station" type="font-awesome-5" size={25} />
-        <Text style={style.itemText}>EV Charge Point</Text>
-      </View>
-      <View style={style.item}>
-        <Icon name="cctv" type="material-community" size={25} />
-        <Text style={style.itemText}>CCTV Surveillance</Text>
-      </View>
-      <View style={style.item}>
-        <Icon name="roofing" type="material" size={25} />
-        <Text style={style.itemText}>Roof Parking</Text>
-      </View>
-      <View style={style.item}>
-        <Image
-          style={style.itemImage}
-          source={require('../../assets/images/parking-barrier.png')}
-        />
-        <Text style={style.itemText}>Parking Barrier</Text>
-      </View>
+      {data.map((val) => (
+        <View style={style.item}>
+          <Image
+            style={style.itemImage}
+            source={
+              val.icon
+                ? {uri: val.icon}
+                : require('../../assets/images/parking-barrier.png')
+            }
+          />
+          <Text style={style.itemText}>{val.title}</Text>
+        </View>
+      ))}
     </View>
   );
 };

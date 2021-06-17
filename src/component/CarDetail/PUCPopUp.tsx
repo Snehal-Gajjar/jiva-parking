@@ -33,7 +33,7 @@ export const PUCPopUp = ({visible, handleClose, setPuc}: Props) => {
           </Text>
           <Icon
             name="close"
-            onPress={handleClose}
+            onPress={handleClose.bind(this)}
             size={20}
             color="#0E5A93"></Icon>
         </View>
@@ -92,7 +92,7 @@ export const PUCPopUp = ({visible, handleClose, setPuc}: Props) => {
               <Button
                 title="Add PUC"
                 buttonStyle={styles.btnLogIn}
-                onPress={handleSubmit}
+                onPress={handleSubmit.bind(this)}
               />
             </View>
           )}

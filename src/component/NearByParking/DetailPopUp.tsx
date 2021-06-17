@@ -3,18 +3,21 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Button, Icon, Image} from 'react-native-elements';
 import Modal from 'react-native-modal';
 import {ServiceImageList} from '../../utils/ServiceImageList';
+import {MarkerData} from '../../utils/types';
 import {DetailContainer} from './DetailContainer';
 
 type Props = {
   visible: boolean;
   handleClose: () => void;
-  hanldeBookNow: () => void;
+  hanldeBookNow: (data?: MarkerData) => void;
+  data?: MarkerData;
 };
 
 export const DetailPopUp: FC<Props> = ({
   visible,
   handleClose,
   hanldeBookNow,
+  data,
 }) => {
   return (
     <Modal
@@ -26,11 +29,11 @@ export const DetailPopUp: FC<Props> = ({
       hasBackdrop={false}
       style={styles.view}>
       <View style={styles.container}>
-        <DetailContainer />
+        <DetailContainer {...{data}} />
         <Button
           title="Book Now"
           buttonStyle={styles.btnBook}
-          onPress={hanldeBookNow}
+          onPress={() => hanldeBookNow(data)}
         />
       </View>
     </Modal>

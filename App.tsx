@@ -6,7 +6,7 @@ import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import React, {useEffect, useState} from 'react';
 import {ListItem, Text, ThemeProvider} from 'react-native-elements';
-import SCREENS, {ADDSCREEN, AUTHSCREENS, DRAWER} from './src/utils/Routes';
+import SCREENS, {AUTHSCREENS, DRAWER} from './src/utils/Routes';
 import {theme} from './src/utils/theme';
 import {Dimensions, ScaledSize, ScrollView} from 'react-native';
 import {SplashScreen} from './src/screen/SplashScreen';
@@ -17,6 +17,9 @@ import {RootStackParamList} from './src/utils/NavigationTypes';
 import {CurrentUserContext} from './src/utils/context';
 import {CurrentUser, extractCurrentUser, NULL_USER} from './src/utils/auth';
 import {AddCar} from './src/screen/CarDetail/AddCar';
+import {DetailPage} from './src/screen/NearByParking/DetailPage';
+import {SlotScreen} from './src/screen/NearByParking/SlotScreen';
+import { PaymentScreen } from './src/screen/NearByParking/PaymentScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -51,7 +54,7 @@ const App = () => {
     Dimensions.addEventListener('change', onDimensionsChange);
     init();
     return () => Dimensions.removeEventListener('change', onDimensionsChange);
-  }, [currentUser]);
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={{handleUser: handleUser}}>
@@ -76,18 +79,25 @@ const App = () => {
                     options={{title: AUTHSCREENS[name].title}}
                   />
                 ))}
+              {currentUser.loggedIn &&
+                (Object.keys(
+                  SCREENS,
+                ) as (keyof typeof SCREENS)[]).map((name) => (
+                  <Stack.Screen
+                    key={name}
+                    name={name}
+                    getComponent={() => SCREENS[name].component}
+                    options={{title: SCREENS[name].title}}
+                  />
+                ))}
               {currentUser.loggedIn && (
                 <>
-                  {(Object.keys(SCREENS) as (keyof typeof SCREENS)[]).map(
-                    (name) => (
-                      <Stack.Screen
-                        key={name}
-                        name={name}
-                        getComponent={() => SCREENS[name].component}
-                        options={{title: SCREENS[name].title}}
-                      />
-                    ),
-                  )}
+                  <Stack.Screen
+                    name="PaymentScreen"
+                    component={PaymentScreen}
+                  />
+                  <Stack.Screen name="DetailPage" component={DetailPage} />
+                  <Stack.Screen name="MapScreen" component={SlotScreen} />
                   <Stack.Screen
                     name="AddCar"
                     component={AddCar}

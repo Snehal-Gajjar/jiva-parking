@@ -18,8 +18,9 @@ export default async (url: string, method?: Method, data?: any, auth?: boolean) 
     if (method === 'GET') {
         return axios.get(Config.REST_ENDPOINT + url, {
             params: {
-                token
-            }
+                token,
+                data
+            },
         }).then((response) => {
             console.log(response.data)
             if (response.data.status && response.data.status === 'success') {
@@ -40,7 +41,9 @@ export default async (url: string, method?: Method, data?: any, auth?: boolean) 
     }).then((response) => {
         console.log(response.data)
         if (response.data.status && response.data.status === 'success') {
-            return response.data
+            return Promise.resolve(response.data)
+        } else if (response.data.status && response.data.status === 'error') {
+            return Promise.reject(response.data)
         } else {
             return Promise.reject(data);
         }
