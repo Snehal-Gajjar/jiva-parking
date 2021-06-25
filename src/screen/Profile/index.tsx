@@ -60,7 +60,10 @@ export const Profile: FC<Props> = ({navigation}) => {
         <WalletCard />
       </View>
       <View style={ProfileStyle.mainiconcontainer}>
-        <TouchableOpacity activeOpacity={1} style={ProfileStyle.iconContianer}>
+        <TouchableOpacity
+          activeOpacity={1}
+          style={ProfileStyle.iconContianer}
+          onPress={() => navigation.navigate('BookingHistory')}>
           <View style={ProfileStyle.iconCircle}>
             <Icon
               name="ticket-confirmation-outline"

@@ -1,6 +1,6 @@
 import { Register } from '../../utils/types';
 import Config from '../config'
-import { advertisement, loginUrl, profile, registerUrl, user_notification, wallet_history } from '../endpoints';
+import { advertisement, booking_history, loginUrl, profile, registerUrl, user_notification, wallet_history } from '../endpoints';
 
 export const RegisterUser = (data: Register) => {
     return Config(registerUrl(), 'POST', data, true);
@@ -26,5 +26,9 @@ export const getAdvertisement = () => {
 }
 
 export const bookinghistory = () => {
+    return Config(booking_history(), 'POST')
+}
+
+export const wallethistory = () => {
     return Config(wallet_history(), 'POST')
 }

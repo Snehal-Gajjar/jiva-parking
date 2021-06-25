@@ -13,6 +13,7 @@ import { DrawerNavigator } from "../component/Navigations/CustomStackNavigation"
 import React from "react"
 import { Profile } from "../screen/Profile"
 import { NotificationScreen } from "../screen/NotificationScreen"
+import { BookingHistoryScreen } from "../screen/BookingHistoryScreen"
 
 
 export const SCREENS = {
@@ -22,6 +23,7 @@ export const SCREENS = {
     Wallet: { title: 'Wallet', component: Wallet },
     CarDetail: { title: 'CarDetail', component: CarDetail },
     Profile: { title: 'Profile', component: Profile },
+    BookingHistory: { title: 'BookingHistory', component: BookingHistoryScreen },
     Notification: { title: 'Notification', component: NotificationScreen }
 }
 

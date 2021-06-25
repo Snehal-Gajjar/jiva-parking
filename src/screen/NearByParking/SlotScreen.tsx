@@ -75,37 +75,9 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
           }}>
           <CalendarView type="date" />
           <CalendarView type="time" />
-          {/* <DateTimeDrp
-            items={dateDrp}
-            defaultValue="04-04-2021"
-            onChangeItem={handleChange}
-          /> */}
-          {/* <DateTimeDrp
-            items={timeDrp}
-            defaultValue="04:00 AM"
-            onChangeItem={handleChange}
-          /> */}
-          <DateTimeDrp onChangeItem={handleChange}>
-            {/* {parkingOptions ? (
-              parkingOptions.times.map((val) => {
-                console.log(
-                  moment
-                    .utc(moment.duration(val, 'hours').asMinutes())
-                    .format('mm'),
-                );
-                return (
-                  <Picker.Item
-                    label={val}
-                    value={moment
-                      .utc(moment.duration(val, 'hours').asMilliseconds())
-                      .format('mm')}
-                  />
-                );
-              })
-            ) : ( */}
-            <Picker.Item label={'1 Hour'} value={'0'} />
-            {/* )} */}
-          </DateTimeDrp>
+          <DateTimeDrp
+            items={parkingOptions?.times}
+            onChangeItem={handleChange}></DateTimeDrp>
         </View>
         <Divider style={{backgroundColor: '#065591'}} />
         <View

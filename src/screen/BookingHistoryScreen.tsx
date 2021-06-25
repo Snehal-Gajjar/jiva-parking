@@ -1,16 +1,15 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect} from 'react';
 import {Text, View} from 'react-native';
-import {HeaderContainer} from '../../component/common/HeaderContainer';
-import {WalletCard} from '../../component/common/WalletCard';
-import { WalletHistory } from '../../component/Wallet/WalletHistory';
-import {RootStackParamList} from '../../utils/NavigationTypes';
+import {HeaderContainer} from '../component/common/HeaderContainer';
+import {BookingHistory} from '../component/Wallet/BookingHistory';
+import {RootStackParamList} from '../utils/NavigationTypes';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
 };
 
-export const Wallet: FC<Props> = ({navigation}) => {
+export const BookingHistoryScreen: FC<Props> = ({navigation}) => {
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -18,16 +17,13 @@ export const Wallet: FC<Props> = ({navigation}) => {
   }, []);
   return (
     <View style={{flex: 1}}>
-      <HeaderContainer title="Car Detail" {...{navigation}} />
-      <View style={{margin: 15}}>
-        <WalletCard />
-      </View>
+      <HeaderContainer isProfile title="Booking History" {...{navigation}} />
       <View style={{marginLeft: 15}}>
         <Text style={{color: '#000', fontFamily: 'Segoe UI', fontSize: 16}}>
           History of Bookings
         </Text>
       </View>
-      <WalletHistory />
+      <BookingHistory />
     </View>
   );
 };

@@ -1,13 +1,17 @@
+import moment from 'moment';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Card} from 'react-native-elements';
-import { BookingHistoryData } from '../../utils/types';
+import {BookingHistoryData, WalletHistoryData} from '../../utils/types';
 
 type Props = {
-  data: BookingHistoryData;
+  bookingdata?: BookingHistoryData;
+  walletData?: WalletHistoryData;
+  type: 'Booking' | 'Wallet';
 };
 
-export const BookingItem = ({data}: Props) => {
+export const BookingItem = ({walletData, bookingdata, type}: Props) => {
+  const isWallet = type === 'Wallet';
   return (
     <Card containerStyle={style.cardContainer}>
       <View
@@ -15,7 +19,7 @@ export const BookingItem = ({data}: Props) => {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
         }}>
         <View style={style.titlecontainer}>
           <Text
@@ -24,22 +28,30 @@ export const BookingItem = ({data}: Props) => {
               fontFamily: 'Segoe UI Semibold',
               fontSize: 17,
             }}>
-            {data.place}
+            {isWallet ? walletData?.title : bookingdata?.place}
           </Text>
           <Text
             style={{color: '#8294ad', fontFamily: 'Segoe UI', fontSize: 15}}>
-            {data.for_date}
+            {isWallet
+              ? moment(walletData?.date).format('hh:mm a, DD MMM YYYY')
+              : moment(bookingdata?.date).format('hh:mm a, DD MMM YYYY')}
           </Text>
         </View>
         {/* <View> */}
-          <Text
-            style={{
-              color: 'green',
-              fontFamily: 'Segoe UI Semibold',
-              fontSize: 17,
-            }}>
-            {data.amount}
-          </Text>
+        <Text
+          style={{
+            color: isWallet
+              ? walletData?.status === 'success'
+                ? 'green'
+                : 'red'
+              : bookingdata?.status === 'success'
+              ? 'green'
+              : 'red',
+            fontFamily: 'Segoe UI Semibold',
+            fontSize: 17,
+          }}>
+          {isWallet ? '₹' + walletData?.amount : '₹' + bookingdata?.amount}
+        </Text>
         {/* </View> */}
       </View>
     </Card>
@@ -65,6 +77,6 @@ const style = StyleSheet.create({
   titlecontainer: {
     display: 'flex',
     flexDirection: 'column',
-    width: '90%'
+    width: '90%',
   },
 });

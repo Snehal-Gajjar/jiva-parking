@@ -1,8 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
+import {AuthService} from '../../api/services';
+import { toastShow } from '../../utils/Toast';
+import { ProfileUser } from '../../utils/types';
 
 export const WalletCard = () => {
+  const [user, setUser] = useState<ProfileUser>();
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  const getUser = () => {
+    AuthService.Profile()
+      .then((result) => {
+        setUser(result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        toastShow('error', err.message);
+      });
+  };
+  
   return (
     <View style={styles.container}>
       <View style={styles.balanceContainer}>
@@ -22,7 +41,7 @@ export const WalletCard = () => {
             fontFamily: 'Segoe UI Semibold',
             textTransform: 'capitalize',
           }}>
-          ₹ 5000
+          ₹ {user?.wallet_amount}
         </Text>
       </View>
       <View style={styles.addContainer}>

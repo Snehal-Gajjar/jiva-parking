@@ -29,6 +29,8 @@ pod 'react-native-google-maps', :path => rn_maps_path
 
   pod 'RNReactNativePdfLib', :path => '../node_modules/react-native-pdf-lib'
 
+  pod 'react-native-razorpay', :path => '../node_modules/react-native-razorpay'
+
   target 'jivaParkingTests' do
     inherit! :complete
     # Pods for testing

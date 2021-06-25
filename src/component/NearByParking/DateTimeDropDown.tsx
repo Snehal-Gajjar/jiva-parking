@@ -35,31 +35,10 @@ export const DateTimeDrp: FC<Props> = ({
         mode="dropdown">
         {items
           ? items.map((val) => (
-              <Picker.Item label={val.label} value={val.value} />
+              <Picker.Item label={val.value.toString()} value={val.label} />
             ))
           : children}
       </Picker>
-      {/* <DropDownPicker
-        items={items}
-        defaultValue={defaultValue}
-        containerStyle={{
-          height: 40,
-        }}
-        style={{
-          backgroundColor: '#fff',
-          borderWidth: 1,
-          borderRadius: 20,
-          margin:10
-        }}
-        itemStyle={{
-          justifyContent: 'flex-start',
-          backgroundColor: '#fff',
-        }}
-        zIndex={999}
-        zIndexInverse={6000}
-        dropDownStyle={{backgroundColor: '#fff'}}
-        onChangeItem={onChangeItem}
-      /> */}
     </View>
   );
 };

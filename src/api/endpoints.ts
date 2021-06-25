@@ -38,6 +38,10 @@ export const profile = (): string => {
     return '/profile'
 }
 
+export const transaction_add = (): string => {
+    return '/transaction_add'
+}
+
 export const near_parking = (): string => {
     return '/near_parking'
 }
@@ -66,6 +70,10 @@ export const advertisement = (): string => {
     return '/advertisement'
 }
 
-export const wallet_history = ():string => {
+export const wallet_history = (): string => {
     return '/wallet_history'
+}
+
+export const booking_history = (): string => {
+    return '/booking_history'
 }

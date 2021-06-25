@@ -44,6 +44,7 @@ export type CarList = AddCarDetail & PUC & Insurance & {
 export type ProfileUser = {
     id: string
     photo?: string
+    wallet_amount: string
 } & Register
 
 export interface NearByFilter {
@@ -107,7 +108,7 @@ export interface Notification {
     title: string,
     notification_content: string
     id: string
-    sending_schedule:string
+    sending_schedule: string
 }
 
 export interface ParkingOptions {
@@ -128,13 +129,27 @@ export type PaymentDetail = {
     extra_facilities: number,
     parking_charge: number,
     place_name: string,
-    parking_details: NearByParkingDetail & {aminities :Amenities[]},
+    parking_details: NearByParkingDetail & { aminities: Amenities[] },
     vehicle_details: { registration_no: string }[]
 }
 
 export interface BookingHistoryData {
     place: string
-    for_date: string
+    date: string
     amount: string
-    from_time: string
+    status: string
+    id: number
+}
+
+export interface WalletHistoryData {
+    title: string
+    date: string
+    amount: string
+    status: string
+    id: number
+}
+
+export interface TransactionParams {
+    amount: string
+    source: string
 }

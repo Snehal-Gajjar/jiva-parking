@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.razorpay.rn.RazorpayPackage;
 import com.hopding.pdflib.PDFLibPackage;
 import com.anyline.RNImageToPDF.RNImageToPdfPackage;
 import com.brentvatne.react.ReactVideoPackage;
