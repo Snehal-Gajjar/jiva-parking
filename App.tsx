@@ -20,6 +20,7 @@ import {AddCar} from './src/screen/CarDetail/AddCar';
 import {DetailPage} from './src/screen/NearByParking/DetailPage';
 import {SlotScreen} from './src/screen/NearByParking/SlotScreen';
 import { PaymentScreen } from './src/screen/NearByParking/PaymentScreen';
+import { WalletPaymentScreen } from './src/screen/WalletPaymentScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -101,10 +102,8 @@ const App = () => {
                   <Stack.Screen
                     name="AddCar"
                     component={AddCar}
-                    initialParams={{
-                      edit: false,
-                    }}
                   />
+                  <Stack.Screen name="WalletPaymentScreen" component={WalletPaymentScreen}/>
                 </>
               )}
             </Stack.Navigator>

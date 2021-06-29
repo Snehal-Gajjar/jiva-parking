@@ -40,6 +40,7 @@ export const DetailPage: FC<Props> = ({navigation, route}) => {
     <ScrollView
       style={{
         flex: 1,
+        backgroundColor:'white'
       }}>
       <HeaderContainer isMargin {...{navigation}} />
       <View

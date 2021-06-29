@@ -153,3 +153,14 @@ export interface TransactionParams {
     amount: string
     source: string
 }
+
+export interface TransactionUpdateParams {
+    source_detail: {
+        order_id: string,
+        razorpay_payment_id: string,
+        razorpay_order_id: string,
+        razorpay_signature: string
+    },
+    id: string,
+    status: 'success' | 'pending'
+}

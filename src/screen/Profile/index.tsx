@@ -57,7 +57,7 @@ export const Profile: FC<Props> = ({navigation}) => {
         <Text style={ProfileStyle.phoneTxt}>{user && user.phone}</Text>
       </View>
       <View style={{margin: 15}}>
-        <WalletCard />
+        <WalletCard {...{navigation}} />
       </View>
       <View style={ProfileStyle.mainiconcontainer}>
         <TouchableOpacity

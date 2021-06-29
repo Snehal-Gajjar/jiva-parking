@@ -1,5 +1,5 @@
 import { AUTHSCREENS, DRAWER, SCREENS } from "./Routes";
-import { CarList, NearByParkingDetailParams, PaymentDetailParams } from "./types";
+import { CarList, NearByParkingDetailParams, PaymentDetailParams, ProfileUser } from "./types";
 
 export type RootDrawerParamList = {
     SignOut: undefined
@@ -17,4 +17,9 @@ export type RootStackParamList = {
         DetailPage: NearByParkingDetailParams,
         MapScreen: { parking_id: string },
         PaymentScreen: PaymentDetailParams,
+        WalletPaymentScreen: { user: {
+            wallet_amount:string,
+            name:string,
+            contact: string
+        } }
     };

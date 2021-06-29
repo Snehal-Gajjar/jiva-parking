@@ -42,6 +42,10 @@ export const transaction_add = (): string => {
     return '/transaction_add'
 }
 
+export const transaction_update = (): string => {
+    return '/transaction_update'
+}
+
 export const near_parking = (): string => {
     return '/near_parking'
 }

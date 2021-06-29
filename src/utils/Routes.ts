@@ -2,9 +2,6 @@ import { CarDetail } from "../screen/CarDetail"
 import { Dashboard } from "../screen/Dashboard"
 import { Login } from "../screen/Login"
 import { NearByParking } from "../screen/NearByParking"
-import { DetailPage } from "../screen/NearByParking/DetailPage"
-import { SlotScreen } from "../screen/NearByParking/SlotScreen"
-import { PaymentScreen } from "../screen/NearByParking/PaymentScreen"
 import { Scanning } from "../screen/Scanning"
 import { SignUp } from "../screen/SignUp"
 import { Wallet } from "../screen/Wallet"
@@ -14,6 +11,7 @@ import React from "react"
 import { Profile } from "../screen/Profile"
 import { NotificationScreen } from "../screen/NotificationScreen"
 import { BookingHistoryScreen } from "../screen/BookingHistoryScreen"
+import { WalletPaymentScreen } from "../screen/WalletPaymentScreen"
 
 
 export const SCREENS = {
@@ -24,7 +22,7 @@ export const SCREENS = {
     CarDetail: { title: 'CarDetail', component: CarDetail },
     Profile: { title: 'Profile', component: Profile },
     BookingHistory: { title: 'BookingHistory', component: BookingHistoryScreen },
-    Notification: { title: 'Notification', component: NotificationScreen }
+    Notification: { title: 'Notification', component: NotificationScreen },
 }
 
 export const AUTHSCREENS = {

@@ -3,7 +3,7 @@ import React, {FC, useEffect} from 'react';
 import {Text, View} from 'react-native';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {WalletCard} from '../../component/common/WalletCard';
-import { WalletHistory } from '../../component/Wallet/WalletHistory';
+import {WalletHistory} from '../../component/Wallet/WalletHistory';
 import {RootStackParamList} from '../../utils/NavigationTypes';
 
 type Props = {
@@ -20,7 +20,7 @@ export const Wallet: FC<Props> = ({navigation}) => {
     <View style={{flex: 1}}>
       <HeaderContainer title="Car Detail" {...{navigation}} />
       <View style={{margin: 15}}>
-        <WalletCard />
+        <WalletCard {...{navigation}} />
       </View>
       <View style={{marginLeft: 15}}>
         <Text style={{color: '#000', fontFamily: 'Segoe UI', fontSize: 16}}>

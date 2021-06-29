@@ -154,6 +154,7 @@ export const NearByParking: FC<Props> = ({navigation}) => {
               size={20}
             />
           }
+          onPress={() => setVisible(true)}
           containerStyle={NearByParkingStyle.iconContainer}></Button>
       </View>
       <View style={{flex: 1}}>

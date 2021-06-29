@@ -4,7 +4,7 @@ let MASTER_OTP: string;
 
 MASTER_OTP = '030621'
 
-REST_ENDPOINT = "http://parkaro.orbitz.tech/api"
+REST_ENDPOINT = "http://parkaro.orbitz.host/api"
 
 const Config = {
     REST_ENDPOINT,

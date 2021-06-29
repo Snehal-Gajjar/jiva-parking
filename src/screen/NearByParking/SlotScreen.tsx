@@ -13,6 +13,7 @@ import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {CalendarView} from '../../component/NearByParking/CalendarView';
 import {DateTimeDrp} from '../../component/NearByParking/DateTimeDropDown';
 import {FloorSelections} from '../../component/NearByParking/FloorSelections';
+import Config from '../../utils/apiConfig';
 import {RootStackParamList} from '../../utils/NavigationTypes';
 import {toastShow} from '../../utils/Toast';
 import {ParkingOptions} from '../../utils/types';
@@ -24,6 +25,19 @@ type Props = {
 };
 
 export const SlotScreen: FC<Props> = ({navigation, route}) => {
+  const runFirst = `
+      document.body.style.backgroundColor = 'green';
+      setTimeout(function() { window.alert(JSON.stringify([
+             'Javascript',
+             'React',
+             'React Naitve',
+             'graphql',
+             'Typescript',
+             'Webpack',
+             'Node js',
+          ])) }, 1000);
+      true; // note: this is required, or you'll sometimes get silent failures
+    `;
   const parking_id = route.params.parking_id;
   const [parkingOptions, setParkingOptions] = useState<ParkingOptions>();
   const WEBVIEW_REF = React.createRef<WebView>();
@@ -88,9 +102,10 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
           renderToHardwareTextureAndroid={true}>
           <WebView
             ref={WEBVIEW_REF}
-            source={{uri: 'http://parkaro.orbitz.tech/api'}}
+            source={{uri: Config.REST_ENDPOINT}}
             incognito
             androidHardwareAccelerationDisabled={true}
+            injectedJavaScript={runFirst}
           />
         </View>
       </View>

@@ -1,11 +1,17 @@
+import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import {AuthService} from '../../api/services';
-import { toastShow } from '../../utils/Toast';
-import { ProfileUser } from '../../utils/types';
+import {RootStackParamList} from '../../utils/NavigationTypes';
+import {toastShow} from '../../utils/Toast';
+import {ProfileUser} from '../../utils/types';
 
-export const WalletCard = () => {
+type Props = {
+  navigation: StackNavigationProp<RootStackParamList>;
+};
+
+export const WalletCard = ({navigation}: Props) => {
   const [user, setUser] = useState<ProfileUser>();
   useEffect(() => {
     getUser();
@@ -21,7 +27,17 @@ export const WalletCard = () => {
         toastShow('error', err.message);
       });
   };
-  
+
+  const handleAddAmount = () => {
+    navigation.navigate('WalletPaymentScreen', {
+      user: {
+        wallet_amount: user ? user.wallet_amount : '0',
+        name: user ? user.full_name : '',
+        contact: user ?user.phone : ''
+      },
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.balanceContainer}>
@@ -44,7 +60,10 @@ export const WalletCard = () => {
           ₹ {user?.wallet_amount}
         </Text>
       </View>
-      <View style={styles.addContainer}>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        style={styles.addContainer}
+        onPress={handleAddAmount}>
         <View
           style={{
             height: 30,
@@ -64,7 +83,7 @@ export const WalletCard = () => {
           }}>
           Add Money
         </Text>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
