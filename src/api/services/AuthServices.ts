@@ -24,11 +24,3 @@ export const notifications = () => {
 export const getAdvertisement = () => {
     return Config(advertisement(), 'POST')
 }
-
-export const bookinghistory = () => {
-    return Config(booking_history(), 'POST')
-}
-
-export const wallethistory = () => {
-    return Config(wallet_history(), 'POST')
-}

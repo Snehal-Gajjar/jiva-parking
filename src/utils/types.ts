@@ -164,3 +164,15 @@ export interface TransactionUpdateParams {
     id: string,
     status: 'success' | 'pending'
 }
+
+export interface BookingParams {
+    booking_id?: string,
+    parking_id: string,
+    floor_id: string,
+    spot_id: string,
+    for_date: Date,
+    for_time: number,
+    from_time: any,
+    amount: string,
+    status: 'pending' | 'booked'
+}

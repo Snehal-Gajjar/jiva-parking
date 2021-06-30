@@ -2,7 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import {useEffect} from 'react';
 import {ScrollView, View} from 'react-native';
-import {AuthService} from '../../api/services';
+import {BookingService} from '../../api/services';
 import {toastShow} from '../../utils/Toast';
 import {BookingHistoryData} from '../../utils/types';
 import {BookingItem} from './BookingItem';
@@ -14,7 +14,7 @@ export const BookingHistory = () => {
   }, []);
 
   const getBookingHistory = () => {
-    AuthService.bookinghistory()
+    BookingService.bookinghistory()
       .then((result) => setHistory(result.data))
       .catch((err) => toastShow('error', err.message));
   };

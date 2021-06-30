@@ -81,3 +81,11 @@ export const wallet_history = (): string => {
 export const booking_history = (): string => {
     return '/booking_history'
 }
+
+export const booking_add = ():string => {
+    return '/booking_add'
+}
+
+export const booking_update = ():string => {
+    return '/booking_update'
+}

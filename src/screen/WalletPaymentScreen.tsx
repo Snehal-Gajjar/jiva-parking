@@ -31,7 +31,7 @@ export const WalletPaymentScreen: FC<Props> = ({navigation, route}) => {
     WalletService.AddTransaction({amount: payAmount, source: 'razorpay'})
       .then((result) => {
         const orderId = JSON.parse(result.data.source_detail);
-        const amount = result.data.amount * 100;
+        const amount = parseInt(result.data.amount) * 100;
         console.log(amount);
         var options = {
           description: 'Parkaro Wallet',
@@ -53,6 +53,7 @@ export const WalletPaymentScreen: FC<Props> = ({navigation, route}) => {
         };
         RazorpayCheckout.open(options)
           .then((data: any) => {
+            console.log(data)
             setLoading(false);
             updateTransaction({
               id: result.data.id,

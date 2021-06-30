@@ -2,7 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import {useEffect} from 'react';
 import {ScrollView, View} from 'react-native';
-import {AuthService} from '../../api/services';
+import {WalletService} from '../../api/services';
 import {toastShow} from '../../utils/Toast';
 import {WalletHistoryData} from '../../utils/types';
 import {BookingItem} from './BookingItem';
@@ -14,7 +14,7 @@ export const WalletHistory = () => {
   }, []);
 
   const getBookingHistory = () => {
-    AuthService.wallethistory()
+    WalletService.wallethistory()
       .then((result) => setHistory(result.data))
       .catch((err) => toastShow('error', err.message));
   };
