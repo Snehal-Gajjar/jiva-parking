@@ -27,15 +27,17 @@ let floors = [
 
 type Props = {
   floors: string[];
+  handleFloorId:(id:string) => void
 };
 
-export const FloorSelections: FC<Props> = ({floors}) => {
+export const FloorSelections: FC<Props> = ({floors, handleFloorId}) => {
   const [floorData, setFloorData] = useState<
     {floor: string; selected: boolean}[]
   >([]);
   const handleSelection = (i: {floor: string; selected: boolean}) => {
     floorData.map((val) => {
       if (val === i) {
+        handleFloorId(val.floor)
         val.selected = true;
       } else {
         val.selected = false;
@@ -47,6 +49,7 @@ export const FloorSelections: FC<Props> = ({floors}) => {
   useEffect(() => {
     const changeData = floors.map((obj, index) => {
       if (index === 0) {
+        handleFloorId(obj)
         return {floor: obj, selected: true};
       }
       return {floor: obj, selected: false};

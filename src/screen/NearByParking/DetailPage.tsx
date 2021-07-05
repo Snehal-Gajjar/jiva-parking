@@ -32,7 +32,10 @@ export const DetailPage: FC<Props> = ({navigation, route}) => {
 
   const getParkDetail = () => {
     NearByParkingService.NearByParkingDetails({id, lat, long})
-      .then((result) => setParkDetail(result.data))
+      .then((result) => {
+        console.log(result.data);
+        setParkDetail(result.data);
+      })
       .catch((err) => toastShow('error', err.message));
   };
 
@@ -40,7 +43,7 @@ export const DetailPage: FC<Props> = ({navigation, route}) => {
     <ScrollView
       style={{
         flex: 1,
-        backgroundColor:'white'
+        backgroundColor: 'white',
       }}>
       <HeaderContainer isMargin {...{navigation}} />
       <View
@@ -72,6 +75,8 @@ export const DetailPage: FC<Props> = ({navigation, route}) => {
             e.preventDefault();
             navigation.navigate('MapScreen', {
               parking_id: parkDetail ? parkDetail.id : '',
+              lat: lat,
+              long: long,
             });
           }}
           buttonStyle={DetailStyle.btnPick}

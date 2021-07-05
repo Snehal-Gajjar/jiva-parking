@@ -56,18 +56,18 @@ export const Profile: FC<Props> = ({navigation}) => {
         <Text style={ProfileStyle.phoneTxt}>{user && user.full_name}</Text>
         <Text style={ProfileStyle.phoneTxt}>{user && user.phone}</Text>
       </View>
-      <View style={{margin: 15}}>
+      <View style={{margin: 8}}>
         <WalletCard {...{navigation}} />
       </View>
       <View style={ProfileStyle.mainiconcontainer}>
         <TouchableOpacity
-          activeOpacity={1}
+          activeOpacity={0.5}
           style={ProfileStyle.iconContianer}
           onPress={() => navigation.navigate('BookingHistory')}>
           <View style={ProfileStyle.iconCircle}>
             <Icon
               name="ticket-confirmation-outline"
-              size={25}
+              size={20}
               type="material-community"
               color="#065591"
             />
@@ -75,13 +75,13 @@ export const Profile: FC<Props> = ({navigation}) => {
           <Text style={ProfileStyle.title}>My booking</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          activeOpacity={1}
+          activeOpacity={0.5}
           style={ProfileStyle.iconContianer}
           onPress={() => navigation.navigate('Notification')}>
           <View style={ProfileStyle.iconCircle}>
             <Icon
               name="notifications-outline"
-              size={25}
+              size={20}
               type="ionicon"
               color="#065591"
             />

@@ -33,7 +33,7 @@ export const WalletCard = ({navigation}: Props) => {
       user: {
         wallet_amount: user ? user.wallet_amount : '0',
         name: user ? user.full_name : '',
-        contact: user ?user.phone : ''
+        contact: user ? user.phone : '',
       },
     });
   };

@@ -45,7 +45,6 @@ export const SignUp: FC<Props> = ({navigation}) => {
     setLoading(true);
     AuthService.RegisterUser(values)
       .then((result) => {
-        console.log(`ASTHA ${JSON.stringify(result)}`);
         const {
           data: {token},
         } = result;

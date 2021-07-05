@@ -12,12 +12,16 @@ import Geolocation from '@react-native-community/geolocation';
 import {NearByParkingService} from '../../api/services';
 import {MarkerData} from '../../utils/types';
 import {toastShow} from '../../utils/Toast';
+import {RouteProp} from '@react-navigation/native';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList, 'NearByParking'>;
 };
 
-export const NearByParking: FC<Props> = ({navigation}) => {
+export const NearByParking: FC<Props> = ({navigation, route}) => {
+  const {latlongdata} = route.params;
+  // const [isSearchFilter, setSearchFilter] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [filterVisible, setFilterVisible] = useState<boolean>(false);
   const [search, setSearch] = useState<string>('');
@@ -26,7 +30,7 @@ export const NearByParking: FC<Props> = ({navigation}) => {
   const [latlong, setLatlong] = useState<{
     lat: number;
     long: number;
-  }>({lat: 23.036406, long: 72.561066});
+  }>(latlongdata);
 
   const {lat, long} = latlong;
 
@@ -46,8 +50,8 @@ export const NearByParking: FC<Props> = ({navigation}) => {
     if (data) {
       navigation.navigate('DetailPage', {
         id: data.id,
-        lat: data.latitude,
-        long: data.longitude,
+        lat: latlong.lat.toString(),
+        long: latlong.long.toString(),
       });
     }
     handleClose();
@@ -62,6 +66,7 @@ export const NearByParking: FC<Props> = ({navigation}) => {
     roof: 'open' | 'close',
     use: 'personal' | 'event',
   ) => {
+    // setSearchFilter(true);
     getNearByParking(search, checkedId, roof, use);
     handleClose('filter');
   };
@@ -70,19 +75,6 @@ export const NearByParking: FC<Props> = ({navigation}) => {
     navigation.setOptions({
       headerShown: false,
     });
-    Geolocation.getCurrentPosition(
-      (position) => {
-        const initialPosition = JSON.stringify(position);
-        setLatlong({
-          lat: position.coords.latitude,
-          long: position.coords.longitude,
-        });
-        getNearByParking();
-        console.log(initialPosition);
-      },
-      (error) => console.log(error),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
-    );
     getNearByParking();
   }, []);
 
@@ -112,6 +104,11 @@ export const NearByParking: FC<Props> = ({navigation}) => {
   };
 
   const handleSearchBtn = () => {
+    // if (search.length > 0) {
+    //   setSearchFilter(true);
+    // } else {
+    //   setSearchFilter(false);
+    // }
     getNearByParking(search);
   };
 
@@ -154,7 +151,6 @@ export const NearByParking: FC<Props> = ({navigation}) => {
               size={20}
             />
           }
-          onPress={() => setVisible(true)}
           containerStyle={NearByParkingStyle.iconContainer}></Button>
       </View>
       <View style={{flex: 1}}>
@@ -164,8 +160,8 @@ export const NearByParking: FC<Props> = ({navigation}) => {
           showsUserLocation={true}
           showsMyLocationButton={true}
           initialRegion={{
-            latitude: 23.0195,
-            longitude: 72.5922,
+            latitude: latlong.lat,
+            longitude: latlong.long,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}

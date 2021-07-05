@@ -23,7 +23,6 @@ export const VehicleBrand = ({onChangeItem, defaultValue}: Props) => {
         setMaker(result.data);
       })
       .catch((error) => {
-        console.log(error);
         toastShow('error', error.message);
       });
   };

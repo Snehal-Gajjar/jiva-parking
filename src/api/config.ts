@@ -8,6 +8,7 @@ export default async (url: string, method?: Method, data?: any, auth?: boolean) 
     if (!auth) {
         const user = await extractCurrentUser()
         if (user) token = user.token as string
+        console.log(token)
     }
 
     let requestData = {
@@ -22,7 +23,6 @@ export default async (url: string, method?: Method, data?: any, auth?: boolean) 
                 data
             },
         }).then((response) => {
-            console.log(response.data)
             if (response.data.status && response.data.status === 'success') {
                 return response.data
             } else {
@@ -39,8 +39,8 @@ export default async (url: string, method?: Method, data?: any, auth?: boolean) 
         data: JSON.stringify(requestData),
         method: method
     }).then((response) => {
-        console.log(response.data)
         if (response.data.status && response.data.status === 'success') {
+            console.log((response.data))
             return Promise.resolve(response.data)
         } else if (response.data.status && response.data.status === 'error') {
             return Promise.reject(response.data)

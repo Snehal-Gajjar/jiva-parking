@@ -7,7 +7,7 @@ export const getInitialValue: (detail?: CarList) => AddCarDetail = (detail) => (
     vehicle_category_id: detail ? detail.vehicle_category_id : '',
     vehicle_brand_id: detail ? detail.vehicle_brand_id : '',
     vehicle_model_id: detail ? detail.vehicle_model_id : '',
-    fuel_type: detail ? detail.fuel_type : 'Fuel'
+    fuel_type: detail ? detail.fuel_type : ''
 })
 
 export const commonValidationSchema = yup.object().shape({

@@ -19,8 +19,10 @@ import {CurrentUser, extractCurrentUser, NULL_USER} from './src/utils/auth';
 import {AddCar} from './src/screen/CarDetail/AddCar';
 import {DetailPage} from './src/screen/NearByParking/DetailPage';
 import {SlotScreen} from './src/screen/NearByParking/SlotScreen';
-import { PaymentScreen } from './src/screen/NearByParking/PaymentScreen';
-import { WalletPaymentScreen } from './src/screen/WalletPaymentScreen';
+import {PaymentScreen} from './src/screen/NearByParking/PaymentScreen';
+import {WalletPaymentScreen} from './src/screen/WalletPaymentScreen';
+import {BookingPaymentScreen} from './src/screen/NearByParking/BookingPayementScreen';
+import {NearByParking} from './src/screen/NearByParking';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -94,16 +96,24 @@ const App = () => {
               {currentUser.loggedIn && (
                 <>
                   <Stack.Screen
+                    name="NearByParking"
+                    component={NearByParking}
+                  />
+                  <Stack.Screen
                     name="PaymentScreen"
                     component={PaymentScreen}
                   />
                   <Stack.Screen name="DetailPage" component={DetailPage} />
                   <Stack.Screen name="MapScreen" component={SlotScreen} />
+                  <Stack.Screen name="AddCar" component={AddCar} />
                   <Stack.Screen
-                    name="AddCar"
-                    component={AddCar}
+                    name="BookingPaymentScreen"
+                    component={BookingPaymentScreen}
                   />
-                  <Stack.Screen name="WalletPaymentScreen" component={WalletPaymentScreen}/>
+                  <Stack.Screen
+                    name="WalletPaymentScreen"
+                    component={WalletPaymentScreen}
+                  />
                 </>
               )}
             </Stack.Navigator>

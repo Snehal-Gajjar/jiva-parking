@@ -40,10 +40,12 @@ export const BottomCarousel = () => {
   };
 
   const _renderItem = (item: Advertisement) => {
-    console.log(item.content)
     return (
       <View style={BottomCarouselStyle.slideContainer}>
-        <Image source={require('../../assets/images/bottom.png')} style={BottomCarouselStyle.slideImage} />
+        <Image
+          source={{uri: item.content}}
+          style={BottomCarouselStyle.slideImage}
+        />
       </View>
     );
   };

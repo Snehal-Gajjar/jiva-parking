@@ -13,6 +13,7 @@ import {
 } from '../endpoints';
 
 export const NearByParking = (data: NearByFilter) => {
+  console.log(data)
   return Config(near_parking(), 'POST', data);
 };
 
@@ -21,13 +22,16 @@ export const Amenities = () => {
 };
 
 export const NearByParkingDetails = (data: NearByParkingDetailParams) => {
-  return Config(parking_detail(data.id), 'GET', data);
+  console.log(data);
+  return Config(parking_detail(data.id), 'POST', data);
 };
 
 export const ParkingOptions = (parking_id: string) => {
+  console.log(parking_id);
   return Config(parking_option(), 'POST', {parking_id: parking_id});
 };
 
 export const PaymentDetail = (data: PaymentDetailParams) => {
+  console.log(data);
   return Config(payment_detail(), 'POST', data);
 };

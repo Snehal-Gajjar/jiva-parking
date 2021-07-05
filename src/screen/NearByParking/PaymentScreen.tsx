@@ -3,14 +3,14 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import {Button, CheckBox, Divider} from 'react-native-elements';
-import {NearByParkingService} from '../../api/services';
+import {AuthService, NearByParkingService} from '../../api/services';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
 import {AmenitiesList} from '../../component/NearByParking/AmenitiesList';
 import {CarDropDown} from '../../component/NearByParking/CarDropDown';
 import {DetailContainer} from '../../component/NearByParking/DetailContainer';
 import {RootStackParamList} from '../../utils/NavigationTypes';
 import {toastShow} from '../../utils/Toast';
-import {PaymentDetail} from '../../utils/types';
+import {PaymentDetail, ProfileUser} from '../../utils/types';
 import {PaymentStyle} from './styles';
 
 type Props = {
@@ -19,24 +19,59 @@ type Props = {
 };
 
 export const PaymentScreen: FC<Props> = ({navigation, route}) => {
-  const {parking_id, for_time} = route.params;
+  const {parking_id, for_time, is_vip, lat, long} = route.params;
   const [paymentDetail, setPaymentDetail] = useState<PaymentDetail>();
   const [selectedCar, setSelectedCar] = useState<string>('GJ01');
+  const [user, setUser] = useState<ProfileUser>();
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
     getPaymentDetail();
+    getUser();
   }, []);
 
   const getPaymentDetail = () => {
-    NearByParkingService.PaymentDetail({parking_id, for_time})
-      .then((result) => setPaymentDetail(result.data))
+    NearByParkingService.PaymentDetail({
+      parking_id,
+      for_time,
+      is_vip,
+      lat,
+      long,
+    })
+      .then((result) => {
+        console.log(result);
+        setPaymentDetail(result.data);
+      })
       .catch((err) => toastShow('error', err.message));
+  };
+  const getUser = () => {
+    AuthService.Profile()
+      .then((result) => {
+        setUser(result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        toastShow('error', err.message);
+      });
+  };
+
+  const handlePayAmount = () => {
+    navigation.navigate('BookingPaymentScreen', {
+      booking: {
+        ...route.params,
+        amount: paymentDetail?.total.toString() as string,
+      },
+      user: {
+        wallet_amount: user ? user.wallet_amount : '0',
+        name: user ? user.full_name : '',
+        contact: user ? user.phone : '',
+      },
+    });
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <HeaderContainer isMargin {...{navigation}} />
       <View
         style={{
@@ -52,7 +87,7 @@ export const PaymentScreen: FC<Props> = ({navigation, route}) => {
             marginTop: 5,
           }}
           title="VIP Parking"
-          checked={paymentDetail?.is_vip === 0}
+          checked={paymentDetail?.is_vip === 1}
         />
         <View>
           <Text style={PaymentStyle.titleStyle}>Amenities</Text>
@@ -89,7 +124,11 @@ export const PaymentScreen: FC<Props> = ({navigation, route}) => {
             </View>
           </View>
         </View>
-        <Button title="Pay Amount" buttonStyle={PaymentStyle.btnPick} />
+        <Button
+          title="Pay Amount"
+          buttonStyle={PaymentStyle.btnPick}
+          onPress={handlePayAmount}
+        />
       </View>
     </View>
   );

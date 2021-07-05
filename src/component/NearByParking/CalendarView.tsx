@@ -5,14 +5,16 @@ import moment from 'moment';
 
 type Props = {
   type: 'date' | 'time';
+  handleDateTime: (type: 'date' | 'time', date: Date) => void;
 };
 
-export const CalendarView = ({type}: Props) => {
+export const CalendarView = ({type, handleDateTime}: Props) => {
   const [show, setShow] = useState<boolean>(false);
   const [date, setDate] = useState(new Date());
   const onChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
+    handleDateTime(type, currentDate);
     setDate(currentDate);
   };
   return (

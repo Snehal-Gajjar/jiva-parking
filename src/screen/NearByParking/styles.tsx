@@ -40,6 +40,7 @@ export const DetailStyle = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 2,
     fontSize: 15,
+    marginBottom: 15,
   },
 });
 
@@ -49,6 +50,7 @@ export const MapScreenStyle = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 2,
     fontSize: 15,
+    marginBottom: 15,
   },
 });
 
@@ -84,5 +86,6 @@ export const PaymentStyle = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 2,
     fontSize: 15,
+    marginBottom: 15,
   },
 });

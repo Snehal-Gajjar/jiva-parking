@@ -44,11 +44,12 @@ export const BookingItem = ({walletData, bookingdata, type}: Props) => {
               ? walletData?.status === 'success'
                 ? 'green'
                 : 'red'
-              : bookingdata?.status === 'success'
+              : bookingdata?.status === 'booked'
               ? 'green'
               : 'red',
             fontFamily: 'Segoe UI Semibold',
             fontSize: 17,
+            textAlign: 'right',
           }}>
           {isWallet ? '₹' + walletData?.amount : '₹' + bookingdata?.amount}
         </Text>
@@ -77,6 +78,6 @@ const style = StyleSheet.create({
   titlecontainer: {
     display: 'flex',
     flexDirection: 'column',
-    width: '90%',
+    width: '85%',
   },
 });

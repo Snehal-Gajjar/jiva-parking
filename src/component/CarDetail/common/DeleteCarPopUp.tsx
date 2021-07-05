@@ -28,7 +28,6 @@ export const DeleteCarPopUp = ({
     carId &&
       CarService.deleteCar(carId)
         .then((result) => {
-          console.log(`ASTHA ${JSON.stringify(result)}`);
           setloading(false);
           handleClose();
           getCars();
@@ -36,7 +35,6 @@ export const DeleteCarPopUp = ({
         })
         .catch((error) => {
           setloading(false);
-          console.log(error);
           handleClose();
           toastShow('error', error.message);
         });

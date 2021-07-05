@@ -12,7 +12,7 @@ export interface AddCarDetail {
     vehicle_category_id?: string,
     vehicle_brand_id?: string
     vehicle_model_id?: string,
-    fuel_type?: 'Fuel' | 'Petrol' | 'Diesel' | 'CNG' | 'LPG' | 'Electric'
+    fuel_type?: string
 }
 
 export interface PUC {
@@ -120,6 +120,9 @@ export interface ParkingOptions {
 export interface PaymentDetailParams {
     parking_id: string
     for_time: string
+    is_vip: '1' | '0'
+    lat: string,
+    long: string
 }
 
 export type PaymentDetail = {
@@ -155,12 +158,7 @@ export interface TransactionParams {
 }
 
 export interface TransactionUpdateParams {
-    source_detail: {
-        order_id: string,
-        razorpay_payment_id: string,
-        razorpay_order_id: string,
-        razorpay_signature: string
-    },
+    source_detail: string,
     id: string,
     status: 'success' | 'pending'
 }
@@ -170,8 +168,8 @@ export interface BookingParams {
     parking_id: string,
     floor_id: string,
     spot_id: string,
-    for_date: Date,
-    for_time: number,
+    for_date: string,
+    for_time: string,
     from_time: any,
     amount: string,
     status: 'pending' | 'booked'

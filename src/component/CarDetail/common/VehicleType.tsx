@@ -23,7 +23,6 @@ export const VehicleType = ({onChangeItem, defaultValue}: Props) => {
         setVehicleType(result.data);
       })
       .catch((error) => {
-        console.log(error);
         toastShow('error', error.message);
       });
   };

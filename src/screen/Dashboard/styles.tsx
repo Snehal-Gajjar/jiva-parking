@@ -6,8 +6,8 @@ export const DashboardStyle = StyleSheet.create({
     height: '30%',
     width: '101%',
     marginLeft: -2,
-    borderBottomLeftRadius: 250,
-    borderBottomRightRadius: 250,
+    borderBottomLeftRadius: 240,
+    borderBottomRightRadius: 240,
   },
   logoContainer: {
     display: 'flex',
@@ -15,8 +15,8 @@ export const DashboardStyle = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: 60,
+    height: 60,
     borderRadius: 20,
     borderWidth:0.5,
     borderColor:'#0655911A',

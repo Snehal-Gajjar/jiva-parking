@@ -52,7 +52,6 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
       ...insurance,
     })
       .then((result) => {
-        console.log(`ASTHA ${JSON.stringify(result)}`);
         handleClose();
         navigation.navigate('CarDetail');
       })
@@ -70,7 +69,6 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
       id,
     )
       .then((result) => {
-        console.log(result);
         toastShow('success', result.message);
         navigation.navigate('CarDetail');
       })
@@ -82,7 +80,7 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
 
   return (
     <View style={{flex: 1}}>
-      <ScrollView>
+      <ScrollView style={{flex: 1}}>
         <HeaderContainer {...{navigation}} />
         <View
           style={{

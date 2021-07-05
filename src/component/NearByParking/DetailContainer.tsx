@@ -10,6 +10,7 @@ type Props = {
 };
 
 export const DetailContainer: FC<Props> = ({showService, data}) => {
+  console.log('ASTHA detailContainer' + JSON.stringify(data));
   return (
     <View>
       <View style={styles.titleContainer}>

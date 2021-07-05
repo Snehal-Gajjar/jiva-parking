@@ -1,5 +1,5 @@
-import React, {FC, useEffect} from 'react';
-import {Image, Text, View} from 'react-native';
+import React, {FC, useEffect, useState} from 'react';
+import {Image, Text, View,ScrollView} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {BottomCarousel} from '../../component/Dashboard/BottomCarousel';
@@ -8,24 +8,45 @@ import {NavigationCard} from '../../component/Dashboard/NavigationCard';
 import {DashboardStyle} from './styles';
 import {RootStackParamList} from '../../utils/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
+import Geolocation from '@react-native-community/geolocation';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
 };
 
 export const Dashboard: FC<Props> = ({navigation}) => {
+  const [latlong, setLatlong] = useState<{
+    lat: number;
+    long: number;
+  }>({lat: 23.036406, long: 72.561066});
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
+    Geolocation.getCurrentPosition(
+      (position) => {
+        const initialPosition = JSON.stringify(position);
+        console.log(position);
+        setLatlong({
+          lat: position.coords.latitude,
+          long: position.coords.longitude,
+        });
+      },
+      (error) => console.log(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
   }, []);
 
   const handleNavPress = (name: any) => {
-    navigation.navigate(name);
+    if (name === 'NearByParking') {
+      navigation.navigate('NearByParking', {latlongdata: latlong});
+    } else {
+      navigation.navigate(name);
+    }
   };
 
   return (
-    <View style={{flex: 1, flexDirection: 'column'}}>
+    <ScrollView style={{flex: 1, flexDirection: 'column'}}>
       <View style={DashboardStyle.headerContainer}>
         <HeaderContainer {...{navigation}} />
         <View style={DashboardStyle.logoContainer}>
@@ -71,6 +92,6 @@ export const Dashboard: FC<Props> = ({navigation}) => {
           }></Button>
       </View>
       <BottomCarousel />
-    </View>
+    </ScrollView>
   );
 };

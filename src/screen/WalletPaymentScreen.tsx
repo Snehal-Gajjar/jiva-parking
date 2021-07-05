@@ -32,7 +32,6 @@ export const WalletPaymentScreen: FC<Props> = ({navigation, route}) => {
       .then((result) => {
         const orderId = JSON.parse(result.data.source_detail);
         const amount = parseInt(result.data.amount) * 100;
-        console.log(amount);
         var options = {
           description: 'Parkaro Wallet',
           currency: 'INR',
@@ -41,7 +40,7 @@ export const WalletPaymentScreen: FC<Props> = ({navigation, route}) => {
           name: 'Parkaro',
           order_id: orderId.order_id, //Replace this with an order_id created using Orders API.
           prefill: {
-            email: 'asthapatel302@gmail.com',
+            email: '',
             contact: contact,
             name: name,
           },
@@ -53,33 +52,20 @@ export const WalletPaymentScreen: FC<Props> = ({navigation, route}) => {
         };
         RazorpayCheckout.open(options)
           .then((data: any) => {
-            console.log(data)
             setLoading(false);
             updateTransaction({
               id: result.data.id,
-              source_detail: {
+              source_detail: JSON.stringify({
                 razorpay_order_id: data.razorpay_order_id,
                 razorpay_payment_id: data.razorpay_payment_id,
                 order_id: orderId.order_id,
                 razorpay_signature: data.razorpay_signature,
-              },
+              }),
               status: 'success',
             });
           })
           .catch((error: any) => {
             setLoading(false);
-            if (error.code === 0) {
-              updateTransaction({
-                id: result.data.id,
-                source_detail: {
-                  razorpay_order_id: '',
-                  razorpay_payment_id: '',
-                  order_id: orderId.order_id,
-                  razorpay_signature: '',
-                },
-                status: 'pending',
-              });
-            }
             // handle failure
             // alert(`Error: ${error.code} | ${error.description}`);
           });
@@ -91,17 +77,15 @@ export const WalletPaymentScreen: FC<Props> = ({navigation, route}) => {
   };
 
   const updateTransaction = (data: TransactionUpdateParams) => {
-    console.log(data);
     WalletService.UpdateTransaction(data)
       .then((result) => {
-        console.log(result)
-        if (result.data.status === 'success') {
+        if (result.data === 1) {
           navigation.navigate('Wallet');
         }
         toastShow('success', 'Payment Successfully done!');
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         toastShow('error', err.message);
       });
   };

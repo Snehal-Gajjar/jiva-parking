@@ -42,7 +42,6 @@ export const Login: FC<Props> = ({navigation}) => {
     setLoading(true);
     AuthService.LoginUser(values)
       .then((result) => {
-        console.log(`ASTHA ${JSON.stringify(result)}`);
         const {
           data: {token},
         } = result;
@@ -58,7 +57,6 @@ export const Login: FC<Props> = ({navigation}) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log('astha 3');
         console.log(error);
         setLoading(false);
         toastShow('error', error.message);

@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {View, Text, Image} from 'react-native';
 import {Button, Card} from 'react-native-elements';
 import {HeaderContainer} from '../../component/common/HeaderContainer';
@@ -7,17 +7,24 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import QrCodeCamera from '../../component/Dashboard/QrCodeCamera';
 import {RootStackParamList} from '../../utils/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
+import Torch from "react-native-torch";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
 };
 
 export const Scanning: FC<Props> = ({navigation}) => {
+  const [isTorchOn, setIsTorchOn] = useState(false);
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
+
+  const handlePress = () => {
+    Torch.switchState(!isTorchOn);
+    setIsTorchOn(!isTorchOn);
+  };
 
   return (
     <View style={{flex: 1}}>
@@ -58,6 +65,7 @@ export const Scanning: FC<Props> = ({navigation}) => {
               source={require('../../assets/images/torch.png')}
               style={ScanningStyle.btnImage}></Image>
           }
+          onPress={handlePress}
           containerStyle={ScanningStyle.torchContainer}></Button>
         <Button
           title="Scan Car QR"

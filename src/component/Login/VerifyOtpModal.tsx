@@ -58,8 +58,6 @@ export const VerifyOtpModal: FC<Props> = ({
             style={styles.otpInput}
             placeholder="3-4-5-6-7-8"
             onChangeText={(formatted, extracted) => {
-              console.log(formatted); // +1 (123) 456-78-90
-              console.log(extracted); // 1234567890
               setOtp(extracted);
             }}
             value={otp}

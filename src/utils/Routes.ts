@@ -17,7 +17,6 @@ import { WalletPaymentScreen } from "../screen/WalletPaymentScreen"
 export const SCREENS = {
     Dashboard: { title: 'Dashboard', component: Dashboard },
     Scanning: { title: 'Scanning', component: Scanning },
-    NearByParking: { title: 'NearByParking', component: NearByParking },
     Wallet: { title: 'Wallet', component: Wallet },
     CarDetail: { title: 'CarDetail', component: CarDetail },
     Profile: { title: 'Profile', component: Profile },

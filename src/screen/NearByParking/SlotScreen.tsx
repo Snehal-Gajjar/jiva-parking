@@ -26,19 +26,22 @@ type Props = {
 
 export const SlotScreen: FC<Props> = ({navigation, route}) => {
   const runFirst = `
-      document.body.style.backgroundColor = 'green';
-      setTimeout(function() { window.alert(JSON.stringify([
-             'Javascript',
-             'React',
-             'React Naitve',
-             'graphql',
-             'Typescript',
-             'Webpack',
-             'Node js',
-          ])) }, 1000);
+      (function() {
+        document.dispatchEvent(new MessageEvent('message', {
+          data: ${JSON.stringify('Hello')}
+        }));
+      })();
       true; // note: this is required, or you'll sometimes get silent failures
     `;
-  const parking_id = route.params.parking_id;
+  const {parking_id, lat, long} = route.params;
+  const [floor_id, setFloorId] = useState<string>('');
+  const [for_date, setfor_date] = useState<string>(
+    moment(new Date()).format('YYYY/MM/DD'),
+  );
+  const [for_time, setfor_time] = useState<string>('60');
+  const [from_time, setfrom_time] = useState<string>(
+    moment(new Date()).format('YYYY/MM/DD'),
+  );
   const [parkingOptions, setParkingOptions] = useState<ParkingOptions>();
   const WEBVIEW_REF = React.createRef<WebView>();
   const backHandler = () => {
@@ -57,13 +60,32 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
   const getParkingOptions = () => {
     NearByParkingService.ParkingOptions(parking_id)
       .then((result) => {
+        console.log(result);
         setParkingOptions(result.data);
       })
       .catch((err) => toastShow('error', err.message));
   };
 
   const handleChange = (item: string) => {
-    console.log(item);
+    setfor_time(item);
+  };
+
+  const onMessage = (data: any) => {
+    // alert(data.nativeEvent.data);
+    console.log(data.nativeEvent.data);
+    // props.navigation.navigate("Home");
+  };
+
+  const handleFloorId = (id: string) => {
+    setFloorId(id);
+  };
+
+  const handleDateTime = (type: 'date' | 'time', date: Date) => {
+    if (type === 'date') {
+      setfor_date(moment(date).format('YYYY/MM/DD'));
+    } else {
+      setfrom_time(moment(date).format('hh:mm'));
+    }
   };
 
   return (
@@ -72,7 +94,10 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
       renderToHardwareTextureAndroid={true}>
       <HeaderContainer isMargin {...{navigation}} />
       <View>
-        <FloorSelections floors={parkingOptions ? parkingOptions.floors : []} />
+        <FloorSelections
+          floors={parkingOptions ? parkingOptions.floors : []}
+          handleFloorId={handleFloorId}
+        />
       </View>
       <View
         style={{
@@ -87,8 +112,8 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-          <CalendarView type="date" />
-          <CalendarView type="time" />
+          <CalendarView type="date" handleDateTime={handleDateTime} />
+          <CalendarView type="time" handleDateTime={handleDateTime} />
           <DateTimeDrp
             items={parkingOptions?.times}
             onChangeItem={handleChange}></DateTimeDrp>
@@ -106,6 +131,7 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
             incognito
             androidHardwareAccelerationDisabled={true}
             injectedJavaScript={runFirst}
+            onMessage={onMessage}
           />
         </View>
       </View>
@@ -123,7 +149,14 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
             e.preventDefault();
             navigation.navigate('PaymentScreen', {
               parking_id: parking_id,
-              for_time: '120',
+              for_time: for_time,
+              floor_id: floor_id,
+              for_date: for_date,
+              from_time: from_time,
+              spot_id: '1',
+              is_vip: '0',
+              lat,
+              long,
             });
           }}
           buttonStyle={MapScreenStyle.btnPick}

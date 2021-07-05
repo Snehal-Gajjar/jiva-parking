@@ -18,7 +18,7 @@ export const Wallet: FC<Props> = ({navigation}) => {
   }, []);
   return (
     <View style={{flex: 1}}>
-      <HeaderContainer title="Car Detail" {...{navigation}} />
+      <HeaderContainer title="Wallet" {...{navigation}} />
       <View style={{margin: 15}}>
         <WalletCard {...{navigation}} />
       </View>

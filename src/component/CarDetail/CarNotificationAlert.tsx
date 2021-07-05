@@ -1,6 +1,6 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {Button} from 'react-native-elements';
+import {Button, Icon} from 'react-native-elements';
 import Modal from 'react-native-modal';
 import {Insurance, PUC} from '../../utils/types';
 import {CarNotiBtn} from './CarNotiBtn';
@@ -39,9 +39,20 @@ export const CarNotificationAlert = ({
       swipeDirection={['up', 'left', 'right', 'down']}
       style={styles.view}>
       <View style={styles.container}>
-        <Text style={styles.titleModal}>
-          Get Notification on Other Services
-        </Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.titleModal}>
+            Get Notification on Other Services
+          </Text>
+          <Icon
+            name="close"
+            onPress={(e) => {
+              e.preventDefault();
+              handleAddCar();
+            }}
+            size={20}
+            color="#0E5A93"></Icon>
+        </View>
+
         <View style={styles.iconContainer}>
           <CarNotiBtn
             image={require('../../assets/images/puc.png')}
@@ -64,8 +75,8 @@ export const CarNotificationAlert = ({
           title="Add Notification"
           buttonStyle={styles.btnLogIn}
           onPress={(e) => {
-            e.preventDefault()
-            handleAddCar()
+            e.preventDefault();
+            handleAddCar();
           }}
         />
       </View>
@@ -97,6 +108,12 @@ const styles = StyleSheet.create({
     height: 45,
     fontSize: 15,
     marginBottom: 10,
+  },
+  titleContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   container: {
     backgroundColor: '#fff',
