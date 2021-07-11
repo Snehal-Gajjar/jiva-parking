@@ -1,7 +1,7 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Formik} from 'formik';
 import React, {FC, useContext, useEffect, useState} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import {AuthService} from '../../api/services';
 import {SocialLoginBtn} from '../../component/Login/SocialLoginBtn';
@@ -67,7 +67,7 @@ export const SignUp: FC<Props> = ({navigation}) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
       <ScrollView>
         <View style={SignUpStyle.logoContainer}>
           <View style={SignUpStyle.logo}>
@@ -89,7 +89,7 @@ export const SignUp: FC<Props> = ({navigation}) => {
             console.log(values);
             handleSubmit(values);
           }}>
-          {({handleChange, errors, handleSubmit, values}) => (
+          {({handleChange, errors, handleSubmit, values, touched}) => (
             <View style={SignUpStyle.bottomContainer}>
               <Text style={SignUpStyle.loginTile}>Get Started</Text>
               <Text style={SignUpStyle.loginSubTile}>
@@ -100,7 +100,11 @@ export const SignUp: FC<Props> = ({navigation}) => {
                 iconName="user"
                 label="Full Name"
                 placeholder="Name"
-                error={errors.full_name && errors.full_name}
+                error={
+                  errors.full_name && touched.full_name
+                    ? errors.full_name
+                    : undefined
+                }
                 value={values.full_name}
                 onChangeText={handleChange('full_name')}
               />
@@ -109,7 +113,7 @@ export const SignUp: FC<Props> = ({navigation}) => {
                 iconName="phone"
                 label="Phone"
                 placeholder="Phone"
-                error={errors.phone && errors.phone}
+                error={errors.phone && touched.phone ? errors.phone : undefined}
                 value={values.phone}
                 onChangeText={handleChange('phone')}
               />
@@ -118,7 +122,7 @@ export const SignUp: FC<Props> = ({navigation}) => {
                 iconName="mail"
                 placeholder="Email"
                 label="Email"
-                error={errors.email && errors.email}
+                error={errors.email && touched.email ? errors.email : undefined}
                 value={values.email}
                 onChangeText={handleChange('email')}
               />
@@ -128,7 +132,11 @@ export const SignUp: FC<Props> = ({navigation}) => {
                 placeholder="Password"
                 label="Password"
                 secureTextEntry
-                error={errors.password && errors.password}
+                error={
+                  errors.password && touched.password
+                    ? errors.password
+                    : undefined
+                }
                 value={values.password}
                 onChangeText={handleChange('password')}
               />
@@ -139,7 +147,9 @@ export const SignUp: FC<Props> = ({navigation}) => {
                 label="Confirm Password"
                 secureTextEntry
                 error={
-                  errors.password_confirmation && errors.password_confirmation
+                  errors.password_confirmation && touched.password_confirmation
+                    ? errors.password_confirmation
+                    : undefined
                 }
                 value={values.password_confirmation}
                 onChangeText={handleChange('password_confirmation')}
@@ -154,9 +164,11 @@ export const SignUp: FC<Props> = ({navigation}) => {
                 <SocialLoginBtn
                   iconName="facebook"
                   iconType="feather"
+                  signup
                   title="Login with Facebook"
                 />
                 <SocialLoginBtn
+                  signup
                   iconName="social-google"
                   iconType="simple-line-icon"
                   title="Login with Google"
@@ -191,6 +203,6 @@ export const SignUp: FC<Props> = ({navigation}) => {
         visible={showOtpModal}
         handleClose={handleOtpModal}
       />
-    </View>
+    </SafeAreaView>
   );
 };

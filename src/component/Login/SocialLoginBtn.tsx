@@ -6,9 +6,15 @@ type Props = {
   title: string;
   iconType: string;
   iconName: string;
+  signup?: boolean;
 };
 
-export const SocialLoginBtn: FC<Props> = ({title, iconName, iconType}) => {
+export const SocialLoginBtn: FC<Props> = ({
+  title,
+  iconName,
+  iconType,
+  signup,
+}) => {
   return (
     <Button
       icon={
@@ -26,7 +32,7 @@ export const SocialLoginBtn: FC<Props> = ({title, iconName, iconType}) => {
           color="white"
         />
       }
-      title={title}
+      title={signup ? '' : title}
       titleStyle={{
         fontSize: 13,
       }}
@@ -36,7 +42,7 @@ export const SocialLoginBtn: FC<Props> = ({title, iconName, iconType}) => {
         height: 40,
       }}
       containerStyle={{
-        width: '50%',
+        width: signup? '15%' : '50%',
         marginRight: 5,
       }}
     />

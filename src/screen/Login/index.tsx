@@ -87,7 +87,7 @@ export const Login: FC<Props> = ({navigation}) => {
         onSubmit={(values) => {
           handleSubmit(values);
         }}>
-        {({handleChange, errors, handleSubmit, values}) => (
+        {({handleChange, errors, handleSubmit, values, touched}) => (
           <View style={LoginStyle.bottomContainer}>
             <Text style={LoginStyle.loginTile}>Log In</Text>
             <Text style={LoginStyle.loginSubTile}>Log in to your account</Text>
@@ -96,7 +96,7 @@ export const Login: FC<Props> = ({navigation}) => {
               iconName="phone"
               placeholder="Phone Number"
               label="Phone"
-              error={errors.phone && errors.phone}
+              error={errors.phone && touched.phone ? errors.phone : undefined}
               value={values.phone}
               onChangeText={handleChange('phone')}
             />
@@ -106,7 +106,11 @@ export const Login: FC<Props> = ({navigation}) => {
               placeholder="Password"
               label="Password"
               secureTextEntry
-              error={errors.password && errors.password}
+              error={
+                errors.password && touched.password
+                  ? errors.password
+                  : undefined
+              }
               value={values.password}
               onChangeText={handleChange('password')}
             />

@@ -56,6 +56,8 @@ export const HeaderContainer: FC<Props> = ({
         width: '100%',
         backgroundColor: handleFilter ? '#fff' : 'transparent',
         borderBottomColor: 'transparent',
+        alignItems: 'center',
+        display: 'flex',
       }}
       leftComponent={
         isProfile ? (
@@ -69,6 +71,21 @@ export const HeaderContainer: FC<Props> = ({
               marginTop: nearByParking ? 10 : 0,
             }}
             onPress={() => navigation.goBack()}></Icon>
+        ) : nearByParking ? (
+          <View style={HeaderStyle.torchContainer}>
+            <Button
+              buttonStyle={HeaderStyle.torchButtonStyle}
+              onPress={handleDrawer.bind(this)}
+              icon={
+                <Icon
+                  name="align-left"
+                  type="foundation"
+                  color="#0E5A93"
+                  style={HeaderStyle.btnImage}
+                />
+              }
+              containerStyle={HeaderStyle.torchContainer}></Button>
+          </View>
         ) : (
           <Icon
             name="align-left"
@@ -77,7 +94,7 @@ export const HeaderContainer: FC<Props> = ({
             size={25}
             style={{
               marginLeft: title || nearByParking || isMargin ? 5 : 20,
-              marginTop: nearByParking ? 20 : 0,
+              marginTop: nearByParking ? 30 : 0,
             }}
             onPress={handleDrawer.bind(this)}></Icon>
         )

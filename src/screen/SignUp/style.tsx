@@ -5,15 +5,16 @@ export const SignUpStyle = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop:10
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     borderRadius: 20,
     shadowColor: '#0655911A',
     shadowOpacity: 20,
     shadowRadius: 3.84,
-    marginTop: 10,
+    marginTop: 5,
     shadowOffset: {
       width: 3,
       height: 3,
@@ -51,7 +52,7 @@ export const SignUpStyle = StyleSheet.create({
   socialContainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
   },
@@ -61,5 +62,6 @@ export const SignUpStyle = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 5,
   },
 });

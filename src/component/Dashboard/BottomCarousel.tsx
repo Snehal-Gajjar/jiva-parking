@@ -51,14 +51,39 @@ export const BottomCarousel = () => {
   };
   return (
     <View style={BottomCarouselStyle.container}>
-      <Swiper
-        height={90}
-        loop
-        autoplay
-        autoplayTimeout={2}
-        showsPagination={false}>
-        {advertisement.map((img) => _renderItem(img))}
-      </Swiper>
+      {advertisement.length > 0 && (
+        <Swiper
+          height={90}
+          loop
+          showsPagination
+          autoplay
+          dot={
+            <View
+              style={{
+                backgroundColor: 'rgba(255,255,255,.3)',
+                width: 13,
+                height: 13,
+                borderRadius: 7,
+                marginLeft: 7,
+                marginRight: 7,
+              }}
+            />
+          }
+          activeDot={
+            <View
+              style={{
+                backgroundColor: '#fff',
+                width: 13,
+                height: 13,
+                borderRadius: 7,
+                marginLeft: 7,
+                marginRight: 7,
+              }}
+            />
+          }>
+          {advertisement.map((img) => _renderItem(img))}
+        </Swiper>
+      )}
     </View>
   );
 };
@@ -75,7 +100,7 @@ const BottomCarouselStyle = StyleSheet.create({
   },
   slideImage: {
     width: '100%',
-    height: '100%',
+    height: 100,
     borderRadius: 10,
   },
 });
