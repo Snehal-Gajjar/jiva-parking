@@ -10,7 +10,11 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 console.disableYellowBox = true;
 
-class QrCodeCamera extends Component {
+type Props = {
+  onRead: (e: any) => void;
+};
+
+class QrCodeCamera extends Component<Props> {
   makeSlideOutTranslation(translationType: string, fromValue: number) {
     return {
       from: {
@@ -26,33 +30,33 @@ class QrCodeCamera extends Component {
     return (
       <QRCodeScanner
         showMarker
-        onRead={(e) => console.log(e)}
+        onRead={this.props.onRead}
         cameraStyle={{height: SCREEN_WIDTH * 0.65}}
         customMarker={
           <View style={styles.rectangleContainer}>
             {/* <View style={{flexDirection: 'row'}}> */}
-              {/* <View style={styles.leftAndRightOverlay} /> */}
+            {/* <View style={styles.leftAndRightOverlay} /> */}
 
-              <View style={styles.rectangle}>
-                <Icon
-                  name="scan"
-                  size={SCREEN_WIDTH * 0.46}
-                  color={iconScanColor}
-                />
-                <Animatable.View
-                  style={styles.scanBar}
-                  direction="alternate-reverse"
-                  iterationCount="infinite"
-                  duration={1700}
-                  easing="linear"
-                  animation={this.makeSlideOutTranslation(
-                    'translateY',
-                    SCREEN_WIDTH * -0.54,
-                  )}
-                />
-              </View>
+            <View style={styles.rectangle}>
+              <Icon
+                name="scan"
+                size={SCREEN_WIDTH * 0.46}
+                color={iconScanColor}
+              />
+              <Animatable.View
+                style={styles.scanBar}
+                direction="alternate-reverse"
+                iterationCount="infinite"
+                duration={1700}
+                easing="linear"
+                animation={this.makeSlideOutTranslation(
+                  'translateY',
+                  SCREEN_WIDTH * -0.54,
+                )}
+              />
+            </View>
 
-              {/* <View style={styles.leftAndRightOverlay} /> */}
+            {/* <View style={styles.leftAndRightOverlay} /> */}
             {/* </View> */}
 
             {/* <View style={styles.bottomOverlay} /> */}
@@ -77,7 +81,7 @@ const iconScanColor = '#0E5A93';
 
 const styles = StyleSheet.create({
   rectangleContainer: {
-    display:'flex',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',

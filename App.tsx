@@ -23,6 +23,7 @@ import {PaymentScreen} from './src/screen/NearByParking/PaymentScreen';
 import {WalletPaymentScreen} from './src/screen/WalletPaymentScreen';
 import {BookingPaymentScreen} from './src/screen/NearByParking/BookingPayementScreen';
 import {NearByParking} from './src/screen/NearByParking';
+import Geolocation from '@react-native-community/geolocation';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -54,6 +55,21 @@ const App = () => {
     const onDimensionsChange = ({window}: {window: ScaledSize}) => {
       setDimensions(window);
     };
+    Geolocation.getCurrentPosition(
+      (position) => {
+        const initialPosition = JSON.stringify(position);
+        console.log(position);
+        storage.save({
+          key: 'latlong',
+          data: JSON.stringify({
+            lat: position.coords.latitude,
+            long: position.coords.longitude,
+          }),
+        });
+      },
+      (error) => console.log(error),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
     Dimensions.addEventListener('change', onDimensionsChange);
     init();
     return () => Dimensions.removeEventListener('change', onDimensionsChange);

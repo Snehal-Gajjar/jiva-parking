@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import {Image, Text, View,ScrollView} from 'react-native';
+import {Image, Text, View, ScrollView} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {BottomCarousel} from '../../component/Dashboard/BottomCarousel';
@@ -9,6 +9,7 @@ import {DashboardStyle} from './styles';
 import {RootStackParamList} from '../../utils/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Geolocation from '@react-native-community/geolocation';
+import storage from '../../utils/storage';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -19,22 +20,26 @@ export const Dashboard: FC<Props> = ({navigation}) => {
     lat: number;
     long: number;
   }>({lat: 23.036406, long: 72.561066});
+
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
-    Geolocation.getCurrentPosition(
-      (position) => {
-        const initialPosition = JSON.stringify(position);
-        console.log(position);
+    storage
+      .load({
+        key: 'latlong',
+        autoSync: true,
+        syncInBackground: true,
+      })
+      .then((res) => {
+        const parsedneoUser = JSON.parse(res);
+        console.log(parsedneoUser);
         setLatlong({
-          lat: position.coords.latitude,
-          long: position.coords.longitude,
+          lat: parsedneoUser.lat,
+          long: parsedneoUser.long,
         });
-      },
-      (error) => console.log(error),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
+      })
+      .catch(() => {});
   }, []);
 
   const handleNavPress = (name: any) => {

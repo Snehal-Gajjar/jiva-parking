@@ -24,7 +24,7 @@ export const Wallet: FC<Props> = ({navigation}) => {
       </View>
       <View style={{marginLeft: 15}}>
         <Text style={{color: '#000', fontFamily: 'Segoe UI', fontSize: 16}}>
-          History of Bookings
+          History of Wallet
         </Text>
       </View>
       <WalletHistory />

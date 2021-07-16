@@ -1,16 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {View} from 'react-native-animatable';
 import {Button, Icon} from 'react-native-elements';
 import Modal from 'react-native-modal';
 import QRCode from 'react-native-qrcode-svg';
 import Share from 'react-native-share';
+import storage from "../../../utils/storage"
 
 export const QRCodeModal = ({qrvisible, handleQRClose, id, carName, carNo}) => {
+  const [license, setLicense] = useState('-');
   let ref;
   getDataURL = () => {
     ref.toDataURL(this.callback);
   };
+
+  useEffect(() => {
+    storage
+      .load({
+        key: 'user',
+        autoSync: true,
+        syncInBackground: true,
+      })
+      .then((res) => {
+        const parsedneoUser = JSON.parse(res);
+        setLicense(parsedneoUser.driving_license);
+      });
+  }, []);
 
   callback = (dataURL) => {
     let shareImageBase64 = {
@@ -18,7 +33,7 @@ export const QRCodeModal = ({qrvisible, handleQRClose, id, carName, carNo}) => {
       url: `data:image/png;base64,${dataURL}`,
       subject: 'Parkaro QR Code', //  for email
     };
-    Share.open(shareImageBase64).catch(error => console.log(error));
+    Share.open(shareImageBase64).catch((error) => console.log(error));
   };
 
   return (
@@ -47,7 +62,7 @@ export const QRCodeModal = ({qrvisible, handleQRClose, id, carName, carNo}) => {
             alignItems: 'center',
           }}>
           <QRCode
-            value={JSON.stringify(id)}
+            value={JSON.stringify({id, carName, carNo, license})}
             size={150}
             logo={require('../../../assets/images/logo.png')}
             logoSize={30}
@@ -61,7 +76,7 @@ export const QRCodeModal = ({qrvisible, handleQRClose, id, carName, carNo}) => {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent:'center'
+            justifyContent: 'center',
           }}>
           <Button
             title="Share QR Code"

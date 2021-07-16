@@ -1,5 +1,5 @@
 import React, {FC, useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {Button, Image, Input} from 'react-native-elements';
 import {HeaderContainer} from '../component/common/HeaderContainer';
 import {RootStackParamList} from '../utils/NavigationTypes';
@@ -10,6 +10,7 @@ import {toastShow} from '../utils/Toast';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {TransactionUpdateParams} from '../utils/types';
+import { WalletStatementPopup } from '../component/Wallet/WalletStatementPopup';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -19,12 +20,17 @@ type Props = {
 export const WalletPaymentScreen: FC<Props> = ({navigation, route}) => {
   const [payAmount, setPayAount] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [visible, setVisible] = useState<boolean>(false);
   const {wallet_amount, name, contact} = route.params.user;
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
+
+  const handleClose = () => {
+    setVisible(!visible);
+  };
 
   const handleProceed = () => {
     setLoading(true);
@@ -170,7 +176,9 @@ export const WalletPaymentScreen: FC<Props> = ({navigation, route}) => {
                 }}
               />
             </View>
-            <View
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={handleClose}
               style={{
                 width: '90%',
                 borderBottomWidth: 1,
@@ -178,10 +186,11 @@ export const WalletPaymentScreen: FC<Props> = ({navigation, route}) => {
                 paddingBottom: 10,
               }}>
               <Text style={style.subtitles}>Request Wallet Statement</Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
+      <WalletStatementPopup {...{visible, handleClose}} />
     </View>
   );
 };

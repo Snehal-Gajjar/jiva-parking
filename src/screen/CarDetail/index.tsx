@@ -36,6 +36,7 @@ export const CarDetail: FC<Props> = ({navigation}) => {
     setloading(true);
     CarService.getCars()
       .then((result) => {
+        console.log(result)
         setloading(false);
         setCars(result.data);
       })

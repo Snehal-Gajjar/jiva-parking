@@ -27,7 +27,7 @@ export const CarItemStyle = StyleSheet.create({
   },
   carImageContainer: {
     height: 90,
-    width: '65%',
+    width: '50%',
   },
   deleteContainer:{
     width: 40,

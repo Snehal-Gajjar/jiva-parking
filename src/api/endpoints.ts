@@ -89,3 +89,7 @@ export const booking_add = ():string => {
 export const booking_update = ():string => {
     return '/booking_update'
 }
+
+export const wallet_statement =():string =>{
+    return '/wallet_statement'
+}

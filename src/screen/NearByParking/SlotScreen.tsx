@@ -25,22 +25,16 @@ type Props = {
 };
 
 export const SlotScreen: FC<Props> = ({navigation, route}) => {
-  const runFirst = `
-      (function() {
-        document.dispatchEvent(new MessageEvent('message', {
-          data: ${JSON.stringify('Hello')}
-        }));
-      })();
-      true; // note: this is required, or you'll sometimes get silent failures
-    `;
   const {parking_id, lat, long} = route.params;
   const [floor_id, setFloorId] = useState<string>('');
+  const [spot_id, setSpot_id] = useState<string>('0');
+  const [is_vip, setIs_vip] = useState<'0' | '1'>('0');
   const [for_date, setfor_date] = useState<string>(
     moment(new Date()).format('YYYY/MM/DD'),
   );
   const [for_time, setfor_time] = useState<string>('60');
   const [from_time, setfrom_time] = useState<string>(
-    moment(new Date()).format('YYYY/MM/DD'),
+    moment(new Date()).format('hh:mm'),
   );
   const [parkingOptions, setParkingOptions] = useState<ParkingOptions>();
   const WEBVIEW_REF = React.createRef<WebView>();
@@ -48,10 +42,26 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
     WEBVIEW_REF.current?.goBack();
     return true;
   };
+
+  const runFirst = `
+  (function() {
+    document.dispatchEvent(new MessageEvent('message', {
+      data: ${JSON.stringify({
+        parking_id: parking_id,
+        floor_no: floor_id,
+        for_time: for_time,
+        from_time,
+        for_date,
+      })}
+    }));
+  })();
+  true; // note: this is required, or you'll sometimes get silent failures
+  `;
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
+    console.log(Config.REST_ENDPOINT + `?&parking_id=${parking_id}`);
     BackHandler.addEventListener('hardwareBackPress', backHandler);
     getParkingOptions();
     return BackHandler.removeEventListener('hardwareBackPress', backHandler);
@@ -68,23 +78,31 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
 
   const handleChange = (item: string) => {
     setfor_time(item);
+    WEBVIEW_REF.current?.reload();
   };
 
   const onMessage = (data: any) => {
     // alert(data.nativeEvent.data);
+    const slotData = JSON.parse(data.nativeEvent.data);
+    setSpot_id(slotData.cell_presentation_id);
+    setIs_vip(slotData.is_vip);
     console.log(data.nativeEvent.data);
+    // {"row":2,"cell":1,"cell_id":"4-2-1","cell_presentation_id":"421","is_vip":1}
     // props.navigation.navigate("Home");
   };
 
   const handleFloorId = (id: string) => {
     setFloorId(id);
+    WEBVIEW_REF.current?.reload();
   };
 
   const handleDateTime = (type: 'date' | 'time', date: Date) => {
     if (type === 'date') {
       setfor_date(moment(date).format('YYYY/MM/DD'));
+      WEBVIEW_REF.current?.reload();
     } else {
       setfrom_time(moment(date).format('hh:mm'));
+      WEBVIEW_REF.current?.reload();
     }
   };
 
@@ -127,10 +145,30 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
           renderToHardwareTextureAndroid={true}>
           <WebView
             ref={WEBVIEW_REF}
-            source={{uri: Config.REST_ENDPOINT}}
+            source={{uri: Config.REST_ENDPOINT + `?&parking_id=${parking_id}`}}
             incognito
             androidHardwareAccelerationDisabled={true}
-            injectedJavaScript={runFirst}
+            injectedJavaScriptBeforeContentLoaded={`
+            window.onerror = function(message, sourcefile, lineno, colno, error) {
+              alert("Message: " + message + " - Source: " + sourcefile + " Line: " + lineno + ":" + colno);
+              return true;
+            };
+            true;
+          `}
+            injectedJavaScript={`
+            (function() {
+              document.dispatchEvent(new MessageEvent('message', {
+                data: ${JSON.stringify({
+                  parking_id: parking_id,
+                  floor_no: floor_id,
+                  for_time: for_time,
+                  from_time,
+                  for_date,
+                })}
+              }));
+            })();
+            true; // note: this is required, or you'll sometimes get silent failures
+            `}
             onMessage={onMessage}
           />
         </View>
@@ -144,7 +182,7 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
           margin: 10,
         }}>
         <Button
-          title="Proceed with Spot (G-1P)"
+          title={`Proceed with Spot (${floor_id}-${spot_id})`}
           onPress={(e) => {
             e.preventDefault();
             navigation.navigate('PaymentScreen', {
@@ -153,8 +191,8 @@ export const SlotScreen: FC<Props> = ({navigation, route}) => {
               floor_id: floor_id,
               for_date: for_date,
               from_time: from_time,
-              spot_id: '1',
-              is_vip: '0',
+              spot_id: spot_id,
+              is_vip: is_vip,
               lat,
               long,
             });

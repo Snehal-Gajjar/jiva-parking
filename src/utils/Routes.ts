@@ -12,6 +12,7 @@ import { Profile } from "../screen/Profile"
 import { NotificationScreen } from "../screen/NotificationScreen"
 import { BookingHistoryScreen } from "../screen/BookingHistoryScreen"
 import { WalletPaymentScreen } from "../screen/WalletPaymentScreen"
+import { ForgotPassword } from "../screen/ForgotPassword"
 
 
 export const SCREENS = {
@@ -27,6 +28,7 @@ export const SCREENS = {
 export const AUTHSCREENS = {
     Login: { title: 'Login', component: Login },
     SignUp: { title: 'SignUp', component: SignUp },
+    ForgotPassword: { title: 'ForgotPassword', component: ForgotPassword }
 }
 
 export const DRAWER = {

@@ -7,7 +7,8 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import QrCodeCamera from '../../component/Dashboard/QrCodeCamera';
 import {RootStackParamList} from '../../utils/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
-import Torch from "react-native-torch";
+import Torch from 'react-native-torch';
+import {CarDetailPopUp} from '../../component/Scanning/CarDetailPopUp';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -15,6 +16,9 @@ type Props = {
 
 export const Scanning: FC<Props> = ({navigation}) => {
   const [isTorchOn, setIsTorchOn] = useState(false);
+  const [visible, setVisible] = useState<boolean>(false);
+  const [carData, setCarData] = useState<any>({id: '4', carName: 'Audi i10', carNo: 'GJ03AB4513', license: ''});
+
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -24,6 +28,10 @@ export const Scanning: FC<Props> = ({navigation}) => {
   const handlePress = () => {
     Torch.switchState(!isTorchOn);
     setIsTorchOn(!isTorchOn);
+  };
+
+  const handleClose = () => {
+    setVisible(!visible);
   };
 
   return (
@@ -54,7 +62,12 @@ export const Scanning: FC<Props> = ({navigation}) => {
             //   marginTop:20,
           }}
         /> */}
-        <QrCodeCamera />
+        <QrCodeCamera
+          onRead={(e) => {
+            setVisible(true);
+            setCarData(e.data);
+          }}
+        />
       </View>
       <View style={ScanningStyle.scanBtnContainer}>
         <Button
@@ -80,9 +93,11 @@ export const Scanning: FC<Props> = ({navigation}) => {
           }}
           onPress={(e) => {
             e.preventDefault();
+            handleClose()
             navigation.navigate('Scanning');
           }}></Button>
       </View>
+      <CarDetailPopUp {...{visible, handleClose}} data={carData} />
     </View>
   );
 };

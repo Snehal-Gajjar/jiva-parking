@@ -61,6 +61,11 @@ export const NearByParking: FC<Props> = ({navigation, route}) => {
     handleClose('filter');
   };
 
+  const handleReset = () => {
+    handleClose('filter')
+    getNearByParking();
+  };
+
   const handleFilterEvent = (
     checkedId: string,
     roof: 'open' | 'close',
@@ -133,14 +138,6 @@ export const NearByParking: FC<Props> = ({navigation, route}) => {
           raised
           buttonStyle={[
             NearByParkingStyle.iconButtonStyle,
-            {backgroundColor: '#ffccaf'},
-          ]}
-          icon={<Icon name="truck" color="#ff6804" type="fontisto" size={20} />}
-          containerStyle={NearByParkingStyle.iconContainer}></Button>
-        <Button
-          raised
-          buttonStyle={[
-            NearByParkingStyle.iconButtonStyle,
             {backgroundColor: '#afc8ff'},
           ]}
           icon={
@@ -196,6 +193,7 @@ export const NearByParking: FC<Props> = ({navigation, route}) => {
       />
       <FliterPopUp
         visible={filterVisible}
+        handleReset={handleReset}
         handleClose={() => handleClose('filter')}
         handleFilterEvent={handleFilterEvent}
       />

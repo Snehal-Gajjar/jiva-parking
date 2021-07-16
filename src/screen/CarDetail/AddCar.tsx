@@ -61,12 +61,14 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
       });
   };
 
-  const handleUpdateCar = (values: AddCarDetail, id: string) => {
+  const handleUpdateCar = () => {
     CarService.updateCar(
       {
         ...values,
+        ...puc,
+        ...insurance,
       },
-      id,
+      route.params.carDetail.id as string,
     )
       .then((result) => {
         toastShow('success', result.message);
@@ -116,7 +118,8 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
           validationSchema={commonValidationSchema}
           onSubmit={(values) => {
             if (isEdit) {
-              handleUpdateCar({...values}, route.params.carDetail.id as string);
+              handleClose();
+              setValues({...values});
             } else {
               handleClose();
               setValues({...values});
@@ -130,6 +133,7 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
                 value={values.registration_no}
                 onChangeText={handleChange('registration_no')}
                 label="Car Number"
+                autoCapitalize="characters"
               />
               <VehicleType
                 defaultValue={values.vehicle_category_id}
@@ -182,7 +186,16 @@ export const AddCar: FC<Props> = ({navigation, route}) => {
         </Formik>
       </ScrollView>
       <CarNotificationAlert
-        {...{visible, handleAddCar, handleClose, setPuc, setInsurance}}
+        carDetail={route.params.carDetail}
+        {...{
+          visible,
+          isEdit,
+          handleAddCar,
+          handleClose,
+          setPuc,
+          setInsurance,
+          handleUpdateCar,
+        }}
       />
     </View>
   );

@@ -8,7 +8,7 @@ import {
   getInsuranceInitialValue,
   insuranceValidationSchema,
 } from '../../screen/CarDetail/addCarValues';
-import {Insurance} from '../../utils/types';
+import {CarList, Insurance} from '../../utils/types';
 import {DateInput} from '../DateInput';
 import {TextInput} from '../TextInput';
 import {CarDrp} from './CarDrp';
@@ -17,10 +17,21 @@ import {InsuranceType} from './CarDrpData';
 type Props = {
   visible: boolean;
   handleClose: () => void;
+  isEdit: boolean;
+  carDetail: CarList;
   setInsurance: Dispatch<SetStateAction<Insurance | undefined>>;
 };
 
-export const InsurancePopUp = ({visible, handleClose, setInsurance}: Props) => {
+export const InsurancePopUp = ({
+  visible,
+  handleClose,
+  setInsurance,
+  isEdit,
+  carDetail,
+}: Props) => {
+  const intialValues = isEdit
+    ? getInsuranceInitialValue(carDetail)
+    : getInsuranceInitialValue();
   return (
     <Modal
       testID={'modal'}
@@ -40,7 +51,7 @@ export const InsurancePopUp = ({visible, handleClose, setInsurance}: Props) => {
             color="#0E5A93"></Icon>
         </View>
         <Formik
-          initialValues={getInsuranceInitialValue()}
+          initialValues={intialValues}
           validationSchema={insuranceValidationSchema}
           onSubmit={(values) => {
             setInsurance(values);
@@ -89,6 +100,7 @@ export const InsurancePopUp = ({visible, handleClose, setInsurance}: Props) => {
                       setFieldError('puc_expiry', 'Invalid Date');
                     }
                   }}
+                  value={moment(values.insurance_policy_date).format('YYYY-DD-MM')}
                   error={errors.insurance_policy_date && 'Invalid Date'}
                   label="Date"
                 />
@@ -100,6 +112,7 @@ export const InsurancePopUp = ({visible, handleClose, setInsurance}: Props) => {
                       moment(formatted),
                     );
                   }}
+                  value={moment(values.insurance_policy_expiry_date).format('YYYY-DD-MM')}
                   onSubmitEditing={() => {
                     if (
                       !moment(values.insurance_policy_expiry_date).isValid()

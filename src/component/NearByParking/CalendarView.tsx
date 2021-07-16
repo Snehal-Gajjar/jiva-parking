@@ -23,7 +23,7 @@ export const CalendarView = ({type, handleDateTime}: Props) => {
       style={{
         backgroundColor: '#fff',
         height: 40,
-        width: '20%',
+        width: type === 'date' ? '30%' : '20%',
         borderWidth: 0.5,
         borderColor: '#065591',
         borderRadius: 10,

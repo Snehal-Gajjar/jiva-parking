@@ -2,7 +2,7 @@ import React, {Dispatch, SetStateAction, useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import Modal from 'react-native-modal';
-import {Insurance, PUC} from '../../utils/types';
+import {CarList, Insurance, PUC} from '../../utils/types';
 import {CarNotiBtn} from './CarNotiBtn';
 import {InsurancePopUp} from './InsurancePopUp';
 import {PUCPopUp} from './PUCPopUp';
@@ -10,17 +10,23 @@ import {PUCPopUp} from './PUCPopUp';
 type Props = {
   visible: boolean;
   handleClose: () => void;
+  isEdit: boolean;
+  carDetail: CarList;
   handleAddCar: () => void;
+  handleUpdateCar: () => void;
   setPuc: Dispatch<SetStateAction<PUC | undefined>>;
   setInsurance: Dispatch<SetStateAction<Insurance | undefined>>;
 };
 
 export const CarNotificationAlert = ({
   visible,
+  isEdit,
   handleClose,
   setPuc,
   setInsurance,
   handleAddCar,
+  handleUpdateCar,
+  carDetail,
 }: Props) => {
   const [open, setOpen] = useState({
     puc: false,
@@ -47,7 +53,11 @@ export const CarNotificationAlert = ({
             name="close"
             onPress={(e) => {
               e.preventDefault();
-              handleAddCar();
+              if (isEdit) {
+                handleUpdateCar();
+              } else {
+                handleAddCar();
+              }
             }}
             size={20}
             color="#0E5A93"></Icon>
@@ -76,16 +86,24 @@ export const CarNotificationAlert = ({
           buttonStyle={styles.btnLogIn}
           onPress={(e) => {
             e.preventDefault();
-            handleAddCar();
+            if (isEdit) {
+              handleUpdateCar();
+            } else {
+              handleAddCar();
+            }
           }}
         />
       </View>
       <PUCPopUp
+        {...{carDetail}}
+        isEdit={isEdit}
         setPuc={setPuc}
         visible={puc}
         handleClose={() => handlePopUpClose('puc')}
       />
       <InsurancePopUp
+        {...{carDetail}}
+        isEdit={isEdit}
         visible={insurance}
         setInsurance={setInsurance}
         handleClose={() => handlePopUpClose('insurance')}

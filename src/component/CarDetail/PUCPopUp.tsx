@@ -8,7 +8,7 @@ import {
   getPUCInitialValue,
   pucValidationSchema,
 } from '../../screen/CarDetail/addCarValues';
-import {PUC} from '../../utils/types';
+import {CarList, PUC} from '../../utils/types';
 import {DateInput} from '../DateInput';
 import {TextInput} from '../TextInput';
 
@@ -16,9 +16,21 @@ type Props = {
   visible: boolean;
   setPuc: Dispatch<SetStateAction<PUC | undefined>>;
   handleClose: () => void;
+  isEdit: boolean;
+  carDetail: CarList;
 };
 
-export const PUCPopUp = ({visible, handleClose, setPuc}: Props) => {
+export const PUCPopUp = ({
+  visible,
+  handleClose,
+  setPuc,
+  isEdit,
+  carDetail,
+}: Props) => {
+  const intialValues = isEdit
+    ? getPUCInitialValue(carDetail)
+    : getPUCInitialValue();
+
   return (
     <Modal
       testID={'modal'}
@@ -38,7 +50,7 @@ export const PUCPopUp = ({visible, handleClose, setPuc}: Props) => {
             color="#0E5A93"></Icon>
         </View>
         <Formik
-          initialValues={getPUCInitialValue()}
+          initialValues={intialValues}
           validationSchema={pucValidationSchema}
           onSubmit={(values) => {
             setPuc(values);
@@ -68,6 +80,7 @@ export const PUCPopUp = ({visible, handleClose, setPuc}: Props) => {
                 onChangeText={(formatted) => {
                   setFieldValue('puc_date', moment(formatted));
                 }}
+                value={moment(values.puc_date).format('YYYY-DD-MM')}
                 onSubmitEditing={() => {
                   if (!moment(values.puc_date).isValid()) {
                     setFieldError('puc_date', 'Invalid Date');
@@ -81,6 +94,7 @@ export const PUCPopUp = ({visible, handleClose, setPuc}: Props) => {
                 onChangeText={(formatted) => {
                   setFieldValue('puc_expiry', moment(formatted));
                 }}
+                value={moment(values.puc_expiry).format('YYYY-DD-MM')}
                 onSubmitEditing={() => {
                   if (!moment(values.puc_expiry).isValid()) {
                     setFieldError('puc_expiry', 'Invalid Date');

@@ -13,13 +13,13 @@ import {RootStackParamList} from '../../utils/NavigationTypes';
 import storage from '../../utils/storage';
 import {toastShow} from '../../utils/Toast';
 import {commonValidationSchema, getInitialValue} from './initialValues';
-import {LoginStyle} from './style';
+import {FPStyle} from './style';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
 };
 
-export const Login: FC<Props> = ({navigation}) => {
+export const ForgotPassword: FC<Props> = ({navigation}) => {
   const context = useContext(CurrentUserContext);
   const [showOtpModal, setShowOtpModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -38,33 +38,9 @@ export const Login: FC<Props> = ({navigation}) => {
     navigation.navigate('Dashboard');
   };
 
-  const handleSubmit = (values: {phone: string; password: string}) => {
-    setLoading(true);
-    AuthService.LoginUser(values)
-      .then((result) => {
-        const {
-          data: {token, driving_license},
-        } = result;
-        storage.clearMap();
-        storage.save({
-          key: 'user',
-          data: JSON.stringify({
-            token,
-            isUserLoggedIn: true,
-            driving_license: driving_license,
-          }),
-        });
-
-        toastShow('success', result.message);
-        context.handleUser();
-        navigation.navigate('Dashboard');
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-        toastShow('error', error.message);
-      });
+  const handleSubmit = (values: {phone: string}) => {
+    // setLoading(true);
+    console.log(values);
   };
 
   return (
@@ -72,8 +48,8 @@ export const Login: FC<Props> = ({navigation}) => {
       style={{
         flex: 1,
       }}>
-      <View style={LoginStyle.logoContainer}>
-        <View style={LoginStyle.logo}>
+      <View style={FPStyle.logoContainer}>
+        <View style={FPStyle.logo}>
           <Image
             source={require('../../assets/images/logo.png')}
             style={{
@@ -83,7 +59,7 @@ export const Login: FC<Props> = ({navigation}) => {
             }}
           />
         </View>
-        <Text style={LoginStyle.logoTxt}>Parkaro</Text>
+        <Text style={FPStyle.logoTxt}>Parkaro</Text>
       </View>
       <Formik
         initialValues={getInitialValue()}
@@ -92,9 +68,9 @@ export const Login: FC<Props> = ({navigation}) => {
           handleSubmit(values);
         }}>
         {({handleChange, errors, handleSubmit, values, touched}) => (
-          <View style={LoginStyle.bottomContainer}>
-            <Text style={LoginStyle.loginTile}>Log In</Text>
-            <Text style={LoginStyle.loginSubTile}>Log in to your account</Text>
+          <View style={FPStyle.bottomContainer}>
+            <Text style={FPStyle.loginTile}>Log In</Text>
+            <Text style={FPStyle.loginSubTile}>Log in to your account</Text>
             <TextInput
               iconType="feather"
               iconName="phone"
@@ -104,27 +80,13 @@ export const Login: FC<Props> = ({navigation}) => {
               value={values.phone}
               onChangeText={handleChange('phone')}
             />
-            <TextInput
-              iconType="feather"
-              iconName="lock"
-              placeholder="Password"
-              label="Password"
-              secureTextEntry
-              error={
-                errors.password && touched.password
-                  ? errors.password
-                  : undefined
-              }
-              value={values.password}
-              onChangeText={handleChange('password')}
-            />
             <Button
-              title="Log In"
+              title="Forgot Password"
               loading={loading}
               onPress={handleSubmit.bind(this)}
-              buttonStyle={LoginStyle.btnSignUp}
+              buttonStyle={FPStyle.btnSignUp}
             />
-            <View style={LoginStyle.socialContainer}>
+            <View style={FPStyle.socialContainer}>
               <SocialLoginBtn
                 iconName="facebook"
                 iconType="feather"
@@ -139,18 +101,21 @@ export const Login: FC<Props> = ({navigation}) => {
           </View>
         )}
       </Formik>
-      <View style={LoginStyle.forgotPswdContainer}>
+      <View style={FPStyle.forgotPswdContainer}>
         <Button
           type="clear"
-          title="Forgot Password?"
-          onPress={() => navigation.navigate('ForgotPassword')}
+          title="Already have account?"
+          onPress={(e) => {
+            e.preventDefault();
+            navigation.navigate('Login');
+          }}
           buttonStyle={{
             backgroundColor: 'transparent',
           }}></Button>
-        <View style={LoginStyle.signupContainer}>
+        <View style={FPStyle.signupContainer}>
           <Text
             style={[
-              LoginStyle.loginSubTile,
+              FPStyle.loginSubTile,
               {
                 fontSize: 17,
               },
@@ -163,7 +128,7 @@ export const Login: FC<Props> = ({navigation}) => {
               navigation.navigate('SignUp');
             }}
             style={[
-              LoginStyle.loginTile,
+              FPStyle.loginTile,
               {
                 fontSize: 15,
                 marginBottom: 20,

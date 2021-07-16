@@ -25,7 +25,7 @@ export const DateInput = ({...props}: Props) => {
             mask: '[0][0][0][0]-[0][0]-[0][0]',
           }}
           style={styles.dateInput}
-          placeholder="DD/MM/YYYY"
+          placeholder="YYYY-DD-MM"
           {...props}
         />
       </View>

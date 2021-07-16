@@ -13,12 +13,14 @@ type Props = {
     roof: 'open' | 'close',
     use: 'personal' | 'event',
   ) => void;
+  handleReset: () => void;
 };
 
 export const FliterPopUp: FC<Props> = ({
   visible,
   handleClose,
   handleFilterEvent,
+  handleReset,
 }) => {
   const [amenities, setAmenities] = useState<Amenities[]>([]);
   const [checkedState, setCheckedState] = useState<boolean[]>([]);
@@ -195,11 +197,27 @@ export const FliterPopUp: FC<Props> = ({
             />
           </View>
         </View>
-        <Button
-          title="Search"
-          onPress={handleFilterPress.bind(this)}
-          buttonStyle={styles.search}
-        />
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent:'space-between'
+          }}>
+          <Button
+            title="Search"
+            onPress={handleFilterPress.bind(this)}
+            buttonStyle={styles.search}
+          />
+          <Button
+            title="Reset"
+            onPress={() => {
+              setCheckedId([]);
+              setCheckedState([])
+              handleReset();
+            }}
+            buttonStyle={styles.reset}
+          />
+        </View>
       </View>
     </Modal>
   );
@@ -272,5 +290,16 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     height: 50,
     fontSize: 15,
+    width: '50%',
+  },
+  reset: {
+    width: '50%',
+    marginLeft: 10,
+    marginTop: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    height: 50,
+    fontSize: 15,
+    borderColor: '#0E5A93',
   },
 });

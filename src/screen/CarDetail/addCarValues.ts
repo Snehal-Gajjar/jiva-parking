@@ -1,3 +1,4 @@
+import moment from 'moment'
 import * as yup from 'yup'
 import { AddCarDetail, CarList, Insurance, PUC } from '../../utils/types'
 
@@ -17,19 +18,19 @@ export const commonValidationSchema = yup.object().shape({
     fuel_type: yup.string().required('Fuel type is required')
 })
 
-export const getPUCInitialValue: () => PUC = () => ({
-    puc_no: '',
-    puc_expiry: new Date(),
-    puc_date: new Date()
+export const getPUCInitialValue: (detail?: CarList) => PUC = (detail) => ({
+    puc_no: detail ? detail.puc_no : '',
+    puc_expiry: detail ? moment(detail.puc_expiry ? detail.puc_expiry : new Date()).toDate() : new Date(),
+    puc_date: detail ? moment(detail.puc_date ? detail.puc_date : new Date()).toDate() : new Date()
 })
 
-export const getInsuranceInitialValue: () => Insurance = () => ({
-    insurance_policy_amount: '',
-    insurance_policy_company: '',
-    insurance_policy_date: new Date(),
-    insurance_policy_expiry_date: new Date(),
-    insurance_policy_no: '',
-    insurance_policy_type: ''
+export const getInsuranceInitialValue: (detail?: CarList) => Insurance = (detail) => ({
+    insurance_policy_amount: detail ? detail.insurance_policy_amount : '',
+    insurance_policy_company: detail ? detail.insurance_policy_company : '',
+    insurance_policy_date: detail ? moment(detail.insurance_policy_date ? detail.insurance_policy_date : new Date()).toDate() : new Date(),
+    insurance_policy_expiry_date: detail ? moment(detail.insurance_policy_expiry_date ? detail.insurance_policy_expiry_date : new Date()).toDate() : new Date(),
+    insurance_policy_no: detail ? detail.insurance_policy_no : '',
+    insurance_policy_type: detail ? detail.insurance_policy_type : ''
 })
 
 export const pucValidationSchema = yup.object().shape({
